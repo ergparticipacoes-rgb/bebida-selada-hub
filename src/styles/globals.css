@@ -1,0 +1,53 @@
+/* src/styles/globals.css - Padronização Institucional INBS-001:2025 */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================
+   PALETA INSTITUCIONAL
+   Azul Petróleo + Dourado Premium
+   ========================== */
+:root {
+  --color-primary: #001F33; /* Fundo primário */
+  --color-primary-light: #002A46; /* Gradiente secundário */
+  --color-accent: #D9B98E; /* Dourado premium */
+  --color-text-primary: #F9FAFB; /* Texto principal */
+  --color-text-secondary: #C7D3E3; /* Texto secundário */
+  --color-border: rgba(217, 185, 142, 0.25); /* Bordas e divisores */
+  /* Compatibilidade com nomes antigos */
+  --brand-blue: #001F33;
+  --brand-gold: #D9B98E;
+  --brand-deep: #001F33;
+}
+
+/* ==========================
+   TIPOGRAFIA INSTITUCIONAL
+   ========================== */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    height: 100%;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--color-text-primary);
+    background-color: #F8F9FB;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height: 100%;
+    @apply antialiased;
+  }
+
+  /* Títulos com Playfair Display (padrão institucional) */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+}
+/* rebuild-trigger */

@@ -1,0 +1,31 @@
+export const siteConfig = {
+  name: "Bebida Selada | Selo Nacional de Autenticidade",
+  description:
+    "O selo oficial que conecta governos, estabelecimentos e consumidores através de blockchain, rastreabilidade e confiança no setor de bebidas.",
+  url: "https://bebidaselada.com",
+  contactEmail: "contato@bebidaselada.com",
+  keywords: [
+    "bebida selada",
+    "selo nacional de autenticidade",
+    "blockchain bebidas",
+    "rastreabilidade",
+    "prefeituras certificadas",
+    "bares e adegas parceiros",
+    "estabelecimentos certificados",
+    "distribuidoras rastreadas",
+    "selo blockchain bebidas",
+    "rede nacional de autenticidade",
+    "produtores de bebidas certificados",
+    "vinícolas autenticadas",
+    "cervejarias blockchain",
+    "universidade bebida selada",
+    "cursos sobre autenticidade",
+    "blockchain bebidas",
+    "rastreabilidade certificada",
+    "INBS:001",
+  ],
+  social: {
+    instagram: "https://instagram.com/bebidaselada",
+    linkedin: "https://linkedin.com/company/bebidaselada",
+  },
+};

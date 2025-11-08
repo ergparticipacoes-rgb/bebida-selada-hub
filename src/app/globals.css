@@ -1,0 +1,374 @@
+/* src/app/globals.css */
+
+/* Import Tailwind base */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================
+   PALETA INSTITUCIONAL
+   Azul Petróleo + Dourado Premium
+   ========================== */
+:root {
+  --color-primary: #001F33; /* Fundo primário */
+  --color-primary-light: #002A46; /* Gradiente secundário */
+  --color-accent: #D9B98E; /* Dourado premium */
+  --color-text-primary: #F9FAFB; /* Texto principal */
+  --color-text-secondary: #C7D3E3; /* Texto secundário */
+  --color-border: rgba(217, 185, 142, 0.25); /* Bordas e divisores */
+}
+
+/* ==========================
+   TIPOGRAFIA PREMIUM
+   ========================== */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        font-weight: 400;
+        line-height: 1.6;
+        color: var(--color-text-primary);
+        background-color: #F8F9FB; /* neutro quente, não branco puro */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        @apply antialiased;
+      }
+
+  /* Títulos com Playfair Display */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+
+  /* Destaques em itálico dourado */
+  .gold-italic {
+    font-style: italic;
+    color: var(--color-accent);
+  }
+}
+
+/* ==========================
+   COMPONENTES BASE
+   ========================== */
+@layer components {
+  /* Seções com espaçamento vertical padrão */
+  .section {
+    @apply py-24 md:py-32;
+  }
+
+  /* Containers padrão */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 md:px-8;
+  }
+
+  /* Transições suaves */
+  .transition-smooth {
+    @apply transition-all duration-500 ease-in-out;
+  }
+
+  /* Hover com brilho */
+  .hover-glow {
+    @apply hover:scale-105 hover:brightness-110 transition-smooth;
+  }
+}
+
+/* ==========================
+   ANIMAÇÕES E EFEITOS
+   ========================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ✨ Brilho fixo contínuo para contador - mantém brilho permanente */
+@keyframes gold-glow {
+  0%   { text-shadow: 0 0 0px #D9B98E; opacity: 1; }
+  30%  { text-shadow: 0 0 10px #E6CFA5; opacity: 1; }
+  60%  { text-shadow: 0 0 8px #D9B98E; opacity: 1; }
+  100% { text-shadow: 0 0 6px #D9B98E; opacity: 1; }
+}
+
+/* ⚡ Varredura dourada horizontal de autenticação */
+@keyframes gold-scan {
+  0% {
+    opacity: 0;
+    transform: translateX(-150%) skewX(-15deg);
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(150%) skewX(-15deg);
+  }
+}
+
+/* Gradiente dourado para texto com movimento sutil */
+@keyframes gold-sheen {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ANIMAÇÃO DA TAÇA-AMPULHETA PREMIUM BEBIDA SELADA® */
+@keyframes wineglass-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes wineglass-liquid-flow {
+  0% {
+    stroke-dashoffset: 0;
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -20;
+    opacity: 0.7;
+  }
+}
+
+@keyframes wineglass-bubble-fall {
+  0% {
+    opacity: 0;
+    transform: translateY(-3px) translateX(0px);
+  }
+  20% {
+    opacity: 0.9;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(10px) translateX(1px);
+  }
+}
+
+@keyframes wineglass-shine-pulse {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+/* ✨ Brilho pulsante para escudo com cadeado */
+@keyframes shield-glow {
+  0% {
+    filter: drop-shadow(0 0 4px rgba(229, 196, 143, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(229, 196, 143, 0.9));
+  }
+  100% {
+    filter: drop-shadow(0 0 4px rgba(229, 196, 143, 0.5));
+  }
+}
+
+/* ✨ Animação suave de pulso para microanimação institucional */
+@keyframes pulse-slow {
+  0% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.4; }
+}
+
+/* ==========================
+   UTILITÁRIOS CUSTOMIZADOS
+   ========================== */
+@layer utilities {
+  .text-gold {
+    color: var(--color-accent);
+  }
+
+  .bg-gold {
+    background-color: var(--color-accent);
+  }
+
+  .border-gold {
+    border-color: var(--color-border);
+  }
+
+  .gradient-hero {
+    background: linear-gradient(180deg, #001F33 0%, #002A46 100%);
+  }
+
+  /* Classes de cor institucional */
+  .text-inbsBlue {
+    color: #001F33;
+  }
+
+  .text-inbsGold {
+    color: #D9B98E;
+  }
+
+  /* Classe para símbolo de marca registrada elegante */
+  .markR {
+    font-size: 0.65em;
+    position: relative;
+    top: -0.25em;
+    opacity: 0.8;
+  }
+
+  /* Classes de animação */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-gold {
+    animation: gold-glow 2.2s ease-in-out forwards;
+    animation-fill-mode: forwards; /* Preserva o efeito final (brilho ativo) */
+  }
+
+  /* Animação de brilho para escudo com cadeado */
+  .shield-glow {
+    animation: shield-glow 3s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 6s ease-in-out infinite;
+  }
+
+  .gold-scan {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 40%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(217,185,142,0.6) 50%,
+      transparent 100%
+    );
+    animation: gold-scan 1.8s ease-in-out 1.2s forwards;
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+
+  .gold-text {
+    background: linear-gradient(90deg, #D9B98E 0%, #F3E3B3 50%, #D9B98E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: gold-sheen 2.4s ease-in-out 1;
+  }
+
+  .parallax-bg {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  /* Classes da ampulheta animada */
+  .wineglass-hourglass-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    vertical-align: middle;
+  }
+
+  .wineglass-hourglass-svg {
+    width: 100%;
+    height: 100%;
+    transform-origin: center center;
+    will-change: transform;
+  }
+
+  .wineglass-rotate {
+    animation: wineglass-rotate 8s linear infinite;
+  }
+
+  .wineglass-liquid {
+    animation: wineglass-liquid-flow 2s linear infinite;
+    stroke-dasharray: 6 3;
+  }
+
+  .wineglass-bubble {
+    animation: wineglass-bubble-fall 2.5s ease-in-out infinite;
+    transform-origin: center;
+    pointer-events: none;
+  }
+
+  .wineglass-bubble-1 {
+    animation-delay: 0s;
+  }
+
+  .wineglass-bubble-2 {
+    animation-delay: 0.4s;
+  }
+
+  .wineglass-bubble-3 {
+    animation-delay: 0.8s;
+  }
+
+  .wineglass-bubble-4 {
+    animation-delay: 1.2s;
+  }
+
+  .wineglass-bubble-5 {
+    animation-delay: 1.6s;
+  }
+
+  .wineglass-shine {
+    animation: wineglass-shine-pulse 3s ease-in-out infinite;
+  }
+
+  /* Dimensões responsivas para ampulheta estática institucional */
+  .static-hourglass-icon {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+  }
+
+  @media (min-width: 768px) {
+    .static-hourglass-icon {
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      min-height: 32px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .static-hourglass-icon {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      min-height: 48px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wineglass-rotate,
+    .wineglass-liquid,
+    .wineglass-bubble,
+    .wineglass-shine {
+      animation: none;
+    }
+  }
+}
