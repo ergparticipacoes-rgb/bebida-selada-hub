@@ -8,7 +8,7 @@ import { useScrollRestoration } from "../../../hooks/useScrollRestoration";
 
 
 export default function ResolucaoTecnicaPage() {
-  useScrollRestoration(140);
+  useScrollRestoration();
 
   return (
     <main className="min-h-screen flex flex-col bg-[#001F33] text-white">

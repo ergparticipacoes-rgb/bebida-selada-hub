@@ -34,7 +34,7 @@ const comunicados = [
 ];
 
 export default function ComunicadosPage() {
-  useScrollRestoration(140);
+  useScrollRestoration();
 
   return (
     <main className="min-h-screen flex flex-col bg-[#001F33] text-white">

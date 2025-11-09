@@ -1,7 +1,9 @@
 "use client";
 // src/app/page.tsx
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import Navbar from "../components/Navbar";
+import HeroSection from "../components/HeroSection";
 import Plans from "../components/Plans";
 import Footer from "../components/Footer";
 import ScrollFade from "../components/ui/ScrollFade";
@@ -11,55 +13,46 @@ import ComoFunciona from "../components/ComoFunciona";
 import { useScrollRestoration } from "../hooks/useScrollRestoration";
 import { FileCheck, QrCode, Shield, Flag, Building2, Award, Lightbulb } from "lucide-react";
 import AnimatedCounter from "../components/AnimatedCounter";
-import RepresentanteDigital from "../components/RepresentanteDigital";
 
+const LazyRepresentanteDigital = dynamic(() => import("../components/RepresentanteDigital"), {
+  ssr: false,
+  loading: () => (
+    <section className="py-24 text-center text-[#001F33]">
+      <p className="animate-pulse text-base md:text-lg">Carregando representantes…</p>
+    </section>
+  ),
+});
+
+const LazyUniversidadeSection = dynamic(
+  () => import("../components/sections/UniversidadeSection"),
+  {
+    ssr: false,
+    loading: () => (
+      <section className="py-20 text-center text-[#001F33]">
+        <p className="animate-pulse text-base md:text-lg">Carregando Universidade…</p>
+      </section>
+    ),
+  }
+);
+
+const LazyCTASection = dynamic(() => import("../components/CTASection"), {
+  ssr: false,
+  loading: () => (
+    <section className="py-20 bg-[#001F33] text-center text-white">
+      <p className="animate-pulse text-base md:text-lg">Preparando chamada para ação…</p>
+    </section>
+  ),
+});
 
 export default function Home() {
-  useScrollRestoration(140);
+  useScrollRestoration();
 
   return (
     <main className="min-h-screen flex flex-col bg-[#F8F9FB] text-[#001F33]">
       {/* NAVBAR */}
       <Navbar />
 
-      {/* START — Hero Principal - v3.3 Final */}
-      <section className="relative min-h-screen bg-gradient-to-b from-[#001F33] to-[#002A46] text-white flex flex-col justify-center items-center text-center px-6 pt-24">
-        <h1 className="text-5xl md:text-6xl font-playfair font-bold text-[#D9B98E] mb-6">
-          A Rede Segura Nacional –{" "}
-          <span className="inline-flex items-baseline gap-[1px]">
-            <span className="font-playfair text-white">Bebida Selada</span>
-            <span className="font-inter text-white text-[0.65em] ml-[1px] relative" style={{ top: "-0.35em" }}>
-              ®
-            </span>
-          </span>
-        </h1>
-        <p className="text-lg md:text-xl max-w-3xl text-[#F8F9FB]/90 mb-10 leading-relaxed">
-          É o primeiro sistema brasileiro de certificação inteligente, rastreabilidade e confiança no setor de bebidas.
-        </p>
-        <p className="text-base md:text-lg max-w-2xl text-[#F8F9FB]/80 mb-12 leading-relaxed">
-          Conectamos tecnologia, prefeituras, estabelecimentos e consumidores em uma rede que promove segurança, transparência e desenvolvimento sustentável em todo o país.
-        </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          <Link
-            href="/prefeituras"
-            className="bg-[#D9B98E] text-[#001F33] font-semibold px-8 py-3 rounded-lg hover:bg-[#C9A97D] transition-all"
-          >
-            Para Prefeituras
-          </Link>
-          <Link
-            href="/estabelecimentos"
-            className="bg-[#D9B98E] text-[#001F33] font-semibold px-8 py-3 rounded-lg hover:bg-[#C9A97D] transition-all"
-          >
-            Para Estabelecimentos
-          </Link>
-          <Link
-            href="/consumidor"
-            className="bg-[#D9B98E] text-[#001F33] font-semibold px-8 py-3 rounded-lg hover:bg-[#C9A97D] transition-all"
-          >
-            Sou Consumidor
-          </Link>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* Divisor dourado */}
       <div className="mx-auto h-[1.5px] w-1/2 bg-[#E6CFA5] opacity-60 rounded-full"></div>
@@ -501,121 +494,19 @@ export default function Home() {
 
 {/* 8) REPRESENTANTES DIGITAIS */}
 <ScrollFade>
-  <RepresentanteDigital />
+  <LazyRepresentanteDigital />
 </ScrollFade>
 
 {/* Divisor dourado padronizado - fundo claro (refinado) */}
 <div className="mx-auto h-[1.5px] w-1/2 bg-[#E6CFA5] opacity-60 rounded-full"></div>
 
 {/* 9) UNIVERSIDADE BEBIDA SELADA - v3.3 Final */}
-<section className="py-20 bg-[#F8F9FB] mb-0">
-  <div className="max-w-7xl mx-auto px-6 sm:px-10 md:px-20 text-center">
-    <motion.h2
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="text-4xl md:text-5xl font-playfair font-bold text-[#001F33] mb-8 md:mb-12"
-    >
-      <span className="inline-flex items-baseline gap-[1px]"><span className="font-playfair text-inbsBlue">Universidade Bebida Selada</span><span className="font-inter text-inbsBlue text-[0.65em] ml-[1px] relative" style={{ top: "-0.35em" }}>®</span></span>
-    </motion.h2>
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-      className="bg-white/5 backdrop-blur-sm rounded-xl border-2 border-[#D9B98E] p-8 max-w-3xl mx-auto mb-8"
-    >
-      <p className="text-lg md:text-xl leading-relaxed text-[#001F33]">
-        Centro oficial de formação, certificação e treinamento. Conteúdo EAD modular para representantes,
-        gestores e estabelecimentos.
-      </p>
-    </motion.div>
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-    >
-      <Link
-        href="/universidade"
-        className="inline-block bg-[#D9B98E] text-[#001F33] font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-[#C9A97D] transition"
-      >
-        Saiba Mais
-      </Link>
-    </motion.div>
-  </div>
-</section>
+<LazyUniversidadeSection />
 
       {/* Divisor dourado padronizado - fundo claro (refinado) */}
       <div className="mx-auto h-[1.5px] w-1/2 bg-[#E6CFA5] opacity-60 rounded-full"></div>
 
-      {/* START — Hero Institucional Final - Produção */}
-      <section className="relative text-center py-24 px-6 bg-gradient-to-b from-[#001F33] to-[#002A46] text-white overflow-hidden min-h-screen flex flex-col justify-center">
-        {/* Overlay dourado translúcido */}
-        <div
-          className="absolute inset-0 bg-gradient-to-b from-transparent via-[#D9B98E]/5 to-[#001F33]/95 parallax-bg"
-          style={{ backgroundAttachment: "fixed" }}
-        />
-        
-        <div className="max-w-5xl mx-auto space-y-8 relative z-10">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="font-playfair text-4xl md:text-5xl font-bold text-[#D9B98E] leading-tight drop-shadow-sm"
-          >
-            A Rede Segura Nacional – <span className="inline-flex items-baseline gap-[1px]">
-              <span className="font-playfair text-[#D9B98E]">Bebida Selada</span>
-              <span className="font-inter text-[#D9B98E] text-[0.65em] ml-[1px] relative" style={{ top: "-0.35em" }}>®</span>
-            </span>
-          </motion.h1>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            className="font-inter text-xl md:text-2xl lg:text-3xl text-[#F8F9FB] font-semibold leading-relaxed"
-          >
-            É o primeiro sistema brasileiro de certificação inteligente, rastreabilidade e confiança no setor de bebidas.
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-            className="font-inter text-[#F8F9FB]/95 text-lg md:text-xl leading-relaxed font-medium max-w-3xl mx-auto mt-6"
-          >
-            Conectamos tecnologia, prefeituras, estabelecimentos e consumidores em uma rede que promove segurança, transparência e desenvolvimento sustentável em todo o país.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-            className="flex flex-wrap justify-center gap-4 mt-10"
-          >
-            <Link
-              href="/prefeituras"
-              className="bg-[#D9B98E] text-[#001F33] font-semibold px-8 py-3 rounded-lg hover:bg-[#C9A97D] transition"
-            >
-              Para Prefeituras
-            </Link>
-            <Link
-              href="/estabelecimentos"
-              className="bg-[#D9B98E] text-[#001F33] font-semibold px-8 py-3 rounded-lg hover:bg-[#C9A97D] transition"
-            >
-              Para Estabelecimentos
-            </Link>
-            <Link
-              href="/consumidor"
-              className="bg-[#D9B98E] text-[#001F33] font-semibold px-8 py-3 rounded-lg hover:bg-[#C9A97D] transition"
-            >
-              Sou Consumidor
-            </Link>
-          </motion.div>
-        </div>
-      </section>
+      <LazyCTASection />
 
       {/* Divisor dourado padronizado - fundo claro (refinado) */}
       <div className="mx-auto h-[1.5px] w-1/2 bg-[#E6CFA5] opacity-60 rounded-full"></div>

@@ -1,54 +1,45 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 
-export default function Hero() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
-
+export default function HeroSection() {
   return (
-    <section className="bg-gradient-to-r from-[#004C6D] to-[#001F33] text-white py-20 text-center">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-5xl font-playfair font-bold mb-6 text-white tracking-tight">
-          A Rede Segura Nacional – <span className="text-[#D9B98E]">Bebida Selada</span>
-          <span className="text-[0.65em] relative top-[-0.35em] ml-[2px]">®</span>
-          <br />
-          é o primeiro sistema brasileiro de certificação inteligente, rastreabilidade e confiança no setor de bebidas.
+    <section className="relative min-h-screen bg-gradient-to-b from-[#001F33] to-[#002A46] text-white flex flex-col justify-center items-center text-center px-6 pt-24">
+      <div className="max-w-5xl mx-auto flex flex-col items-center">
+        <h1 className="text-5xl md:text-6xl font-playfair font-bold text-[#D9B98E] mb-6">
+          A Rede Segura Nacional –{" "}
+          <span className="inline-flex items-baseline gap-[1px]">
+            <span className="font-playfair text-white">Bebida Selada</span>
+            <span
+              className="font-inter text-white text-[0.65em] ml-[1px] relative"
+              style={{ top: "-0.35em" }}
+            >
+              ®
+            </span>
+          </span>
         </h1>
-        <p className="text-lg font-inter mb-10 text-white/90 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-lg md:text-xl max-w-3xl text-[#F8F9FB]/90 mb-10 leading-relaxed">
+          É o primeiro sistema brasileiro de certificação inteligente, rastreabilidade e confiança no setor de bebidas.
+        </p>
+        <p className="text-base md:text-lg max-w-2xl text-[#F8F9FB]/80 mb-12 leading-relaxed">
           Conectamos tecnologia, prefeituras, estabelecimentos e consumidores em uma rede que promove segurança, transparência e desenvolvimento sustentável em todo o país.
         </p>
-
-        <div className="flex justify-center flex-wrap gap-4 mt-6">
+        <div className="flex flex-wrap justify-center gap-4">
           <Link
             href="/prefeituras"
-            className="px-6 py-3 rounded-lg bg-[#D9B98E] text-[#001F33] font-semibold hover:scale-105 transition-all"
+            className="bg-[#D9B98E] text-[#001F33] font-semibold px-8 py-3 rounded-lg hover:bg-[#C9A97D] transition-all"
           >
-            Sou Prefeitura
+            Para Prefeituras
           </Link>
           <Link
             href="/estabelecimentos"
-            className="px-6 py-3 rounded-lg border border-[#D9B98E] text-[#D9B98E] font-semibold hover:bg-[#D9B98E]/10 hover:scale-105 transition-all"
+            className="bg-[#D9B98E] text-[#001F33] font-semibold px-8 py-3 rounded-lg hover:bg-[#C9A97D] transition-all"
           >
-            Sou Estabelecimento
+            Para Estabelecimentos
           </Link>
           <Link
-            href="/representantes"
-            className="px-6 py-3 rounded-lg border border-[#D9B98E] text-[#D9B98E] font-semibold hover:bg-[#D9B98E]/10 hover:scale-105 transition-all"
-          >
-            Sou Representante Digital
-          </Link>
-          <Link
-            href="/consulta"
-            className="px-6 py-3 rounded-lg border border-[#D9B98E] text-[#D9B98E] font-semibold hover:bg-[#D9B98E]/10 hover:scale-105 transition-all"
+            href="/consumidor"
+            className="bg-[#D9B98E] text-[#001F33] font-semibold px-8 py-3 rounded-lg hover:bg-[#C9A97D] transition-all"
           >
             Sou Consumidor
           </Link>

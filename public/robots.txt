@@ -1,7 +1,9 @@
+# *
 User-agent: *
 Allow: /
-Sitemap: https://bebidaselada.com/sitemap.xml
 
+# Host
+Host: https://www.bebidaselada.com.br
 
-
-
+# Sitemaps
+Sitemap: https://www.bebidaselada.com.br/sitemap.xml

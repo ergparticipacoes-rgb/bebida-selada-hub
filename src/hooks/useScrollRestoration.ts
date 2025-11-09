@@ -2,33 +2,34 @@
 
 import { useEffect } from "react";
 
-export function useScrollRestoration(offset: number = 140) {
+const OFFSET_FLAG_KEY = "backWithOffset";
+const OFFSET_VALUE_KEY = "backOffset";
+
+export function useScrollRestoration(offset: number = 0) {
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      // Verificar se há flag de scroll com offset
-      const shouldOffset = sessionStorage.getItem('backWithOffset');
-      
-      if (shouldOffset === 'true') {
-        const savedOffset = parseInt(sessionStorage.getItem('backOffset') || offset.toString(), 10);
-        
-        // Aguardar renderização completa
-        setTimeout(() => {
-          window.scrollTo({
-            top: savedOffset,
-            behavior: 'smooth'
-          });
-          
-          // Limpar flags após aplicar
-          sessionStorage.removeItem('backWithOffset');
-          sessionStorage.removeItem('backOffset');
-        }, 100);
-      } else {
-        // Scroll padrão se não houver flag
-        window.scrollTo({ top: offset, behavior: "smooth" });
-      }
+    if (typeof window === "undefined") return;
+
+    const shouldRestore = sessionStorage.getItem(OFFSET_FLAG_KEY) === "true";
+    const savedOffset = sessionStorage.getItem(OFFSET_VALUE_KEY);
+
+    if (shouldRestore && savedOffset) {
+      const parsedOffset = Math.max(Number.parseInt(savedOffset, 10), 0);
+
+      const raf = requestAnimationFrame(() => {
+        window.scrollTo({ top: parsedOffset, left: 0, behavior: "smooth" });
+      });
+
+      sessionStorage.removeItem(OFFSET_FLAG_KEY);
+      sessionStorage.removeItem(OFFSET_VALUE_KEY);
+
+      return () => cancelAnimationFrame(raf);
     }
+
+    const safeOffset = Math.max(offset, 0);
+    const raf = requestAnimationFrame(() => {
+      window.scrollTo({ top: safeOffset, left: 0, behavior: "auto" });
+    });
+
+    return () => cancelAnimationFrame(raf);
   }, [offset]);
 }
-
-
-

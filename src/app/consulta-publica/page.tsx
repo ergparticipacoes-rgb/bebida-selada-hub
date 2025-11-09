@@ -13,7 +13,7 @@ import { useScrollRestoration } from "../../hooks/useScrollRestoration";
 export const dynamic = "force-static";
 
 export default function ConsultaPublicaPage() {
-  useScrollRestoration(140);
+  useScrollRestoration();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (

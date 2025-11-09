@@ -23,6 +23,7 @@ import {
   Zap,
   Globe
 } from "lucide-react";
+import { FaHandsHelping } from "react-icons/fa";
 
 export const dynamic = "force-static";
 
@@ -370,7 +371,7 @@ export default function PrefeiturasPage() {
                   descricao: "Garante bebidas seguras em festas e eventos municipais.",
                 },
                 {
-                  icon: "🫱‍🫲",
+                  icon: FaHandsHelping,
                   titulo: "Assistência Social / Direitos Humanos",
                   descricao: "Protege o cidadão e incentiva o consumo seguro e consciente.",
                 },
@@ -384,10 +385,10 @@ export default function PrefeiturasPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: i * 0.1 }}
-                    className={`flex flex-col items-center justify-between text-center bg-white p-6 md:p-8 rounded-2xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 min-h-[340px] ${isHidden ? 'hidden md:block' : ''}`}
+                    className={`group flex flex-col items-center justify-between text-center bg-white p-6 md:p-8 rounded-2xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 min-h-[340px] ${isHidden ? 'hidden md:block' : ''}`}
                   >
-                    <div className="flex justify-center items-center mb-4 text-[#D9B98E] text-5xl">
-                      {typeof IconComponent === 'string' ? IconComponent : <IconComponent className="text-[#D9B98E] text-4xl md:text-5xl" />}
+                    <div className="flex justify-center items-center mb-4">
+                      <IconComponent className="h-12 w-12 text-[#D9B98E] transition-colors duration-300 transition-transform transform group-hover:text-[#C4A06A] group-hover:scale-110" />
                     </div>
                     <h3 className="text-[#001F33] font-semibold mb-3 text-2xl md:text-[1.35rem]">
                       {item.titulo}
