@@ -1,15 +1,11 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import VoltarButton from "./VoltarButton";
 
 export default function PageTransition({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [pathname]);
 
   return (
     <AnimatePresence mode="wait">

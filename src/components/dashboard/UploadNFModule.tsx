@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Button from "../ui/Button";
 import Link from "next/link";
-import { PRICING_CONFIG } from "../../config/pricing";
 import { ONBOARDING_CONFIG } from "../../config/onboarding";
 
 interface UploadNFModuleProps {
@@ -41,13 +40,6 @@ export default function UploadNFModule({
       setUploadSuccess(true);
       setTimeout(() => setUploadSuccess(false), 3000);
     }, 2000);
-  };
-
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    }).format(price);
   };
 
   const statusColors = {

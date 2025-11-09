@@ -40,7 +40,7 @@ export default function Navbar() {
           "radial-gradient(circle at 30% 30%, rgba(217,185,142,0.06), transparent 70%)",
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 md:px-16 py-5 flex items-center justify-between">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
         <Link
           href="/"
           className="flex items-center gap-3 text-[#D9B98E] hover:brightness-110 transition-all"

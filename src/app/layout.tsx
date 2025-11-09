@@ -2,7 +2,23 @@ import type { Metadata, Viewport } from "next";
 import '../styles/globals.css';
 import PageTransition from '../components/PageTransition';
 import GlobalHead from '../components/GlobalHead';
+import ScrollToTop from '../components/ScrollToTop';
 import Script from 'next/script';
+import { Inter, Playfair_Display } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["700"],
+  variable: "--font-playfair",
+});
 
 export const metadata: Metadata = {
   title: "Bebida Selada® – Rede Segura Nacional",
@@ -52,7 +68,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className={`${inter.variable} ${playfair.variable}`}>
       <head>
         <GlobalHead />
       </head>
@@ -107,6 +123,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <PageTransition>
           {children}
         </PageTransition>
+        <ScrollToTop />
         
         <script
           dangerouslySetInnerHTML={{

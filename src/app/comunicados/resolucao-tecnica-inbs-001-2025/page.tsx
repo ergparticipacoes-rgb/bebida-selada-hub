@@ -62,7 +62,7 @@ export default function ResolucaoTecnicaPage() {
               </section>
 
               <blockquote className="border-l-4 border-[#D9B98E] pl-6 py-6 mt-12 italic text-white/90 text-xl md:text-2xl leading-relaxed bg-[#002A46]/30 rounded-r-lg">
-                "A autenticidade é o novo selo de valor da bebida brasileira."
+                &quot;A autenticidade é o novo selo de valor da bebida brasileira.&quot;
                 <footer className="mt-4 text-base md:text-lg not-italic text-[#D9B98E]/80">
                   — Conselho Nacional Rede Segura / INBS
                 </footer>

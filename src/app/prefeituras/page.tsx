@@ -19,7 +19,6 @@ import {
   FileText,
   Calendar,
   Target,
-  Heart,
   Eye,
   Zap,
   Globe

@@ -55,7 +55,6 @@ export default function RepresentantesPage() {
     // Calcular projeção de 6 meses com crescimento acumulado
     const tabelaMeses = [];
     let carteiraAcumulada = 0;
-    let receitaTotal6Meses = 0;
     
     for (let i = 1; i <= 6; i++) {
       // Cada mês adiciona novas ativações à carteira
@@ -63,7 +62,6 @@ export default function RepresentantesPage() {
       const ativacaoMes = novasAtivacoes * valorMedioPlano * ativacao;
       const recorrenteMes = carteiraAcumulada * valorMedioPlano * recorrente;
       const totalMensalMes = ativacaoMes + recorrenteMes;
-      receitaTotal6Meses += totalMensalMes;
       
       tabelaMeses.push({
         mes: i,
@@ -102,7 +100,7 @@ export default function RepresentantesPage() {
       participacaoNacional,
       tabelaMeses,
     });
-  }, [planos]);
+  }, [planos, valorMedioPlano]);
 
   return (
     <main className="min-h-screen flex flex-col bg-[#001F33] text-white">

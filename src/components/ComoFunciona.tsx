@@ -38,7 +38,7 @@ export default function ComoFunciona() {
 
   return (
     <section className="py-20 bg-[#001F33] text-white mb-0">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 md:px-20">
+      <div className="container mx-auto px-6 sm:px-10 md:px-20">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

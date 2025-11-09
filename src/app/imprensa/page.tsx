@@ -257,8 +257,8 @@ export default function ImprensaPage() {
             className="text-center space-y-6 mt-24 md:mt-32"
           >
             <p className="text-[#E5E9F0]/90 text-lg md:text-xl italic leading-relaxed md:leading-loose max-w-3xl mx-auto">
-              "Transparência é notícia. A <span className="inline-flex items-baseline gap-[1px]"><span className="font-playfair text-inbsGold">Bebida Selada</span><span className="font-inter text-inbsGold text-[0.65em] ml-[1px] relative" style={{ top: "-0.35em" }}>®</span></span> reforça o compromisso com
-              a verdade, a rastreabilidade e a inovação brasileira."
+              &quot;Transparência é notícia. A <span className="inline-flex items-baseline gap-[1px]"><span className="font-playfair text-inbsGold">Bebida Selada</span><span className="font-inter text-inbsGold text-[0.65em] ml-[1px] relative" style={{ top: "-0.35em" }}>®</span></span> reforça o compromisso com
+              a verdade, a rastreabilidade e a inovação brasileira.&quot;
             </p>
           </motion.section>
 

@@ -2,7 +2,6 @@
 import { motion } from "framer-motion";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import Button from "../../components/ui/Button";
 import Link from "next/link";
 import { PRICING_CONFIG } from "../../config/pricing";
 

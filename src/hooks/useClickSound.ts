@@ -13,7 +13,7 @@ export function useClickSound() {
       audio.play().catch(() => {
         // Ignora erros de reprodução (arquivo não encontrado ou bloqueado pelo navegador)
       });
-    } catch (error) {
+    } catch {
       // Ignora erros silenciosamente
     }
   }, []);

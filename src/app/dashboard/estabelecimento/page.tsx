@@ -10,7 +10,7 @@ export default function DashboardEstabelecimento() {
   // Simulação: usuário está no plano Start (gratuito)
   // Em produção, isso viria do contexto/estado do usuário
   const [userPlan] = useState<"start" | "profissional" | "premium">("start");
-  const [showUpsell, setShowUpsell] = useState(userPlan === "start");
+  const [showUpsell] = useState(userPlan === "start");
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("pt-BR", {

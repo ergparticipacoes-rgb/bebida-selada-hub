@@ -4,7 +4,6 @@ import Link from "next/link";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import { useState } from "react";
-import { signIn } from "next-auth/react";
 
 export default function Login() {
   const [showEmailForm, setShowEmailForm] = useState(false);

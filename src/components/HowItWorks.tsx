@@ -19,7 +19,7 @@ export default function HowItWorks() {
 
   return (
     <section className="py-20 bg-gray-50">
-      <div className="max-w-6xl mx-auto px-6 text-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-6xl">
         <h2 className="text-3xl font-bold text-[#004C6D] mb-12">Como Funciona</h2>
         <div className="grid md:grid-cols-3 gap-8">
           {steps.map((step, i) => (

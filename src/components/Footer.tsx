@@ -28,7 +28,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#001F33] text-white border-t border-[#D9B98E]/30">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 md:px-20 py-20 pb-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 pb-12">
         {/* Grid de 4 colunas */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

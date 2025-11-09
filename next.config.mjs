@@ -23,6 +23,10 @@ const nextConfig = {
     remotePatterns: [],
   },
 
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+
   // Configuração de Webpack para garantir resolução de aliases
   webpack: (config, { isServer }) => {
     config.resolve.alias = {

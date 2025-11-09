@@ -6,7 +6,7 @@ import { Laptop, DollarSign, Globe, ShieldCheck } from "lucide-react";
 export default function RepresentanteDigital() {
   return (
     <section className="relative py-28 bg-gradient-to-b from-[#001F33] to-[#002A46] text-[#F8F9FB] overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 text-center relative z-10 space-y-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-12 max-w-6xl">
         {/* TÍTULO */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

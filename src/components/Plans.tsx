@@ -40,7 +40,7 @@ export default function Plans() {
 
   return (
     <section className="py-20 bg-[#F8F9FB] mb-0">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 md:px-20 text-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

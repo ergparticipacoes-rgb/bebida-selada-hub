@@ -11,7 +11,7 @@ export default function CTASection() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="py-28 md:py-36 bg-[#001F33] text-white text-center"
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 md:px-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

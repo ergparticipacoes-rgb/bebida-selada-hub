@@ -5,24 +5,18 @@ import Navbar from "../components/Navbar";
 import Plans from "../components/Plans";
 import Footer from "../components/Footer";
 import ScrollFade from "../components/ui/ScrollFade";
-import Button from "../components/ui/Button";
 import Link from "next/link";
-import SectionWrapper from "../components/ui/SectionWrapper";
-import Heading from "../components/ui/Heading";
 import ShieldWithLock from "../components/ui/ShieldWithLock";
 import ComoFunciona from "../components/ComoFunciona";
 import { useScrollRestoration } from "../hooks/useScrollRestoration";
 import { FileCheck, QrCode, Shield, Flag, Building2, Award, Lightbulb } from "lucide-react";
 import AnimatedCounter from "../components/AnimatedCounter";
 import RepresentanteDigital from "../components/RepresentanteDigital";
-import { useEffect } from "react";
 
 
 export default function Home() {
   useScrollRestoration(140);
-  
-  // Remover o useEffect manual do contador - usar AnimatedCounter component
-  
+
   return (
     <main className="min-h-screen flex flex-col bg-[#F8F9FB] text-[#001F33]">
       {/* NAVBAR */}
@@ -246,8 +240,9 @@ export default function Home() {
           {/* Microcopy institucional */}
           <div className="text-center pt-8">
             <p className="text-base md:text-lg text-[#001F33CC] leading-relaxed max-w-3xl mx-auto italic">
-              "Transparência e rastreabilidade com padrão técnico nacional.  
-              O INBS-001 é a garantia de que a bebida que chega ao seu copo passou por auditoria, controle e validação pública."
+              &quot;Transparência e rastreabilidade com padrão técnico nacional.&quot;
+              <br />
+              &quot;O INBS-001 é a garantia de que a bebida que chega ao seu copo passou por auditoria, controle e validação pública.&quot;
             </p>
           </div>
         </div>

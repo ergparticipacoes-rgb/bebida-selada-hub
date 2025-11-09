@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { newsData } from "../../../data/newsData";
 
 export default function ValorNoticia() {
