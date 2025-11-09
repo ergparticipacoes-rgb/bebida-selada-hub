@@ -124,7 +124,7 @@ export default function PrefeiturasPage() {
             >
               Como Funciona
             </motion.h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 place-items-center">
               {[
                 {
                   icon: FileSignature,
@@ -155,13 +155,13 @@ export default function PrefeiturasPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: i * 0.1 }}
-                    className="group flex flex-col items-center text-center bg-[#002A46]/60 backdrop-blur-sm border border-[#D9B98E]/30 rounded-2xl p-8 shadow-md hover:-translate-y-1 hover:shadow-lg hover:shadow-[#D9B98E33] hover:border-[#D9B98E] transition-all duration-300"
+                    className="group flex flex-col items-center text-center justify-start p-6 h-full max-w-[280px] bg-[#002A46]/60 backdrop-blur-sm border border-[#D9B98E]/30 rounded-2xl shadow-md hover:-translate-y-1 hover:shadow-lg hover:shadow-[#D9B98E33] hover:border-[#D9B98E] transition-all duration-300"
                   >
                     <IconComponent className="mx-auto mb-3 text-5xl text-[#D9B98E] drop-shadow-[0_0_4px_rgba(217,185,142,0.4)] transition-transform duration-300 group-hover:scale-110 group-hover:text-[#C4A06A] group-hover:drop-shadow-[0_0_8px_rgba(217,185,142,0.7)]" />
-                    <h3 className="text-[#D9B98E] font-semibold text-2xl md:text-[1.35rem] mb-2">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3 leading-snug tracking-tight text-center">
                       {item.titulo}
                     </h3>
-                    <p className="text-[#F8F9FB] text-lg md:text-[1.1rem] leading-relaxed max-w-md">
+                    <p className="text-sm text-gray-600 leading-relaxed text-center">
                       {item.descricao}
                     </p>
                   </motion.div>
@@ -186,7 +186,7 @@ export default function PrefeiturasPage() {
             >
               Benefícios ao Município
             </motion.h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 md:gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 md:gap-12 place-items-center">
               {[
                 {
                   icon: MapPin,
@@ -211,22 +211,22 @@ export default function PrefeiturasPage() {
               ].map((item, i) => {
                 const IconComponent = item.icon;
                 return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className="group flex flex-col items-center text-center bg-[#002A46]/60 backdrop-blur-sm border border-[#D9B98E]/30 rounded-2xl p-8 shadow-md hover:shadow-lg hover:shadow-[#D9B98E33] hover:border-[#D9B98E] transition-all duration-300"
-                >
-                  <IconComponent className="mx-auto mb-3 text-5xl text-[#D9B98E] drop-shadow-[0_0_4px_rgba(217,185,142,0.4)] transition-transform duration-300 group-hover:scale-110 group-hover:text-[#C4A06A] group-hover:drop-shadow-[0_0_8px_rgba(217,185,142,0.7)]" />
-                  <h3 className="text-[#D9B98E] font-semibold text-2xl md:text-[1.35rem] mb-2">
-                    {item.titulo}
-                  </h3>
-                  <p className="text-[#F8F9FB] text-base md:text-lg leading-relaxed">
-                    {item.descricao}
-                  </p>
-                </motion.div>
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: i * 0.1 }}
+                    className="group flex flex-col items-center text-center justify-start p-6 h-full max-w-[280px] bg-[#002A46]/60 backdrop-blur-sm border border-[#D9B98E]/30 rounded-2xl shadow-md hover:shadow-lg hover:shadow-[#D9B98E33] hover:border-[#D9B98E] transition-all duration-300"
+                  >
+                    <IconComponent className="mx-auto mb-3 text-5xl text-[#D9B98E] drop-shadow-[0_0_4px_rgba(217,185,142,0.4)] transition-transform duration-300 group-hover:scale-110 group-hover:text-[#C4A06A] group-hover:drop-shadow-[0_0_8px_rgba(217,185,142,0.7)]" />
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3 leading-snug tracking-tight text-center">
+                      {item.titulo}
+                    </h3>
+                    <p className="text-sm text-gray-600 leading-relaxed text-center">
+                      {item.descricao}
+                    </p>
+                  </motion.div>
                 );
               })}
             </div>
@@ -274,7 +274,7 @@ export default function PrefeiturasPage() {
             >
               Secretarias diretamente impactadas pela adesão ao programa
             </motion.h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 place-items-center">
               {[
                 {
                   icon: Building2,
@@ -305,13 +305,13 @@ export default function PrefeiturasPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: i * 0.1 }}
-                    className="group flex flex-col items-center text-center bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl hover:shadow-[#D9B98E33] transition-all duration-300 h-full"
+                    className="group flex flex-col items-center text-center justify-start p-6 h-full max-w-[280px] bg-white rounded-2xl shadow-lg hover:shadow-xl hover:shadow-[#D9B98E33] transition-all duration-300"
                   >
                     <IconComponent className="mx-auto mb-3 text-5xl text-[#D9B98E] drop-shadow-[0_0_4px_rgba(217,185,142,0.4)] transition-transform duration-300 group-hover:scale-110 group-hover:text-[#C4A06A] group-hover:drop-shadow-[0_0_8px_rgba(217,185,142,0.7)]" />
-                    <h3 className="text-[#001F33] font-semibold mb-2 text-xl md:text-[1.3rem]">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3 leading-snug tracking-tight text-center">
                       {item.titulo}
                     </h3>
-                    <p className="text-[#0A0A0A99] text-sm md:text-base leading-relaxed">
+                    <p className="text-sm text-gray-600 leading-relaxed text-center">
                       {item.descricao}
                     </p>
                   </motion.div>
@@ -336,7 +336,7 @@ export default function PrefeiturasPage() {
             >
               Outras secretarias e áreas que também se beneficiam
             </motion.h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 place-items-center">
               {[
                 {
                   icon: Target,
@@ -378,13 +378,13 @@ export default function PrefeiturasPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: i * 0.1 }}
-                    className={`group flex flex-col items-center text-center bg-white p-6 md:p-8 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 h-full ${isHidden ? 'hidden md:block' : ''}`}
+                    className={`group flex flex-col items-center text-center justify-start p-6 h-full max-w-[280px] bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 ${isHidden ? 'hidden md:block' : ''}`}
                   >
                     <IconComponent className="mx-auto mb-3 text-5xl text-[#D9B98E] drop-shadow-[0_0_4px_rgba(217,185,142,0.4)] transition-transform duration-300 group-hover:scale-110 group-hover:text-[#C4A06A] group-hover:drop-shadow-[0_0_8px_rgba(217,185,142,0.7)]" />
-                    <h3 className="text-[#001F33] font-semibold text-xl md:text-[1.3rem] mb-2">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3 leading-snug tracking-tight text-center">
                       {item.titulo}
                     </h3>
-                    <p className="text-[#0A0A0A99] text-sm md:text-base leading-relaxed">
+                    <p className="text-sm text-gray-600 leading-relaxed text-center">
                       {item.descricao}
                     </p>
                   </motion.div>
@@ -417,7 +417,7 @@ export default function PrefeiturasPage() {
             >
               Por que sua prefeitura deve se tornar parceira da Rede Segura Nacional
             </motion.h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
               {[
                 {
                   icon: Eye,
@@ -439,6 +439,14 @@ export default function PrefeiturasPage() {
                   descricao: "Tornar-se parceiro é alinhar sua gestão às melhores práticas nacionais de transparência, eficiência e desenvolvimento sustentável — atributos de governos modernos e bem avaliados.",
                 },
               ].map((item, i) => {
+                const descriptionContent =
+                  typeof item.descricao === "string" ? (
+                    <p className="text-sm text-gray-600 leading-relaxed text-center">{item.descricao}</p>
+                  ) : (
+                    <div className="text-sm text-gray-600 leading-relaxed text-center">
+                      {item.descricao}
+                    </div>
+                  );
                 return (
                   <motion.div
                     key={i}
@@ -446,18 +454,13 @@ export default function PrefeiturasPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: i * 0.1 }}
-                    className="flex flex-col justify-between text-center min-h-[340px] p-6 border border-[#D9B98E33] rounded-xl bg-[#002A46]/30"
+                    className="group flex flex-col items-center text-center justify-start p-6 h-full max-w-[280px] border border-[#D9B98E33] rounded-xl bg-[#002A46]/30"
                   >
-                    <h3 className="text-[#D9B98E] font-playfair text-2xl md:text-[1.5rem] mb-5">
+                    <div className="mb-3 h-12 w-12" />
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3 leading-snug tracking-tight text-center">
                       {item.titulo}
                     </h3>
-                    <div className="text-xl md:text-[1.15rem] leading-relaxed md:leading-[1.9]">
-                      {typeof item.descricao === 'string' ? (
-                        <p className="text-[#F8F9FB]/90">{item.descricao}</p>
-                      ) : (
-                        item.descricao
-                      )}
-                    </div>
+                    {descriptionContent}
                   </motion.div>
                 );
               })}
