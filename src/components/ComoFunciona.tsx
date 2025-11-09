@@ -69,17 +69,17 @@ export default function ComoFunciona() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
-                whileHover={{ y: -4, scale: 1.02 }}
-                className="bg-[#002A46]/60 backdrop-blur-sm border-2 border-[#D9B98E]/30 rounded-xl p-8 shadow-lg hover:shadow-xl hover:border-[#D9B98E] transition-all duration-500 ease-in-out flex flex-col h-full"
+                className="card-blue group flex flex-col items-center text-center justify-start p-6 h-full max-w-[320px] cursor-pointer"
               >
-                <div className="mb-5 p-4 rounded-xl bg-[#D9B98E]/15 flex justify-center items-center">
-                  <IconComponent className="h-8 w-8 text-[#D9B98E]" />
-                </div>
-                <h3 className="font-playfair font-bold text-2xl text-[#D9B98E] mb-4 leading-tight text-center">
+                <IconComponent className="icon mb-4 text-5xl" />
+                <h3 className="text-lg font-semibold mb-2 leading-snug tracking-tight text-center">
                   {bloco.titulo}
                 </h3>
-                <p className="text-[#F8F9FB] font-inter leading-relaxed mb-6 flex-grow text-sm md:text-base" dangerouslySetInnerHTML={{ __html: bloco.descricao }} />
-                <Link href={bloco.cta}>
+                <p
+                  className="text-sm leading-relaxed text-center flex-grow"
+                  dangerouslySetInnerHTML={{ __html: bloco.descricao }}
+                />
+                <Link href={bloco.cta} className="mt-4 w-full">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.98 }}
@@ -105,16 +105,17 @@ export default function ComoFunciona() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
-                  className="bg-[#002A46]/60 backdrop-blur-sm border-2 border-[#D9B98E]/30 rounded-xl p-8 shadow-lg flex flex-col min-w-[300px] max-w-[300px]"
+                  className="card-blue group flex flex-col items-center text-center justify-start p-6 h-full min-w-[260px] max-w-[260px] cursor-pointer"
                 >
-                  <div className="mb-5 p-4 rounded-xl bg-[#D9B98E]/15 flex justify-center items-center">
-                    <IconComponent className="h-8 w-8 text-[#D9B98E]" />
-                  </div>
-                  <h3 className="font-playfair font-bold text-xl text-[#D9B98E] mb-4 leading-tight text-center">
+                  <IconComponent className="icon mb-4 text-5xl" />
+                  <h3 className="text-lg font-semibold mb-2 leading-snug tracking-tight text-center">
                     {bloco.titulo}
                   </h3>
-                  <p className="text-[#F8F9FB] font-inter leading-relaxed mb-6 flex-grow text-sm" dangerouslySetInnerHTML={{ __html: bloco.descricao }} />
-                  <Link href={bloco.cta}>
+                  <p
+                    className="text-sm leading-relaxed text-center flex-grow"
+                    dangerouslySetInnerHTML={{ __html: bloco.descricao }}
+                  />
+                  <Link href={bloco.cta} className="mt-4 w-full">
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.98 }}

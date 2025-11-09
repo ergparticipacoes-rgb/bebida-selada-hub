@@ -81,4 +81,38 @@
     filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.4));
   }
 }
+
+@layer components {
+  /* === Institutional Hover Effect: Blue Cards === */
+  .card-blue {
+    background-color: #1a3a6d;
+    color: #fdfdfd;
+    border: 1px solid transparent;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .card-blue:hover {
+    border-color: #d9b98e;
+    box-shadow: 0 0 12px rgba(217, 185, 142, 0.5);
+    transform: scale(1.02);
+  }
+
+  .card-blue .icon {
+    color: #d9b98e;
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+
+  .card-blue:hover .icon {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 6px rgba(217, 185, 142, 0.8));
+  }
+
+  .card-blue h3,
+  .card-blue p {
+    color: #fdfdfd;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+}
 /* rebuild-trigger */

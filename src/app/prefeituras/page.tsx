@@ -155,13 +155,13 @@ export default function PrefeiturasPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: i * 0.1 }}
-                    className="group card-dark flex flex-col items-center text-center justify-start p-6 h-full max-w-[280px] bg-[#002A46]/60 backdrop-blur-sm border border-[#D9B98E]/30 rounded-2xl shadow-md hover:-translate-y-1 hover:shadow-lg hover:shadow-[#D9B98E33] hover:border-[#D9B98E] transition-all duration-300"
+                    className="card-blue group flex flex-col items-center text-center justify-start p-6 h-full max-w-[280px] cursor-pointer"
                   >
-                    <IconComponent className="icon mx-auto mb-3 text-5xl text-[#D9B98E] drop-shadow-[0_0_4px_rgba(217,185,142,0.4)] transition-transform duration-300 group-hover:scale-110 group-hover:text-[#C4A06A] group-hover:drop-shadow-[0_0_8px_rgba(217,185,142,0.7)]" />
-                    <h3 className="text-[#FDFDFD] text-lg font-semibold mb-3 leading-snug tracking-tight text-center drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
+                    <IconComponent className="icon mx-auto mb-4 text-5xl" />
+                    <h3 className="text-lg font-semibold mb-2 leading-snug tracking-tight text-center">
                       {item.titulo}
                     </h3>
-                    <p className="text-[#EAEAEA] text-sm leading-relaxed text-center drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
+                    <p className="text-sm leading-relaxed text-center">
                       {item.descricao}
                     </p>
                   </motion.div>
@@ -217,13 +217,13 @@ export default function PrefeiturasPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: i * 0.1 }}
-                    className="group card-dark flex flex-col items-center text-center justify-start p-6 h-full max-w-[280px] bg-[#002A46]/60 backdrop-blur-sm border border-[#D9B98E]/30 rounded-2xl shadow-md hover:-translate-y-1 hover:shadow-lg hover:shadow-[#D9B98E33] hover:border-[#D9B98E] transition-all duration-300"
+                    className="card-blue group flex flex-col items-center text-center justify-start p-6 h-full max-w-[280px] cursor-pointer"
                   >
-                    <IconComponent className="icon mx-auto mb-3 text-5xl text-[#D9B98E] drop-shadow-[0_0_4px_rgba(217,185,142,0.4)] transition-transform duration-300 group-hover:scale-110 group-hover:text-[#C4A06A] group-hover:drop-shadow-[0_0_8px_rgba(217,185,142,0.7)]" />
-                    <h3 className="text-[#FDFDFD] text-lg font-semibold mb-3 leading-snug tracking-tight text-center drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
+                    <IconComponent className="icon mx-auto mb-4 text-5xl" />
+                    <h3 className="text-lg font-semibold mb-2 leading-snug tracking-tight text-center">
                       {item.titulo}
                     </h3>
-                    <p className="text-[#EAEAEA] text-sm leading-relaxed text-center drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
+                    <p className="text-sm leading-relaxed text-center">
                       {item.descricao}
                     </p>
                   </motion.div>
@@ -442,9 +442,9 @@ export default function PrefeiturasPage() {
                 const IconComponent = item.icon;
                 const descriptionContent =
                   typeof item.descricao === "string" ? (
-                    <p className="text-[#EAEAEA] text-sm leading-relaxed text-center drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">{item.descricao}</p>
+                    <p className="text-sm leading-relaxed text-center">{item.descricao}</p>
                   ) : (
-                    <div className="text-[#EAEAEA] text-sm leading-relaxed text-center drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
+                    <div className="text-sm leading-relaxed text-center">
                       {item.descricao}
                     </div>
                   );
@@ -455,10 +455,10 @@ export default function PrefeiturasPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: i * 0.1 }}
-                    className="group card-dark flex flex-col items-center text-center justify-start p-6 h-full max-w-[280px] border border-[#D9B98E33] rounded-xl bg-[#002A46]/30"
+                    className="card-blue group flex flex-col items-center text-center justify-start p-6 h-full max-w-[280px] cursor-pointer"
                   >
-                    <IconComponent className="icon mx-auto mb-3 text-5xl text-[#D9B98E] drop-shadow-[0_0_4px_rgba(217,185,142,0.4)] transition-transform duration-300 group-hover:scale-110 group-hover:text-[#C4A06A] group-hover:drop-shadow-[0_0_8px_rgba(217,185,142,0.7)]" />
-                    <h3 className="text-[#FDFDFD] text-lg font-semibold mb-3 leading-snug tracking-tight text-center drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
+                    <IconComponent className="icon mx-auto mb-4 text-5xl" />
+                    <h3 className="text-lg font-semibold mb-2 leading-snug tracking-tight text-center">
                       {item.titulo}
                     </h3>
                     {descriptionContent}
