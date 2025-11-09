@@ -124,7 +124,7 @@ export default function PrefeiturasPage() {
             >
               Como Funciona
             </motion.h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 place-items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-x-8 gap-y-10 place-items-center">
               {[
                 {
                   icon: FileSignature,
@@ -155,7 +155,7 @@ export default function PrefeiturasPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: i * 0.1 }}
-                    className="card-blue group flex flex-col items-center text-center justify-start p-6 h-full max-w-[280px] cursor-pointer"
+                    className="card-blue group flex flex-col items-center text-center justify-start p-6 h-full w-full max-w-[320px] cursor-pointer"
                   >
                     <IconComponent className="icon mx-auto mb-4 text-5xl" />
                     <h3 className="text-lg font-semibold mb-2 leading-snug tracking-tight text-center">
@@ -186,7 +186,7 @@ export default function PrefeiturasPage() {
             >
               Benefícios ao Município
             </motion.h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 md:gap-12 place-items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-x-8 gap-y-10 place-items-center">
               {[
                 {
                   icon: MapPin,
@@ -217,7 +217,7 @@ export default function PrefeiturasPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: i * 0.1 }}
-                    className="card-blue group flex flex-col items-center text-center justify-start p-6 h-full max-w-[280px] cursor-pointer"
+                    className="card-blue group flex flex-col items-center text-center justify-start p-6 h-full w-full max-w-[320px] cursor-pointer"
                   >
                     <IconComponent className="icon mx-auto mb-4 text-5xl" />
                     <h3 className="text-lg font-semibold mb-2 leading-snug tracking-tight text-center">
@@ -417,7 +417,7 @@ export default function PrefeiturasPage() {
             >
               Por que sua prefeitura deve se tornar parceira da Rede Segura Nacional
             </motion.h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 place-items-center">
               {[
                 {
                   icon: Eye,
@@ -455,7 +455,7 @@ export default function PrefeiturasPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: i * 0.1 }}
-                    className="card-blue group flex flex-col items-center text-center justify-start p-6 h-full max-w-[280px] cursor-pointer"
+                    className="card-blue group flex flex-col items-center text-center justify-start p-6 h-full w-full max-w-[320px] cursor-pointer"
                   >
                     <IconComponent className="icon mx-auto mb-4 text-5xl" />
                     <h3 className="text-lg font-semibold mb-2 leading-snug tracking-tight text-center">

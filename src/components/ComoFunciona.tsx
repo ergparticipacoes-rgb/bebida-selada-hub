@@ -59,7 +59,7 @@ export default function ComoFunciona() {
         </motion.p>
 
         {/* Desktop: Grid de 4 colunas */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10 place-items-center">
           {blocos.map((bloco, i) => {
             const IconComponent = bloco.icon;
             return (
@@ -69,7 +69,7 @@ export default function ComoFunciona() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
-                className="card-blue group flex flex-col items-center text-center justify-start p-6 h-full max-w-[320px] cursor-pointer"
+                className="card-blue group flex flex-col items-center text-center justify-start p-6 h-full w-full max-w-[320px] cursor-pointer"
               >
                 <IconComponent className="icon mb-4 text-5xl" />
                 <h3 className="text-lg font-semibold mb-2 leading-snug tracking-tight text-center">
