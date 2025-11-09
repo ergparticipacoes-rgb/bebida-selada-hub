@@ -211,29 +211,22 @@ export default function PrefeiturasPage() {
               ].map((item, i) => {
                 const IconComponent = item.icon;
                 return (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: i * 0.1 }}
-                    whileHover={{ y: -4, scale: 1.02 }}
-                    className="bg-[#002A46]/60 backdrop-blur-sm border border-[#D9B98E]/30 rounded-xl p-8 md:p-10 shadow-md hover:shadow-lg hover:border-[#D9B98E] transition-all duration-500 ease-in-out"
-                  >
-                    <div className="mb-6 flex items-start gap-4">
-                      <div className="p-3 rounded-lg bg-[#D9B98E]/10 flex-shrink-0">
-                        <IconComponent className="h-6 w-6 text-[#D9B98E]" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl md:text-2xl font-serif font-bold text-[#D9B98E] mb-3">
-                          {item.titulo}
-                        </h3>
-                        <p className="text-[#F8F9FB] leading-relaxed text-base md:text-lg">
-                          {item.descricao}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  className="group flex flex-col items-center text-center bg-[#002A46]/60 backdrop-blur-sm border border-[#D9B98E]/30 rounded-2xl p-8 shadow-md hover:shadow-lg hover:shadow-[#D9B98E33] hover:border-[#D9B98E] transition-all duration-300"
+                >
+                  <IconComponent className="text-[#D9B98E] text-5xl mb-3 transition-colors duration-300 transition-transform transform group-hover:text-[#C4A06A] group-hover:scale-110" />
+                  <h3 className="text-[#D9B98E] font-semibold text-2xl md:text-[1.35rem] mb-2">
+                    {item.titulo}
+                  </h3>
+                  <p className="text-[#F8F9FB] text-base md:text-lg leading-relaxed">
+                    {item.descricao}
+                  </p>
+                </motion.div>
                 );
               })}
             </div>
@@ -281,7 +274,7 @@ export default function PrefeiturasPage() {
             >
               Secretarias diretamente impactadas pela adesão ao programa
             </motion.h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
               {[
                 {
                   icon: Building2,
@@ -306,22 +299,22 @@ export default function PrefeiturasPage() {
               ].map((item, i) => {
                 const IconComponent = item.icon;
                 return (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: i * 0.1 }}
-                    className="flex flex-col items-center text-center bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl hover:shadow-[#D9B98E33] transition-all duration-300"
-                  >
-                    <IconComponent className="text-[#D9B98E] text-5xl mb-5" />
-                    <h3 className="text-[#001F33] font-semibold mb-3 text-2xl md:text-[1.35rem]">
-                      {item.titulo}
-                    </h3>
-                    <p className="text-[#0A0A0A99] text-lg md:text-[1.15rem] leading-relaxed">
-                      {item.descricao}
-                    </p>
-                  </motion.div>
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  className="group flex flex-col items-center text-center bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl hover:shadow-[#D9B98E33] transition-all duration-300 h-full"
+                >
+                  <IconComponent className="text-[#D9B98E] text-5xl mb-3 transition-colors duration-300 transition-transform transform group-hover:text-[#C4A06A] group-hover:scale-110" />
+                  <h3 className="text-[#001F33] font-semibold mb-2 text-xl md:text-[1.3rem]">
+                    {item.titulo}
+                  </h3>
+                  <p className="text-[#0A0A0A99] text-sm md:text-base leading-relaxed">
+                    {item.descricao}
+                  </p>
+                </motion.div>
                 );
               })}
             </div>
@@ -379,24 +372,22 @@ export default function PrefeiturasPage() {
                 const IconComponent = item.icon;
                 const isHidden = i === 5 && !showAll;
                 return (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: i * 0.1 }}
-                    className={`group flex flex-col items-center justify-between text-center bg-white p-6 md:p-8 rounded-2xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 min-h-[340px] ${isHidden ? 'hidden md:block' : ''}`}
-                  >
-                    <div className="flex justify-center items-center mb-4">
-                      <IconComponent className="h-12 w-12 text-[#D9B98E] transition-colors duration-300 transition-transform transform group-hover:text-[#C4A06A] group-hover:scale-110" />
-                    </div>
-                    <h3 className="text-[#001F33] font-semibold mb-3 text-2xl md:text-[1.35rem]">
-                      {item.titulo}
-                    </h3>
-                    <p className="text-[#0A0A0A99] text-lg md:text-[1.15rem] leading-relaxed">
-                      {item.descricao}
-                    </p>
-                  </motion.div>
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  className={`group flex flex-col items-center text-center bg-white p-6 md:p-8 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 h-full ${isHidden ? 'hidden md:block' : ''}`}
+                >
+                  <IconComponent className="text-[#D9B98E] text-5xl mb-3 transition-colors duration-300 transition-transform transform group-hover:text-[#C4A06A] group-hover:scale-110" />
+                  <h3 className="text-[#001F33] font-semibold text-xl md:text-[1.3rem] mb-2">
+                    {item.titulo}
+                  </h3>
+                  <p className="text-[#0A0A0A99] text-sm md:text-base leading-relaxed">
+                    {item.descricao}
+                  </p>
+                </motion.div>
                 );
               })}
             </div>
