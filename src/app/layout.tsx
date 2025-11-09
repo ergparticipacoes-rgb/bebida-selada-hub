@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import '../styles/globals.css';
 import PageTransition from '../components/PageTransition';
+import GlobalHead from '../components/GlobalHead';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
@@ -33,8 +34,6 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   metadataBase: new URL("https://bebidaselada.com"),
   manifest: '/manifest.json',
-  themeColor: '#D9B98E',
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
   icons: {
     icon: '/favicon/favicon-institucional.png',
     apple: '/favicon/favicon-institucional.png',
@@ -44,32 +43,20 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  themeColor: "#D9B98E",
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
       <head>
-        {/* Preload de fontes críticas */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link 
-          rel="preload" 
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" 
-          as="style" 
-        />
-        <link 
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" 
-          rel="stylesheet" 
-        />
-        
-        {/* Manifest e ícones */}
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" href="/favicon/favicon-institucional.png" type="image/png" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/favicon/favicon-institucional.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <meta name="theme-color" content="#D9B98E" />
-        
+        <GlobalHead />
+      </head>
+      <body className="bg-[#F8F9FB] text-[#222] antialiased">
         {/* JSON-LD Schema.org - Otimizado */}
         <script
           type="application/ld+json"
@@ -102,8 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }),
           }}
         />
-      </head>
-      <body className="bg-[#F8F9FB] text-[#222] antialiased">
+
         {/* Google Analytics 4 - Adicionar seu ID */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
