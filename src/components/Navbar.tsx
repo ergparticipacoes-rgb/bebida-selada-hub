@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
 const NAV_LINKS = [
@@ -28,45 +30,41 @@ export default function Navbar() {
 
   const closeMenu = () => setMenuOpen(false);
 
+  const navClasses = `navbar-smoke fixed top-0 left-0 w-full overflow-hidden transition-all duration-500 z-50 ${
+    scrolled
+      ? "bg-[#0B1E3D]/85 border-b border-[#D9B98E]/25 shadow-[0_0_24px_rgba(0,0,0,0.45)] backdrop-blur-2xl"
+      : "bg-[#0B1E3D]/70 shadow-[0_0_16px_rgba(0,0,0,0.3)] backdrop-blur-xl"
+  }`;
+
   return (
-    <nav
-      className={`fixed w-full z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-[#001F33]/85 backdrop-blur-lg shadow-lg border-b border-[#D9B98E]/25"
-          : "bg-[#001F33]/70 backdrop-blur-md"
-      }`}
-      style={{
-        backgroundImage:
-          "radial-gradient(circle at 30% 30%, rgba(217,185,142,0.06), transparent 70%)",
-      }}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
-        <Link
-          href="/"
-          className="flex items-center gap-3 text-[#D9B98E] hover:brightness-110 transition-all"
+    <nav className={navClasses}>
+      <div className="relative z-10 mx-auto flex w-full max-w-6xl items-center justify-between px-8 py-4">
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="flex items-center gap-3 translate-x-3 sm:translate-x-6"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="34"
-            height="34"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="lucide lucide-wine"
+          <Link
+            href="/"
+            className="flex items-center gap-3 text-[#D9B98E] hover:brightness-110 transition-all"
           >
-            <path d="M8 22h8"></path>
-            <path d="M7 10h10"></path>
-            <path d="M12 15v7"></path>
-            <path d="M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-8H9c-1.5 4-2 6-2 8a5 5 0 0 0 5 5Z"></path>
-          </svg>
-          <span className="inline-flex items-baseline gap-[1px] text-2xl font-playfair">
-            <span>Bebida Selada</span>
-            <span className="font-inter text-[0.65em] relative top-[-0.35em] ml-[1px]">®</span>
-          </span>
-        </Link>
+            <Image
+              src="/assets/logo-bebida-selada.svg"
+              alt="Bebida Selada Logo"
+              width={130}
+              height={130}
+              priority
+              placeholder="empty"
+              style={{ imageRendering: "crisp-edges" }}
+              className="drop-shadow-[0_0_8px_rgba(217,185,142,0.85)] hover:scale-105 transition-transform duration-300"
+            />
+            <span className="inline-flex items-baseline gap-[1px] text-2xl font-playfair tracking-wide">
+              <span>Bebida Selada</span>
+              <span className="font-inter text-[0.65em] relative top-[-0.35em] ml-[1px]">®</span>
+            </span>
+          </Link>
+        </motion.div>
 
         <div className="hidden md:flex items-center gap-8 text-sm lg:text-base font-inter text-white ml-auto">
           {NAV_LINKS.map((link) => (

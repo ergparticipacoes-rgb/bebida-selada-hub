@@ -1,0 +1,22 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="16" y="16" width="480" height="480" rx="120" fill="#0B1E3D"/>
+  <g transform="translate(88 72) scale(14)" stroke="#D9B98E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M8 22h8"/>
+    <path d="M7 10h10"/>
+    <path d="M12 15v7"/>
+    <path d="M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-8H9c-1.5 4-2 6-2 8a5 5 0 0 0 5 5Z"/>
+  </g>
+  <circle cx="256" cy="168" r="84" fill="url(#logoGlow)" opacity="0.25"/>
+  <text x="256" y="396" text-anchor="middle" font-family="'Playfair Display','Times New Roman',serif" font-size="56" fill="#D9B98E" letter-spacing="2">
+    Bebida Selada
+  </text>
+  <text x="256" y="440" text-anchor="middle" font-family="'Inter','Helvetica',sans-serif" font-size="22" fill="#C9A97D" letter-spacing="3">
+    REDE SEGURA NACIONAL
+  </text>
+  <defs>
+    <radialGradient id="logoGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(256 168) rotate(90) scale(84)">
+      <stop stop-color="#D9B98E" stop-opacity="0.65"/>
+      <stop offset="1" stop-color="#D9B98E" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
