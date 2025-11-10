@@ -32,7 +32,7 @@ export default function Footer() {
       <div className="absolute -left-40 top-16 h-96 w-96 rounded-full bg-[#D9B98E]/12 blur-3xl" />
       <div className="absolute -right-48 bottom-0 h-[420px] w-[420px] rounded-full bg-[#8C6B40]/12 blur-[160px]" />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 lg:px-12 py-24 space-y-16">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-8 lg:px-12 py-24 space-y-16">
         {/* Grid de links */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

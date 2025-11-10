@@ -42,7 +42,7 @@ export default function ComoFunciona() {
       <div className="absolute -left-36 top-16 h-72 w-72 rounded-full bg-[#D9B98E]/12 blur-3xl" />
       <div className="absolute -right-40 bottom-24 h-80 w-80 rounded-full bg-[#8C6B40]/12 blur-[130px]" />
 
-      <div className="relative z-10 container mx-auto px-6 sm:px-10 md:px-20 space-y-16">
+      <div className="relative z-10 container mx-auto px-4 sm:px-8 md:px-16 space-y-16">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -95,43 +95,41 @@ export default function ComoFunciona() {
           })}
         </div>
 
-        {/* Mobile: Carrossel horizontal */}
-        <div className="md:hidden overflow-x-auto pb-4 -mx-6 sm:-mx-10 px-6 sm:px-10">
-          <div className="flex gap-6 min-w-max pr-4">
-            {blocos.map((bloco, i) => {
-              const IconComponent = bloco.icon;
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
-                  className="group relative flex min-w-[260px] max-w-[260px] flex-col items-center justify-start rounded-3xl border border-[#D9B98E]/65 bg-white/8 px-7 py-10 text-center shadow-[0_24px_70px_-30px_rgba(217,185,142,0.55)] backdrop-blur-md transition-all duration-300 hover:border-[#F4E3C6] hover:bg-white/12 hover:shadow-[0_28px_80px_-32px_rgba(217,185,142,0.65)]"
-                >
-                  <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#F4E8D4] via-[#D9B98E] to-[#B88C4B] text-[#001F33] shadow-[0_16px_32px_-22px_rgba(217,185,142,0.55)]">
-                    <IconComponent className="h-7 w-7" />
-                  </div>
-                  <h3 className="text-[#FDFDFD] text-[1.5rem] font-playfair font-semibold tracking-tight leading-tight">
-                    {bloco.titulo}
-                  </h3>
-                  <p
-                    className="mt-3 text-base leading-[1.55] text-center text-[#F1F4FA] flex-grow"
-                    dangerouslySetInnerHTML={{ __html: bloco.descricao }}
-                  />
-                  <Link href={bloco.cta} className="mt-5 w-full">
-                    <motion.button
-                      whileHover={{ scale: 1.04 }}
-                      whileTap={{ scale: 0.98 }}
+        {/* Mobile: cards empilhados */}
+        <div className="md:hidden flex flex-col gap-6">
+          {blocos.map((bloco, i) => {
+            const IconComponent = bloco.icon;
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.08, ease: "easeOut" }}
+                className="group relative flex flex-col items-center justify-start rounded-3xl border border-[#D9B98E]/65 bg-white/8 px-6 py-9 text-center shadow-[0_24px_70px_-30px_rgba(217,185,142,0.55)] backdrop-blur-md transition-all duration-300 hover:border-[#F4E3C6] hover:bg-white/12 hover:shadow-[0_28px_80px_-32px_rgba(217,185,142,0.65)]"
+              >
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#F4E8D4] via-[#D9B98E] to-[#B88C4B] text-[#001F33] shadow-[0_16px_32px_-22px_rgba(217,185,142,0.55)]">
+                  <IconComponent className="h-7 w-7" />
+                </div>
+                <h3 className="text-[#FDFDFD] text-[1.5rem] font-playfair font-semibold tracking-tight leading-tight">
+                  {bloco.titulo}
+                </h3>
+                <p
+                  className="mt-3 text-base leading-[1.55] text-center text-[#F1F4FA]"
+                  dangerouslySetInnerHTML={{ __html: bloco.descricao }}
+                />
+                <Link href={bloco.cta} className="mt-5 w-full">
+                  <motion.button
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.98 }}
                     className="w-full rounded-2xl border border-transparent bg-[#D9B98E] px-6 py-3 text-sm font-semibold text-[#001F33] shadow-[0_16px_36px_-24px_rgba(217,185,142,0.7)] transition-all duration-300 hover:-translate-y-1 hover:border-[#F4E3C6] hover:bg-[#E6CFA5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4E3C6]"
-                    >
-                      {bloco.ctaText}
-                    </motion.button>
-                  </Link>
-                </motion.div>
-              );
-            })}
-          </div>
+                  >
+                    {bloco.ctaText}
+                  </motion.button>
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

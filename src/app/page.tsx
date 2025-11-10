@@ -49,7 +49,7 @@ export default function Home() {
   useScrollRestoration();
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#F8F9FB] text-[#001F33]">
+    <main className="min-h-screen flex flex-col bg-[#F8F9FB] text-[#001F33] overflow-x-hidden">
       {/* NAVBAR */}
       <Navbar />
 
@@ -65,7 +65,7 @@ export default function Home() {
           <div className="absolute -left-44 top-16 h-[360px] w-[360px] rounded-full bg-[#D9B98E]/15 blur-[150px]" />
           <div className="absolute -right-52 bottom-0 h-[420px] w-[420px] rounded-full bg-[#8C6B40]/18 blur-[180px]" />
 
-          <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-10 md:px-20 text-center text-white space-y-12 md:space-y-16">
+          <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-8 md:px-16 text-center text-white space-y-12 md:space-y-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -140,7 +140,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#FDFCF9] via-[#F7F0E3] to-[#FDFCF9]" />
         <div className="absolute inset-x-0 top-0 h-40 bg-[radial-gradient(circle_at_top,#E6CFA5/45,transparent_70%)] pointer-events-none" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-[radial-gradient(circle_at_bottom,#E6CFA5/35,transparent_70%)] pointer-events-none" />
-        <div className="relative max-w-6xl mx-auto px-8 md:px-16 lg:px-24">
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
           <div className="text-center mb-8">
             <h2 className="text-[2.05rem] md:text-[2.65rem] font-playfair font-semibold tracking-tight text-[#001F33] text-center leading-tight mb-8">
               Protocolo INBS-001:2025
@@ -266,7 +266,7 @@ export default function Home() {
     <div className="absolute -left-40 top-24 h-80 w-80 rounded-full bg-[#D9B98E]/12 blur-3xl" />
     <div className="absolute -right-44 bottom-32 h-[360px] w-[360px] rounded-full bg-[#8C6B40]/12 blur-[140px]" />
 
-    <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 text-center space-y-16">
+    <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 md:px-10 text-center space-y-16">
       {/* Heading */}
       <motion.div
         initial={{ opacity: 0, y: 28 }}
@@ -420,7 +420,7 @@ export default function Home() {
       {/* === O MOVIMENTO BEBIDA SELADA® === */}
       <ScrollFade>
         <section className="py-24 bg-[#F8F9FB] text-[#001F33] mb-0">
-          <div className="max-w-6xl mx-auto text-center px-6 md:px-0">
+          <div className="max-w-6xl mx-auto text-center px-4 sm:px-6 md:px-0">
             {/* Título */}
             <motion.h2
               initial={{ opacity: 0, y: 30 }}

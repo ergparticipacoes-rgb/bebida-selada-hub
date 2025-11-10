@@ -50,9 +50,17 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
+    const root = document.documentElement;
+    if (menuOpen) {
+      root.style.overflowY = "hidden";
+      document.body.style.overflowY = "hidden";
+    } else {
+      root.style.overflowY = "";
+      document.body.style.overflowY = "";
+    }
     return () => {
-      document.body.style.overflow = "";
+      root.style.overflowY = "";
+      document.body.style.overflowY = "";
     };
   }, [menuOpen]);
 
@@ -135,13 +143,13 @@ export default function Navbar() {
         {/* Botão mobile */}
         <button
           type="button"
-          className="md:hidden inline-flex items-center justify-center rounded-md border border-white/20 p-2.5 text-white transition hover:bg-white/10"
+          className="menu-smoke md:hidden inline-flex flex-col items-center justify-center gap-[5px] rounded-md border border-white/25 p-2.5 text-white transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/70"
           onClick={() => setMenuOpen(true)}
           aria-label="Abrir menu"
         >
-          <span className="block h-0.5 w-6 bg-white rounded-sm" />
-          <span className="block h-0.5 w-6 bg-white rounded-sm mt-1.5" />
-          <span className="block h-0.5 w-6 bg-white rounded-sm mt-1.5" />
+          <span className="block h-0.5 w-6 rounded-full bg-white transition-all" />
+          <span className="block h-0.5 w-6 rounded-full bg-white transition-all" />
+          <span className="block h-0.5 w-6 rounded-full bg-white transition-all" />
         </button>
       </div>
 
@@ -149,13 +157,13 @@ export default function Navbar() {
       {menuOpen && (
         <>
           <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+            className="fixed inset-0 bg-black/75 backdrop-blur-sm z-40"
             onClick={closeMenu}
             aria-hidden="true"
           />
-          <div className="fixed inset-y-0 right-0 z-50 w-72 max-w-full bg-[#001626] border-l border-[#D9B98E]/20 shadow-2xl flex flex-col">
-            <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
-              <span className="text-[#D9B98E] font-playfair text-xl">Menu</span>
+          <div className="fixed inset-0 z-50 flex flex-col bg-[#001626] bg-opacity-95 backdrop-blur-xl md:left-auto md:w-72 md:border-l md:border-[#D9B98E]/20 md:shadow-2xl">
+            <div className="flex items-center justify-between px-6 py-6 border-b border-white/10">
+              <span className="text-[#D9B98E] font-playfair text-lg">Menu</span>
               <button
                 type="button"
                 className="text-white/80 hover:text-white transition"
@@ -179,7 +187,7 @@ export default function Navbar() {
               <Link
                 href="/auth/login"
                 onClick={closeMenu}
-                className="mt-auto inline-flex items-center justify-center gap-2 rounded-xl bg-white/95 px-5 py-3 text-lg font-semibold text-[#0B1E3D] shadow-[0_16px_30px_rgba(255,255,255,0.25)] ring-1 ring-inset ring-white/60 transition-all duration-300 hover:bg-white hover:shadow-[0_18px_34px_rgba(255,255,255,0.32)] hover:ring-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80"
+                className="mt-auto inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-base font-semibold text-[#0B1E3D] shadow-[0_16px_30px_rgba(255,255,255,0.25)] ring-1 ring-inset ring-white/70 transition-all duration-300 hover:bg-white/95 hover:shadow-[0_18px_34px_rgba(255,255,255,0.3)] hover:ring-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80"
               >
                 Login
               </Link>

@@ -74,7 +74,7 @@ export default function Plans() {
       <div className="absolute -left-40 top-16 h-[360px] w-[360px] rounded-full bg-[#E6CFA5]/30 blur-[160px]" />
       <div className="absolute -right-48 bottom-8 h-[420px] w-[420px] rounded-full bg-[#C9A97D]/25 blur-[180px]" />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-10 lg:px-14 text-center space-y-14 md:space-y-16">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-8 lg:px-12 text-center space-y-14 md:space-y-16">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}

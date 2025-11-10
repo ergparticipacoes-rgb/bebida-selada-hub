@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-[#001326] via-[#001F33] to-[#012A46] text-white flex flex-col justify-center items-center text-center px-6 py-20 md:py-28">
+    <section className="relative min-h-screen overflow-hidden bg-gradient-to-b from-[#001326] via-[#001F33] to-[#012A46] text-white flex flex-col justify-center items-center text-center px-5 sm:px-6 md:px-10 pt-28 pb-16 md:pt-32 md:pb-28">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(217,185,142,0.25),transparent_70%)]" />
       <div className="absolute -left-40 top-24 h-[320px] w-[320px] rounded-full bg-[#D9B98E]/15 blur-[160px]" />
       <div className="absolute -right-48 bottom-28 h-[380px] w-[380px] rounded-full bg-[#8C6B40]/18 blur-[190px]" />
