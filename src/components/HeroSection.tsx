@@ -4,9 +4,13 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-[#001F33] to-[#002A46] text-white flex flex-col justify-center items-center text-center px-6 pt-24">
-      <div className="max-w-5xl mx-auto flex flex-col items-center">
-        <h1 className="text-5xl md:text-6xl font-playfair font-bold text-[#D9B98E] mb-6">
+    <section className="relative min-h-screen bg-gradient-to-b from-[#001326] via-[#001F33] to-[#012A46] text-white flex flex-col justify-center items-center text-center px-6 py-20 md:py-28">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(217,185,142,0.25),transparent_70%)]" />
+      <div className="absolute -left-40 top-24 h-[320px] w-[320px] rounded-full bg-[#D9B98E]/15 blur-[160px]" />
+      <div className="absolute -right-48 bottom-28 h-[380px] w-[380px] rounded-full bg-[#8C6B40]/18 blur-[190px]" />
+
+      <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center space-y-7 md:space-y-10">
+        <h1 className="text-[2.25rem] sm:text-[2.45rem] md:text-[3.35rem] font-playfair font-bold tracking-tight text-[#FDF4E1] leading-tight md:leading-[1.2] text-balance drop-shadow-[0_12px_32px_rgba(5,25,46,0.45)]">
           A Rede Segura Nacional –{" "}
           <span className="inline-flex items-baseline gap-[1px]">
             <span className="font-playfair text-white">Bebida Selada</span>
@@ -18,31 +22,34 @@ export default function HeroSection() {
             </span>
           </span>
         </h1>
-        <p className="text-lg md:text-xl max-w-3xl text-[#F8F9FB]/90 mb-10 leading-relaxed">
-          É o primeiro sistema brasileiro de certificação inteligente, rastreabilidade e confiança no setor de bebidas.
+
+        <p className="hidden md:block text-[1.25rem] max-w-3xl font-semibold text-[#FDF7EB] leading-[1.58] tracking-[0.01em] text-balance">
+          É o primeiro sistema brasileiro de certificação inteligente, conectando tecnologia, fiscalização e transparência para garantir a autenticidade das bebidas no país.
         </p>
-        <p className="text-base md:text-lg max-w-2xl text-[#F8F9FB]/80 mb-12 leading-relaxed">
-          Conectamos tecnologia, prefeituras, estabelecimentos e consumidores em uma rede que promove segurança, transparência e desenvolvimento sustentável em todo o país.
+        <p className="md:hidden text-base max-w-3xl font-semibold text-[#FDF7EB] leading-[1.6] tracking-[0.01em] text-balance">
+          É o primeiro sistema brasileiro de certificação inteligente, garantindo autenticidade e confiança no setor de bebidas.
         </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          <Link
-            href="/prefeituras"
-            className="bg-[#D9B98E] text-[#001F33] font-semibold px-8 py-3 rounded-lg hover:bg-[#C9A97D] transition-all"
-          >
-            Para Prefeituras
-          </Link>
-          <Link
-            href="/estabelecimentos"
-            className="bg-[#D9B98E] text-[#001F33] font-semibold px-8 py-3 rounded-lg hover:bg-[#C9A97D] transition-all"
-          >
-            Para Estabelecimentos
-          </Link>
-          <Link
-            href="/consumidor"
-            className="bg-[#D9B98E] text-[#001F33] font-semibold px-8 py-3 rounded-lg hover:bg-[#C9A97D] transition-all"
-          >
-            Sou Consumidor
-          </Link>
+
+        <p className="text-base md:text-lg max-w-3xl text-[#F8F9FB]/85 leading-[1.6] md:leading-[1.7] font-medium text-balance">
+          Uma rede segura que protege a origem, o comércio e o consumo da bebida brasileira.
+        </p>
+        <div className="flex flex-wrap justify-center gap-4 md:gap-5 pt-4 md:pt-6">
+          {[
+            { href: "/prefeituras", label: "Para Prefeituras" },
+            { href: "/estabelecimentos", label: "Para Estabelecimentos" },
+            { href: "/consumidor", label: "Sou Consumidor" },
+          ].map((cta) => (
+            <Link
+              key={cta.href}
+              href={cta.href}
+              className="group inline-flex items-center justify-center gap-2 rounded-2xl border border-transparent bg-[#D9B98E] px-7 md:px-9 py-3 text-sm md:text-base font-semibold text-[#001F33] shadow-[0_18px_38px_-24px_rgba(217,185,142,0.75)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#E6CFA5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4E3C6]"
+            >
+              {cta.label}
+              <span className="opacity-0 translate-x-[-4px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
+                →
+              </span>
+            </Link>
+          ))}
         </div>
       </div>
     </section>

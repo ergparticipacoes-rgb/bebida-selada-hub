@@ -12,7 +12,7 @@ export default function UniversidadeSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-4xl md:text-5xl font-playfair font-bold text-[#001F33] mb-8 md:mb-12"
+          className="text-[2.25rem] md:text-[2.8rem] font-playfair font-bold tracking-tight text-[#001F33] leading-tight mb-8 md:mb-12"
         >
           <span className="inline-flex items-baseline gap-[1px]">
             <span className="font-playfair text-inbsBlue">
@@ -33,7 +33,7 @@ export default function UniversidadeSection() {
           transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           className="bg-white/5 backdrop-blur-sm rounded-xl border-2 border-[#D9B98E] p-8 max-w-3xl mx-auto mb-8"
         >
-          <p className="text-lg md:text-xl leading-relaxed text-[#001F33]">
+          <p className="text-base md:text-lg leading-[1.7] text-[#001F33]">
             Centro oficial de formação, certificação e treinamento. Conteúdo EAD
             modular para representantes, gestores e estabelecimentos.
           </p>

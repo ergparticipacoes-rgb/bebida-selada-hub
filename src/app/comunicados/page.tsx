@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import BackButton from "../../components/ui/BackButton";
 import ShieldWithLock from "../../components/ui/ShieldWithLock";
 import { useScrollRestoration } from "../../hooks/useScrollRestoration";
 
@@ -124,20 +125,9 @@ export default function ComunicadosPage() {
 
           {/* Botão Voltar */}
           <div className="text-center mt-12">
-            <button
-              onClick={() => {
-                if (typeof window !== "undefined") {
-                  const savedOffset = sessionStorage.getItem('backOffset') || '0';
-                  sessionStorage.setItem('backWithOffset', 'true');
-                  sessionStorage.setItem('backOffset', savedOffset);
-                  window.history.back();
-                }
-              }}
-              className="px-8 py-4 text-lg font-semibold rounded-lg bg-[#D9B98E] text-[#001F33] hover:brightness-110 hover:scale-105 transition-all duration-400 ease-in-out shadow-md focus:outline-none focus:ring-2 focus:ring-[#E5C48F]/60 focus:ring-offset-2 focus:ring-offset-[#001F33]"
-              aria-label="Voltar para página anterior"
-            >
-              ← Voltar
-            </button>
+            <BackButton
+              className="px-8 py-4 text-lg font-semibold rounded-lg bg-[#D9B98E] text-[#001F33] hover:brightness-110 hover:scale-105 transition-all duração-400 ease-in-out shadow-md"
+            />
           </div>
         </div>
       </div>

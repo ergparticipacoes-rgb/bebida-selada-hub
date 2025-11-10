@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { use } from "react";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
+import BackButton from "../../../components/ui/BackButton";
 import { newsData } from "../../../data/newsData";
 
 export const dynamic = "force-static";
@@ -27,12 +28,9 @@ export default function NewsDetailPage({
             <p className="text-lg text-white/90">
               Esta matéria está sendo preparada e estará disponível em breve.
             </p>
-            <button
-              onClick={() => window.history.back()}
-              className="px-8 py-4 text-lg font-semibold rounded-lg bg-[#D9B98E] text-[#001F33] hover:brightness-110 hover:scale-105 transition-all duration-400 ease-in-out shadow-md mt-8"
-            >
+            <BackButton className="rounded-2xl border border-[#D9B98E]/70 bg-white px-7 md:px-10 py-3 text-sm md:text-base font-semibold text-[#001F33] shadow-[0_12px_28px_-24px_rgba(217,185,142,0.45)] hover:-translate-y-1 hover:bg-[#FDF3E4]">
               Voltar
-            </button>
+            </BackButton>
           </div>
         </div>
         <Footer />
@@ -79,13 +77,10 @@ export default function NewsDetailPage({
           </motion.div>
 
           {/* Botão Voltar (padrão global) */}
-          <div className="text-center mt-20">
-            <button
-              onClick={() => window.history.back()}
-              className="px-8 py-4 text-lg font-semibold rounded-lg bg-[#D9B98E] text-[#001F33] hover:brightness-110 hover:scale-105 transition-all duration-400 ease-in-out shadow-md focus:outline-none focus:ring-2 focus:ring-[#E5C48F]/60 focus:ring-offset-2"
-            >
+          <div className="text-center mt-10">
+            <BackButton className="rounded-2xl border border-[#D9B98E]/70 bg-white px-7 md:px-10 py-3 text-sm md:text-base font-semibold text-[#001F33] shadow-[0_12px_28px_-24px_rgba(217,185,142,0.45)] hover:-translate-y-1 hover:bg-[#FDF3E4]">
               Voltar
-            </button>
+            </BackButton>
           </div>
         </div>
       </div>

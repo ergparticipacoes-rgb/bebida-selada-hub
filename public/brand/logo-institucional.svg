@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D9B98E"/>
+      <stop offset="100%" stop-color="#B8925A"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="none"/>
+  <!-- Escudo externo -->
+  <path d="M150 10 L260 60 L260 190 Q150 260 40 190 L40 60 Z" fill="url(#gold)" opacity="0.12"/>
+  <path d="M150 10 L260 60 L260 190 Q150 260 40 190 L40 60 Z" fill="none" stroke="url(#gold)" stroke-width="5"/>
+  <!-- Taça central -->
+  <path d="M150 85 C140 85 130 95 130 110 C130 125 140 140 150 140 C160 140 170 125 170 110 C170 95 160 85 150 85 Z M150 145 L150 190 M135 190 L165 190 M135 190 Q150 205 165 190" 
+        fill="none" stroke="url(#gold)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Texto institucional -->
+  <text x="150" y="255" text-anchor="middle" fill="#D9B98E" font-family="Playfair Display, serif" font-size="22">
+    BEBIDA SELADA
+  </text>
+  <text x="248" y="247" fill="#D9B98E" font-family="Inter, sans-serif" font-size="10">®</text>
+</svg>

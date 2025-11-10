@@ -2,7 +2,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
-import VoltarButton from "./VoltarButton";
 
 export default function PageTransition({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -17,7 +16,6 @@ export default function PageTransition({ children }: { children: ReactNode }) {
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
         {children}
-        <VoltarButton />
       </motion.div>
     </AnimatePresence>
   );

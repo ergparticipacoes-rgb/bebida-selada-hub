@@ -2,714 +2,397 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  ensureLeadStorage,
-  loadLeads,
-  updateLeadStatus,
-  Lead,
-  LeadStatus,
-} from "@/data/leads";
-import {
-  AdminRole,
-  AdminUser,
-  createTeamUser,
-  ensureTeamStorage,
-  loadTeamUsers,
-  updateTeamUser,
-  deleteTeamUser,
-} from "@/data/adminUsers";
-import {
-  Users,
-  PhoneCall,
-  CheckCircle2,
-  Crown,
-  UploadCloud,
-  UserCog,
-  Pencil,
-  Trash2,
-} from "lucide-react";
+import { motion } from "framer-motion";
+import Navbar from "../../../components/Navbar";
+import { PlusCircle, LogOut, Mail, Phone, Users, Building2, ClipboardList } from "lucide-react";
 
-const SESSION_KEY = "admin_session";
-const STATUS_OPTIONS: LeadStatus[] = ["pendente", "em contato", "convertido"];
+interface Lead {
+  id: string;
+  nome: string;
+  email: string;
+  telefone: string;
+  origem: string;
+  etapa: "Novo" | "Contato" | "Em negociação" | "Concluído";
+}
 
-type SessionData = {
-  user: string;
-  role: AdminRole;
-  authenticatedAt: string;
-};
+interface TeamMember {
+  id: string;
+  nome: string;
+  email: string;
+  senha: string;
+  perfil: "Administrador" | "Analista" | "Representante";
+}
 
-const LEADS_STORAGE_KEY = "leads";
-const TEAM_STORAGE_KEY = "adminUsers";
+const leadTemplates: Lead[] = [
+  {
+    id: "L-001",
+    nome: "Adega São Bento",
+    email: "contato@adegasb.com",
+    telefone: "(11) 99882-2001",
+    origem: "Formulário site",
+    etapa: "Contato",
+  },
+  {
+    id: "L-002",
+    nome: "Prefeitura de Vitória",
+    email: "gestao@vitoria.gov.br",
+    telefone: "(27) 3345-9000",
+    origem: "Indicação representante",
+    etapa: "Em negociação",
+  },
+  {
+    id: "L-003",
+    nome: "Distribuidora Ouro Verde",
+    email: "comercial@ouroverde.com",
+    telefone: "(31) 97777-4411",
+    origem: "Evento INBS",
+    etapa: "Novo",
+  },
+];
+
+const teamTemplates: TeamMember[] = [
+  {
+    id: "T-ADM",
+    nome: "Evandro Almeida",
+    email: "evandro@bebidaselada.com.br",
+    senha: "inbs2025",
+    perfil: "Administrador",
+  },
+];
 
 export default function AdminDashboardPage() {
   const router = useRouter();
-  const [mounted, setMounted] = useState(false);
-  const [session, setSession] = useState<SessionData | null>(null);
-  const [leads, setLeads] = useState<Lead[]>([]);
-  const [filter, setFilter] = useState<LeadStatus | "todos">("todos");
-  const [teamUsers, setTeamUsers] = useState<AdminUser[]>([]);
-  const [newUser, setNewUser] = useState({ nome: "", username: "", password: "" });
-  const [teamError, setTeamError] = useState<string | null>(null);
-  const [teamSuccess, setTeamSuccess] = useState<string | null>(null);
-  const [editingUserId, setEditingUserId] = useState<string | null>(null);
-  const [editingValues, setEditingValues] = useState({ nome: "", username: "", password: "" });
+  const [leads, setLeads] = useState<Lead[]>(leadTemplates);
+  const [team, setTeam] = useState<TeamMember[]>(teamTemplates);
+  const [leadForm, setLeadForm] = useState({
+    nome: "",
+    email: "",
+    telefone: "",
+    origem: "",
+  });
+  const [teamForm, setTeamForm] = useState({
+    nome: "",
+    email: "",
+    senha: "",
+    perfil: "Analista" as TeamMember["perfil"],
+  });
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
-
-    ensureLeadStorage();
-    ensureTeamStorage();
-
-    const sessionValue = localStorage.getItem(SESSION_KEY);
-    if (!sessionValue) {
-      router.replace("/admin");
-      return;
-    }
-
-    try {
-      const parsed = JSON.parse(sessionValue) as SessionData;
-      const role = parsed.role ?? "equipe";
-      const normalized: SessionData = {
-        user: parsed.user,
-        role,
-        authenticatedAt: parsed.authenticatedAt,
-      };
-      setSession(normalized);
-      setLeads(loadLeads());
-      setTeamUsers(loadTeamUsers());
-    } catch (error) {
-      console.error("Sessão inválida:", error);
-      localStorage.removeItem(SESSION_KEY);
+    if (typeof window === "undefined") return;
+    if (sessionStorage.getItem("inbs-admin-auth") !== "true") {
       router.replace("/admin");
     }
-  }, [mounted, router]);
+  }, [router]);
 
-  useEffect(() => {
-    if (!mounted) return;
+  const metrics = useMemo(() => {
+    const totalLeads = leads.length;
+    const emNegociacao = leads.filter((lead) => lead.etapa === "Em negociação").length;
+    const novos = leads.filter((lead) => lead.etapa === "Novo").length;
+    const concluidos = leads.filter((lead) => lead.etapa === "Concluído").length;
 
-    const syncLeads = () => setLeads(loadLeads());
-    const syncTeam = () => setTeamUsers(loadTeamUsers());
+    return {
+      totalLeads,
+      emNegociacao,
+      novos,
+      concluidos,
+    };
+  }, [leads]);
 
-    const interval = window.setInterval(syncLeads, 5000);
-    const storageListener = (event: StorageEvent) => {
-      if (event.key === LEADS_STORAGE_KEY) {
-        syncLeads();
-      }
-      if (event.key === TEAM_STORAGE_KEY) {
-        syncTeam();
-      }
+  const handleCreateLead = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const novoLead: Lead = {
+      id: `L-${String(leads.length + 1).padStart(3, "0")}`,
+      nome: leadForm.nome,
+      email: leadForm.email,
+      telefone: leadForm.telefone,
+      origem: leadForm.origem || "Outro",
+      etapa: "Novo",
     };
 
-    window.addEventListener("storage", storageListener);
-
-    return () => {
-      window.removeEventListener("storage", storageListener);
-      clearInterval(interval);
-    };
-  }, [mounted]);
-
-  useEffect(() => {
-    if (!teamSuccess) return;
-    const timeout = setTimeout(() => setTeamSuccess(null), 4000);
-    return () => clearTimeout(timeout);
-  }, [teamSuccess]);
-
-  const filteredLeads = useMemo(() => {
-    if (filter === "todos") return leads;
-    return leads.filter((lead) => lead.status === filter);
-  }, [leads, filter]);
-
-  const summaryCards = useMemo(() => {
-    const base = leads.reduce(
-      (acc, lead) => {
-        acc.total += 1;
-        acc[lead.status] += 1;
-        return acc;
-      },
-      {
-        total: 0,
-        pendente: 0,
-        "em contato": 0,
-        convertido: 0,
-      } as Record<"total" | LeadStatus, number>
-    );
-
-    return [
-      {
-        label: "Total de Leads",
-        value: base.total,
-        icon: Users,
-      },
-      {
-        label: "Pendentes",
-        value: base.pendente,
-        icon: PhoneCall,
-      },
-      {
-        label: "Em contato",
-        value: base["em contato"],
-        icon: CheckCircle2,
-      },
-      {
-        label: "Convertidos",
-        value: base.convertido,
-        icon: Crown,
-      },
-      {
-        label: "Equipe Comercial",
-        value: teamUsers.length,
-        icon: UserCog,
-      },
-    ];
-  }, [leads, teamUsers]);
-
-  const handleStatusChange = (leadId: string, status: LeadStatus) => {
-    const updated = updateLeadStatus(leadId, status);
-    setLeads(updated);
+    setLeads((prev) => [novoLead, ...prev]);
+    setLeadForm({ nome: "", email: "", telefone: "", origem: "" });
   };
 
-  const exportToCsv = () => {
-    const rows = [
-      ["ID", "Nome", "Email", "Telefone", "Origem", "Mensagem", "Criado em", "Status"],
-      ...leads.map((lead) => [
-        lead.id,
-        lead.nome,
-        lead.email,
-        lead.telefone,
-        lead.origem,
-        lead.mensagem ?? "",
-        new Date(lead.criadoEm).toLocaleString("pt-BR"),
-        lead.status,
-      ]),
-    ];
+  const handleCreateTeamMember = (event: React.FormEvent) => {
+    event.preventDefault();
 
-    const csvContent = rows
-      .map((row) =>
-        row
-          .map((cell) => {
-            const safe = cell ?? "";
-            const cleaned = String(safe).replace(/"/g, '""');
-            return `"${cleaned}"`;
-          })
-          .join(";")
-      )
-      .join("\n");
+    const novoMembro: TeamMember = {
+      id: `T-${String(team.length + 1).padStart(3, "0")}`,
+      nome: teamForm.nome,
+      email: teamForm.email,
+      senha: teamForm.senha,
+      perfil: teamForm.perfil,
+    };
 
-    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.setAttribute("download", `leads-inbs-${new Date().toISOString().split("T")[0]}.csv`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    setTeam((prev) => [...prev, novoMembro]);
+    setTeamForm({ nome: "", email: "", senha: "", perfil: "Analista" });
   };
 
   const handleLogout = () => {
-    localStorage.removeItem(SESSION_KEY);
-    router.replace("/");
+    sessionStorage.removeItem("inbs-admin-auth");
+    router.replace("/admin");
   };
-
-  const handleCreateUser = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setTeamError(null);
-    setTeamSuccess(null);
-
-    const nome = newUser.nome.trim();
-    const username = newUser.username.trim().toLowerCase();
-    const password = newUser.password.trim();
-
-    if (!nome || !username || !password) {
-      setTeamError("Preencha todos os campos para criar o usuário.");
-      return;
-    }
-
-    if (password.length < 4) {
-      setTeamError("A senha deve ter pelo menos 4 caracteres.");
-      return;
-    }
-
-    const exists = teamUsers.some((user) => user.username === username);
-    if (exists) {
-      setTeamError("Já existe um usuário com esse login.");
-      return;
-    }
-
-    createTeamUser({ nome, username, password });
-    setTeamUsers(loadTeamUsers());
-    setNewUser({ nome: "", username: "", password: "" });
-    setTeamSuccess("Usuário criado com sucesso para a equipe comercial.");
-  };
-
-  const handleStartEdit = (user: AdminUser) => {
-    setTeamError(null);
-    setTeamSuccess(null);
-    setEditingUserId(user.id);
-    setEditingValues({
-      nome: user.nome,
-      username: user.username,
-      password: "",
-    });
-  };
-
-  const handleCancelEdit = () => {
-    setEditingUserId(null);
-    setEditingValues({ nome: "", username: "", password: "" });
-  };
-
-  const handleUpdateUser = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!editingUserId) return;
-
-    setTeamError(null);
-    setTeamSuccess(null);
-
-    const nome = editingValues.nome.trim();
-    const username = editingValues.username.trim().toLowerCase();
-    const password = editingValues.password.trim();
-
-    if (!nome || !username) {
-      setTeamError("Informe nome e usuário para salvar as alterações.");
-      return;
-    }
-
-    const duplicated = teamUsers.some(
-      (user) => user.id !== editingUserId && user.username === username
-    );
-    if (duplicated) {
-      setTeamError("Já existe um usuário com esse login.");
-      return;
-    }
-
-    const updated = updateTeamUser(editingUserId, {
-      nome,
-      username,
-      password: password || undefined,
-    });
-
-    if (updated) {
-      setTeamUsers(loadTeamUsers());
-      setTeamSuccess("Usuário atualizado com sucesso.");
-      handleCancelEdit();
-    } else {
-      setTeamError("Não foi possível atualizar o usuário.");
-    }
-  };
-
-  const handleDeleteUser = (user: AdminUser) => {
-    setTeamError(null);
-    setTeamSuccess(null);
-
-    if (user.role === "master") {
-      setTeamError("O usuário master não pode ser removido.");
-      return;
-    }
-
-    const removed = deleteTeamUser(user.id);
-    if (removed) {
-      if (editingUserId === user.id) {
-        handleCancelEdit();
-      }
-      setTeamUsers(loadTeamUsers());
-      setTeamSuccess(`Usuário ${user.nome} removido.`);
-    } else {
-      setTeamError("Não foi possível remover o usuário.");
-    }
-  };
-
-  if (!mounted || !session) {
-    return null;
-  }
-
-  const sortedTeam = [...teamUsers].sort((a, b) => {
-    if (a.role === b.role) {
-      return a.nome.localeCompare(b.nome);
-    }
-    return a.role === "master" ? -1 : 1;
-  });
 
   return (
-    <main className="min-h-screen bg-[#001728] text-white">
-      <header className="sticky top-0 z-50 border-b border-[#D9B98E]/25 bg-[#001F33]/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 sm:px-10 lg:px-16">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#D9B98E]/40 text-[#D9B98E]">
-              <Users className="h-5 w-5" />
-            </div>
-            <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-white/60 font-inter">
-                Rede Segura Nacional
+    <main className="flex min-h-screen flex-col bg-[#0A1526] text-white">
+      <Navbar />
+
+      <section className="relative flex-1 overflow-hidden px-6 py-20 md:px-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#001229] via-[#001F33] to-[#052A48]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(217,185,142,0.14),transparent_68%)]" />
+
+        <div className="relative z-10 mx-auto flex max-w-7xl flex-col gap-12">
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-center">
+            <div className="space-y-4">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="font-playfair text-[2.2rem] md:text-[2.6rem] text-[#FDF3E6]"
+              >
+                Console administrativo INBS
+              </motion.h1>
+              <p className="max-w-2xl text-sm md:text-base text-[#F8F9FB]/80 leading-[1.75]">
+                Aqui você acompanha os leads cadastrados, avança etapas, registra interações e cria novos acessos para a equipe responsável.
               </p>
-              <p className="text-lg font-playfair text-[#D9B98E]">
-                Painel Administrativo
-              </p>
             </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="text-right">
-              <p className="text-xs font-inter text-white/50">Conectado como</p>
-              <p className="text-sm font-semibold text-white">
-                {session.user} • {session.role === "master" ? "Master" : "Equipe Comercial"}
-              </p>
-            </div>
+
             <button
-              type="button"
               onClick={handleLogout}
-              className="rounded-lg border border-white/20 px-4 py-2 text-sm font-inter hover:bg-white/10 transition-colors duration-200"
+              className="inline-flex items-center gap-2 rounded-full border border-[#D9B98E]/55 bg-white/10 px-5 py-2.5 text-sm font-semibold text-[#FDF4E6] shadow-[0_20px_48px_-32px_rgba(217,185,142,0.55)] transition-all duração=300 hover:-translate-y-1 hover:bg-white/18"
             >
-              Sair
+              <LogOut className="h-4 w-4" /> Sair
             </button>
           </div>
-        </div>
-      </header>
 
-      <section className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 pb-20 pt-12 sm:px-10 lg:px-16">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <h1 className="text-3xl sm:text-4xl font-playfair text-[#D9B98E]">
-              Painel Administrativo – Rede Segura Nacional
-            </h1>
-            <p className="mt-3 max-w-2xl text-sm sm:text-base font-inter text-white/70">
-              Controle estratégico das operações comerciais, acompanhamento de leads qualificados
-              e governança da equipe institucional.
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-3">
-            <button
-              type="button"
-              onClick={() => {
-                setLeads(loadLeads());
-                setTeamUsers(loadTeamUsers());
-              }}
-              className="rounded-lg border border-[#D9B98E]/40 px-4 py-2 text-sm font-inter text-[#D9B98E] hover:bg-[#D9B98E]/10 transition-colors duration-200"
-            >
-              Sincronizar dados
-            </button>
-            <button
-              type="button"
-              onClick={exportToCsv}
-              className="inline-flex items-center gap-2 rounded-lg bg-[#D9B98E] px-5 py-3 text-sm font-semibold text-[#001F33] hover:bg-[#B8925A] transition-colors duration-200"
-            >
-              <UploadCloud className="h-4 w-4" />
-              Exportar CSV
-            </button>
-          </div>
-        </div>
-
-        <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {summaryCards.map((card) => {
-            const Icon = card.icon;
-            return (
-              <article
-                key={card.label}
-                className="flex items-center justify-between rounded-2xl border border-[#D9B98E]/25 bg-[#00223A] px-6 py-5 shadow-lg shadow-black/15"
+          {/* Métricas */}
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                label: "Leads ativos",
+                value: metrics.totalLeads,
+                icon: <Users className="h-5 w-5" />,
+              },
+              {
+                label: "Em negociação",
+                value: metrics.emNegociacao,
+                icon: <ClipboardList className="h-5 w-5" />,
+              },
+              {
+                label: "Novos",
+                value: metrics.novos,
+                icon: <PlusCircle className="h-5 w-5" />,
+              },
+              {
+                label: "Concluídos",
+                value: metrics.concluidos,
+                icon: <Building2 className="h-5 w-5" />,
+              },
+            ].map((item) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="rounded-[24px] border border-[#D9B98E]/40 bg-white/5 px-6 py-6 shadow-[0_26px_68px_-38px_rgba(217,185,142,0.65)] backdrop-blur-md"
               >
-                <div>
-                  <p className="text-xs uppercase tracking-widest text-white/60 font-inter">
-                    {card.label}
-                  </p>
-                  <p className="mt-2 text-3xl font-playfair text-[#D9B98E]">{card.value}</p>
+                <div className="flex items-center justify-between text-[#FDF4E6]">
+                  <span className="text-sm font-semibold uppercase tracking-[0.08em] text-[#F8F9FB]/70">
+                    {item.label}
+                  </span>
+                  <span className="text-[#D9B98E]">{item.icon}</span>
                 </div>
-                <span className="rounded-full border border-[#D9B98E]/40 bg-[#D9B98E]/10 p-3 text-[#D9B98E]">
-                  <Icon className="h-5 w-5" />
-                </span>
-              </article>
-            );
-          })}
-        </section>
-
-        <section className="rounded-3xl border border-[#D9B98E]/20 bg-[#001A2D] shadow-lg shadow-black/20">
-          <div className="flex flex-col gap-4 border-b border-white/10 px-6 py-6 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h2 className="text-2xl font-playfair text-[#D9B98E]">Leads captados</h2>
-              <p className="text-sm font-inter text-white/60">
-                Atualize o status de atendimento e acompanhe os canais de entrada em tempo real.
-              </p>
-            </div>
-            <div className="flex items-center gap-3">
-              <label htmlFor="lead-filter" className="sr-only">
-                Filtrar por status
-              </label>
-              <select
-                id="lead-filter"
-                value={filter}
-                onChange={(event) => setFilter(event.target.value as LeadStatus | "todos")}
-                className="rounded-lg border border-[#D9B98E]/40 bg-[#001F33] px-4 py-2 text-sm font-inter text-white focus:outline-none focus:ring-2 focus:ring-[#D9B98E]/40"
-              >
-                <option value="todos">Todos os status</option>
-                {STATUS_OPTIONS.map((statusOption) => (
-                  <option key={statusOption} value={statusOption}>
-                    {statusOption.charAt(0).toUpperCase() + statusOption.slice(1)}
-                  </option>
-                ))}
-              </select>
-            </div>
+                <p className="mt-3 font-playfair text-[2rem] text-[#FDF4E4]">{item.value}</p>
+              </motion.div>
+            ))}
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-white/10">
-              <thead>
-                <tr className="bg-white/5 text-left text-xs font-inter uppercase tracking-wider text-white/60">
-                  <th className="px-6 py-3">Lead</th>
-                  <th className="px-6 py-3">Contato</th>
-                  <th className="px-6 py-3">Origem</th>
-                  <th className="px-6 py-3">Recebido em</th>
-                  <th className="px-6 py-3">Status</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/10">
-                {filteredLeads.length === 0 ? (
-                  <tr>
-                    <td
-                      colSpan={5}
-                      className="px-6 py-10 text-center text-sm font-inter text-white/60"
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            {/* Cadastro de leads */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45 }}
+              className="lg:col-span-2 space-y-6"
+            >
+              <div className="rounded-[28px] border border-[#D9B98E]/40 bg-white/10 px-8 py-8 shadow-[0_30px_80px_-42px_rgba(217,185,142,0.68)] backdrop-blur-lg">
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <h2 className="font-playfair text-[1.6rem] text-[#FDF4E4]">Leads em acompanhamento</h2>
+                    <p className="text-sm text-[#F8F9FB]/70">Atualize etapas de acordo com a evolução do relacionamento.</p>
+                  </div>
+                  <span className="rounded-full border border-[#D9B98E]/50 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-[#D9B98E]">
+                    CRM INBS
+                  </span>
+                </div>
+
+                <div className="mt-6 space-y-4">
+                  {leads.map((lead) => (
+                    <div
+                      key={lead.id}
+                      className="rounded-2xl border border-[#D9B98E]/30 bg-[#041528]/70 px-6 py-5 shadow-[0_18px_40px_-34px_rgba(217,185,142,0.55)] backdrop-blur-md"
                     >
-                      Nenhum lead encontrado para o filtro selecionado.
-                    </td>
-                  </tr>
-                ) : (
-                  filteredLeads.map((lead) => (
-                    <tr key={lead.id} className="text-sm font-inter text-white/85">
-                      <td className="px-6 py-4 align-top">
-                        <p className="font-semibold text-white">{lead.nome}</p>
-                        <p className="text-xs text-white/60">{lead.id}</p>
-                      </td>
-                      <td className="px-6 py-4 align-top">
-                        <p className="text-white/80">{lead.email}</p>
-                        <p className="text-white/60">{lead.telefone}</p>
-                      </td>
-                      <td className="px-6 py-4 align-top">
-                        <p className="text-white/80 capitalize">{lead.origem}</p>
-                        {lead.mensagem && (
-                          <p className="mt-2 text-xs italic text-white/45">“{lead.mensagem}”</p>
-                        )}
-                      </td>
-                      <td className="px-6 py-4 align-top">
-                        {new Date(lead.criadoEm).toLocaleString("pt-BR")}
-                      </td>
-                      <td className="px-6 py-4 align-top">
-                        <select
-                          value={lead.status}
-                          onChange={(event) =>
-                            handleStatusChange(lead.id, event.target.value as LeadStatus)
-                          }
-                          className="rounded-lg border border-[#D9B98E]/30 bg-[#D9B98E]/20 px-3 py-2 text-sm font-semibold text-[#D9B98E] focus:outline-none focus:ring-2 focus:ring-[#D9B98E]/40"
-                        >
-                          {STATUS_OPTIONS.map((statusOption) => (
-                            <option key={`${lead.id}-${statusOption}`} value={statusOption}>
-                              {statusOption.charAt(0).toUpperCase() + statusOption.slice(1)}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        {session.role === "master" && (
-          <section className="rounded-3xl border border-[#D9B98E]/25 bg-[#001A2D] p-6 shadow-lg shadow-black/20">
-            <div className="flex flex-col gap-3 border-b border-white/10 pb-6 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <h2 className="text-2xl font-playfair text-[#D9B98E]">
-                  Gestão da equipe comercial
-                </h2>
-                <p className="text-sm font-inter text-white/60">
-                  Crie logins temporários para representantes e acompanhe os acessos ativos.
-                </p>
-              </div>
-            </div>
-
-            {(teamError || teamSuccess) && (
-              <div
-                className={`mt-6 rounded-xl border px-4 py-3 text-sm font-inter ${
-                  teamError
-                    ? "border-red-400/40 bg-red-500/15 text-red-100"
-                    : "border-emerald-400/40 bg-emerald-500/15 text-emerald-100"
-                }`}
-              >
-                {teamError ?? teamSuccess}
-              </div>
-            )}
-
-            <div className="grid grid-cols-1 gap-6 pt-6 lg:grid-cols-2">
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-white">
-                  Usuários cadastrados ({sortedTeam.length})
-                </h3>
-                <div className="space-y-4">
-                  {sortedTeam.map((user) => {
-                    const isEditing = editingUserId === user.id;
-                    return (
-                      <div
-                        key={user.id}
-                        className="rounded-2xl border border-[#D9B98E]/20 bg-[#001F33] px-4 py-4"
-                      >
-                        <div className="mb-3 flex items-center justify-between">
-                          <span className="rounded-full border border-[#D9B98E]/30 bg-[#D9B98E]/15 px-3 py-1 text-xs font-semibold text-[#D9B98E]">
-                            {user.role === "master" ? "Master" : "Equipe"}
-                          </span>
-                          {!isEditing && (
-                            <div className="flex items-center gap-2">
-                              <button
-                                type="button"
-                                onClick={() => handleStartEdit(user)}
-                                className="rounded-lg border border-white/15 p-2 text-white/80 hover:bg-white/10 hover:text-white transition-colors duration-200"
-                              >
-                                <Pencil className="h-4 w-4" />
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => handleDeleteUser(user)}
-                                className="rounded-lg border border-white/15 p-2 text-white/80 hover:bg-red-500/20 hover:text-red-200 transition-colors duration-200 disabled:opacity-40"
-                                disabled={user.role === "master"}
-                              >
-                                <Trash2 className="h-4 w-4" />
-                              </button>
-                            </div>
-                          )}
-                        </div>
-
-                        {isEditing ? (
-                          <form className="space-y-3" onSubmit={handleUpdateUser}>
-                            <div className="space-y-1">
-                              <label className="text-xs font-inter text-white/60" htmlFor={`nome-${user.id}`}>
-                                Nome
-                              </label>
-                              <input
-                                id={`nome-${user.id}`}
-                                type="text"
-                                value={editingValues.nome}
-                                onChange={(event) =>
-                                  setEditingValues((prev) => ({ ...prev, nome: event.target.value }))
-                                }
-                                className="w-full rounded-lg border border-[#D9B98E]/25 bg-[#001833]/80 px-3 py-2 text-sm text-white placeholder-white/40 focus:border-[#D9B98E] focus:outline-none focus:ring-2 focus:ring-[#D9B98E]/35"
-                                required
-                              />
-                            </div>
-                            <div className="space-y-1">
-                              <label className="text-xs font-inter text-white/60" htmlFor={`user-${user.id}`}>
-                                Usuário
-                              </label>
-                              <input
-                                id={`user-${user.id}`}
-                                type="text"
-                                value={editingValues.username}
-                                onChange={(event) =>
-                                  setEditingValues((prev) => ({
-                                    ...prev,
-                                    username: event.target.value,
-                                  }))
-                                }
-                                disabled={user.role === "master"}
-                                className="w-full rounded-lg border border-[#D9B98E]/25 bg-[#001833]/80 px-3 py-2 text-sm text-white placeholder-white/40 focus:border-[#D9B98E] focus:outline-none focus:ring-2 focus:ring-[#D9B98E]/35 disabled:opacity-60"
-                                required
-                              />
-                            </div>
-                            <div className="space-y-1">
-                              <label className="text-xs font-inter text-white/60" htmlFor={`senha-${user.id}`}>
-                                Senha (opcional)
-                              </label>
-                              <input
-                                id={`senha-${user.id}`}
-                                type="text"
-                                value={editingValues.password}
-                                onChange={(event) =>
-                                  setEditingValues((prev) => ({
-                                    ...prev,
-                                    password: event.target.value,
-                                  }))
-                                }
-                                placeholder="Informe para atualizar a senha"
-                                className="w-full rounded-lg border border-[#D9B98E]/25 bg-[#001833]/80 px-3 py-2 text-sm text-white placeholder-white/40 focus:border-[#D9B98E] focus:outline-none focus:ring-2 focus:ring-[#D9B98E]/35"
-                              />
-                            </div>
-                            <div className="flex items-center justify-end gap-3 pt-2">
-                              <button
-                                type="button"
-                                onClick={handleCancelEdit}
-                                className="rounded-lg border border-white/20 px-4 py-2 text-xs font-inter text-white/70 hover:bg-white/10 transition-colors duration-200"
-                              >
-                                Cancelar
-                              </button>
-                              <button
-                                type="submit"
-                                className="rounded-lg bg-[#D9B98E] px-4 py-2 text-xs font-semibold text-[#001F33] hover:bg-[#B8925A] transition-colors duration-200"
-                              >
-                                Salvar alterações
-                              </button>
-                            </div>
-                          </form>
-                        ) : (
-                          <div className="space-y-1">
-                            <p className="font-semibold text-white">{user.nome}</p>
-                            <p className="text-xs text-white/60">@{user.username}</p>
-                            <p className="text-[11px] text-white/40">
-                              Criado em {new Date(user.createdAt).toLocaleDateString("pt-BR")}
-                            </p>
+                      <div className="flex flex-wrap items-center justify-between gap-4">
+                        <div className="space-y-1">
+                          <p className="text-sm font-semibold text-[#D9B98E]">{lead.id}</p>
+                          <h3 className="text-lg font-semibold text-white">{lead.nome}</h3>
+                          <div className="flex flex-wrap gap-3 text-xs text-[#F8F9FB]/75">
+                            <span className="inline-flex items-center gap-1"><Mail className="h-3.5 w-3.5" /> {lead.email}</span>
+                            <span className="inline-flex items-center gap-1"><Phone className="h-3.5 w-3.5" /> {lead.telefone}</span>
+                            <span className="inline-flex items-center gap-1"><Users className="h-3.5 w-3.5" /> {lead.origem}</span>
                           </div>
-                        )}
+                        </div>
+                        <div className="flex flex-col items-end gap-3">
+                          <select
+                            value={lead.etapa}
+                            onChange={(event) =>
+                              setLeads((prev) =>
+                                prev.map((item) =>
+                                  item.id === lead.id
+                                    ? { ...item, etapa: event.target.value as Lead["etapa"] }
+                                    : item,
+                                ),
+                              )
+                            }
+                            className="rounded-full border border-[#D9B98E]/50 bg-white/10 px-4 py-2 text-xs font-semibold text-[#FDF4E6] focus:border-[#D9B98E] focus:outline-none"
+                          >
+                            <option value="Novo">Novo</option>
+                            <option value="Contato">Contato</option>
+                            <option value="Em negociação">Em negociação</option>
+                            <option value="Concluído">Concluído</option>
+                          </select>
+                          <span className="text-[0.7rem] uppercase tracking-[0.16em] text-[#F8F9FB]/60">Atualizar etapa</span>
+                        </div>
                       </div>
-                    );
-                  })}
+                    </div>
+                  ))}
                 </div>
               </div>
+            </motion.div>
 
-              <form
-                onSubmit={handleCreateUser}
-                className="space-y-4 rounded-2xl border border-[#D9B98E]/20 bg-[#001F33] p-6"
-              >
-                <h3 className="text-lg font-semibold text-white">Criar novo acesso</h3>
-                <p className="text-xs text-white/60">
-                  Os logins criados aqui são válidos apenas para uso interno e permanecem no
-                  dispositivo via armazenamento local.
-                </p>
-                <input
-                  type="text"
-                  value={newUser.nome}
-                  onChange={(event) => setNewUser((prev) => ({ ...prev, nome: event.target.value }))}
-                  placeholder="Nome completo"
-                  className="w-full rounded-lg border border-[#D9B98E]/30 bg-[#001933] px-4 py-3 text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#D9B98E]/40"
-                  required
-                />
-                <input
-                  type="text"
-                  value={newUser.username}
-                  onChange={(event) =>
-                    setNewUser((prev) => ({ ...prev, username: event.target.value }))
-                  }
-                  placeholder="Usuário (ex: ana.silva)"
-                  className="w-full rounded-lg border border-[#D9B98E]/30 bg-[#001933] px-4 py-3 text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#D9B98E]/40"
-                  required
-                />
-                <input
-                  type="password"
-                  value={newUser.password}
-                  onChange={(event) =>
-                    setNewUser((prev) => ({ ...prev, password: event.target.value }))
-                  }
-                  placeholder="Senha provisória"
-                  className="w-full rounded-lg border border-[#D9B98E]/30 bg-[#001933] px-4 py-3 text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#D9B98E]/40"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="w-full rounded-lg bg-[#D9B98E] px-4 py-3 text-sm font-semibold text-[#001F33] hover:bg-[#B8925A] transition-colors duration-200"
-                >
-                  Adicionar usuário da equipe
-                </button>
-              </form>
-            </div>
-          </section>
-        )}
+            {/* Formulários */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.1 }}
+              className="space-y-6"
+            >
+              <div className="rounded-[28px] border border-[#D9B98E]/40 bg-white/10 px-6 py-6 shadow-[0_28px_70px_-40px_rgba(217,185,142,0.65)] backdrop-blur-lg">
+                <h3 className="font-playfair text-[1.3rem] text-[#FDF4E4] mb-4">Cadastrar novo lead</h3>
+                <form onSubmit={handleCreateLead} className="space-y-4 text-[#0C2136]">
+                  <input
+                    type="text"
+                    required
+                    placeholder="Nome do lead"
+                    value={leadForm.nome}
+                    onChange={(event) => setLeadForm((prev) => ({ ...prev, nome: event.target.value }))}
+                    className="w-full rounded-2xl border border-[#D9B98E]/35 bg-white/95 px-4 py-3 text-sm placeholder-[#0C2136]/45 focus:border-[#D9B98E] focus:outline-none focus:ring-2 focus:ring-[#D9B98E]/30"
+                  />
+                  <input
+                    type="email"
+                    required
+                    placeholder="E-mail"
+                    value={leadForm.email}
+                    onChange={(event) => setLeadForm((prev) => ({ ...prev, email: event.target.value }))}
+                    className="w-full rounded-2xl border border-[#D9B98E]/35 bg-white/95 px-4 py-3 text-sm placeholder-[#0C2136]/45 focus:border-[#D9B98E] focus:outline-none focus:ring-2 focus:ring-[#D9B98E]/30"
+                  />
+                  <input
+                    type="text"
+                    required
+                    placeholder="Telefone"
+                    value={leadForm.telefone}
+                    onChange={(event) => setLeadForm((prev) => ({ ...prev, telefone: event.target.value }))}
+                    className="w-full rounded-2xl border border-[#D9B98E]/35 bg-white/95 px-4 py-3 text-sm placeholder-[#0C2136]/45 focus:border-[#D9B98E] focus:outline-none focus:ring-2 focus:ring-[#D9B98E]/30"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Origem (evento, indicação...)"
+                    value={leadForm.origem}
+                    onChange={(event) => setLeadForm((prev) => ({ ...prev, origem: event.target.value }))}
+                    className="w-full rounded-2xl border border-[#D9B98E]/35 bg-white/95 px-4 py-3 text-sm placeholder-[#0C2136]/45 focus:border-[#D9B98E] focus:outline-none focus:ring-2 focus:ring-[#D9B98E]/30"
+                  />
+                  <button
+                    type="submit"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#D9B98E] px-6 py-3 text-sm font-semibold text-[#001F33] shadow-[0_22px_48px_-28px_rgba(217,185,142,0.75)] transition-all duração=300 hover:-translate-y-1 hover:bg-[#E6CFA5]"
+                  >
+                    <PlusCircle className="h-4 w-4" /> Adicionar lead
+                  </button>
+                </form>
+              </div>
+
+              <div className="rounded-[28px] border border-[#D9B98E]/40 bg-white/10 px-6 py-6 shadow-[0_28px_70px_-40px_rgba(217,185,142,0.65)] backdrop-blur-lg">
+                <h3 className="font-playfair text-[1.3rem] text-[#FDF4E4] mb-4">Criar acesso da equipe</h3>
+                <form onSubmit={handleCreateTeamMember} className="space-y-4 text-[#0C2136]">
+                  <input
+                    type="text"
+                    required
+                    placeholder="Nome completo"
+                    value={teamForm.nome}
+                    onChange={(event) => setTeamForm((prev) => ({ ...prev, nome: event.target.value }))}
+                    className="w-full rounded-2xl border border-[#D9B98E]/35 bg-white/95 px-4 py-3 text-sm placeholder-[#0C2136]/45 focus:border-[#D9B98E] focus:outline-none focus:ring-2 focus:ring-[#D9B98E]/30"
+                  />
+                  <input
+                    type="email"
+                    required
+                    placeholder="E-mail"
+                    value={teamForm.email}
+                    onChange={(event) => setTeamForm((prev) => ({ ...prev, email: event.target.value }))}
+                    className="w-full rounded-2xl border border-[#D9B98E]/35 bg-white/95 px-4 py-3 text-sm placeholder-[#0C2136]/45 focus:border-[#D9B98E] focus:outline-none focus:ring-2 focus:ring-[#D9B98E]/30"
+                  />
+                  <input
+                    type="password"
+                    required
+                    placeholder="Senha provisória"
+                    value={teamForm.senha}
+                    onChange={(event) => setTeamForm((prev) => ({ ...prev, senha: event.target.value }))}
+                    className="w-full rounded-2xl border border-[#D9B98E]/35 bg-white/95 px-4 py-3 text-sm placeholder-[#0C2136]/45 focus:border-[#D9B98E] focus:outline-none focus:ring-2 focus:ring-[#D9B98E]/30"
+                  />
+                  <select
+                    value={teamForm.perfil}
+                    onChange={(event) => setTeamForm((prev) => ({ ...prev, perfil: event.target.value as TeamMember["perfil"] }))}
+                    className="w-full rounded-2xl border border-[#D9B98E]/35 bg-white/95 px-4 py-3 text-sm text-[#0C2136] focus:border-[#D9B98E] focus:outline-none focus:ring-2 focus:ring-[#D9B98E]/30"
+                  >
+                    <option value="Administrador">Administrador</option>
+                    <option value="Analista">Analista</option>
+                    <option value="Representante">Representante</option>
+                  </select>
+                  <button
+                    type="submit"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#D9B98E] px-6 py-3 text-sm font-semibold text-[#001F33] shadow-[0_22px_48px_-28px_rgba(217,185,142,0.75)] transition-all duração=300 hover:-translate-y-1 hover:bg-[#E6CFA5]"
+                  >
+                    <PlusCircle className="h-4 w-4" /> Criar acesso
+                  </button>
+                </form>
+              </div>
+
+              <div className="rounded-[28px] border border-[#D9B98E]/40 bg-white/10 px-6 py-6 shadow-[0_28px_70px_-40px_rgba(217,185,142,0.65)] backdrop-blur-lg">
+                <h3 className="font-playfair text-[1.3rem] text-[#FDF4E4] mb-4">Equipe habilitada</h3>
+                <div className="space-y-3 text-sm text-[#F8F9FB]/85">
+                  {team.map((member) => (
+                    <div
+                      key={member.id}
+                      className="rounded-2xl border border-[#D9B98E]/30 bg-[#041528]/70 px-5 py-4 shadow-[0_16px_36px_-30px_rgba(217,185,142,0.55)] backdrop-blur-lg"
+                    >
+                      <div className="flex flex-wrap items-center justify-between gap-3">
+                        <div>
+                          <p className="font-semibold text-[#FDF4E4]">{member.nome}</p>
+                          <p className="text-xs text-[#F8F9FB]/65">{member.email}</p>
+                        </div>
+                        <span className="rounded-full border border-[#D9B98E]/40 bg-white/10 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-[#D9B98E]">
+                          {member.perfil}
+                        </span>
+                      </div>
+                      <p className="mt-2 text-[0.7rem] text-[#F8F9FB]/55">
+                        Senha provisória: <span className="font-semibold text-[#F4D9AA]">{member.senha}</span>
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </section>
     </main>
   );

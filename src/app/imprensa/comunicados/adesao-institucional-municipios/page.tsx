@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import Navbar from "../../../../components/Navbar";
 import Footer from "../../../../components/Footer";
+import BackButton from "../../../../components/ui/BackButton";
 
 export const dynamic = "force-static";
 
@@ -52,13 +52,12 @@ export default function AdesaoMunicipiosPage() {
             </div>
 
             <div className="pt-8">
-              <Link 
-                href="/imprensa#comunicados-oficiais"
-                scroll={true}
-                className="inline-flex items-center text-[#D9B98E] hover:text-white font-semibold transition-all duration-200"
+              <BackButton
+                fallbackHref="/imprensa#comunicados"
+                className="rounded-2xl border border-[#D9B98E]/70 bg-white px-7 md:px-10 py-3 text-sm md:text-base font-semibold text-[#001F33] shadow-[0_12px_28px_-24px_rgba(217,185,142,0.45)] hover:-translate-y-1 hover:bg-[#FDF3E4]"
               >
                 ← Voltar aos Comunicados
-              </Link>
+              </BackButton>
             </div>
           </motion.article>
         </div>

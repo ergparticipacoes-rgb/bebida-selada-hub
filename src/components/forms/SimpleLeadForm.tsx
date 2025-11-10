@@ -1,22 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { addLead } from "@/data/leads";
 
 interface SimpleLeadFormProps {
   origem?: string;
+  initialMensagem?: string;
   onSubmitSuccess?: () => void;
 }
 
-export default function SimpleLeadForm({ origem = "site", onSubmitSuccess }: SimpleLeadFormProps) {
+export default function SimpleLeadForm({ origem = "site", initialMensagem, onSubmitSuccess }: SimpleLeadFormProps) {
   const [formData, setFormData] = useState({
     nome: "",
     email: "",
     whatsapp: "",
-    mensagem: "",
+    mensagem: initialMensagem ?? "",
   });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      mensagem: initialMensagem ?? "",
+    }));
+  }, [initialMensagem]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -44,7 +52,7 @@ export default function SimpleLeadForm({ origem = "site", onSubmitSuccess }: Sim
           nome: "",
           email: "",
           whatsapp: "",
-          mensagem: "",
+          mensagem: initialMensagem ?? "",
         });
         if (onSubmitSuccess) {
           onSubmitSuccess();

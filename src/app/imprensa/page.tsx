@@ -1,278 +1,300 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useState } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import Button from "../../components/ui/Button";
+import BackButton from "../../components/ui/BackButton";
 
 export const dynamic = "force-static";
 
 export default function ImprensaPage() {
+  const [showPressForm, setShowPressForm] = useState(false);
+
   return (
-    <main className="min-h-screen flex flex-col bg-[#001F33] text-white">
+    <main className="min-h-screen flex flex-col bg-[#F7F4ED] text-[#001F33]">
       <Navbar />
-      <div className="px-8 md:px-20 py-28 md:py-36 flex-1">
-        <div className="max-w-6xl mx-auto space-y-24 md:space-y-32">
-          {/* Hero */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center space-y-10 md:space-y-14"
-          >
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-[#E5C48F] mb-8">
-              <span className="inline-flex items-baseline gap-[1px]"><span className="font-playfair text-inbsGold">Bebida Selada</span><span className="font-inter text-inbsGold text-[0.65em] ml-[1px] relative" style={{ top: "-0.35em" }}>®</span></span> na mídia nacional
-            </h1>
-            <p className="text-lg md:text-xl text-[#E5E9F0] max-w-3xl mx-auto leading-relaxed md:leading-loose">
-              Reconhecida por sua inovação em rastreabilidade e transparência,
-              a <span className="inline-flex items-baseline gap-[1px]"><span className="font-playfair text-inbsGold">Bebida Selada</span><span className="font-inter text-inbsGold text-[0.65em] ml-[1px] relative" style={{ top: "-0.35em" }}>®</span></span> vem conquistando destaque em portais, veículos e órgãos oficiais.
-            </p>
-          </motion.div>
 
-          {/* Institucional */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-center max-w-4xl mx-auto space-y-10 md:space-y-14 mt-24 md:mt-32"
-          >
-            <p className="text-[#E5E9F0]/90 text-lg md:text-xl leading-relaxed md:leading-loose">
-              O <strong className="text-[#E5C48F]">Selo Nacional de Autenticidade <span className="inline-flex items-baseline gap-[1px]"><span className="font-playfair text-inbsGold">Bebida Selada</span><span className="font-inter text-inbsGold text-[0.65em] ml-[1px] relative" style={{ top: "-0.35em" }}>®</span></span></strong> é pauta constante em veículos de comunicação,
-              universidades e eventos do setor de bebidas, tecnologia e gestão pública.
-              <br className="hidden md:block" />
-              <br className="hidden md:block" />
-              A imprensa reconhece o projeto como um marco no avanço da{" "}
-              <strong className="text-[#E5C48F]">rastreabilidade, confiança e governança digital</strong> no Brasil.
-            </p>
-          </motion.section>
+      <div className="flex-1">
+        {/* Hero */}
+        <section className="relative overflow-hidden bg-gradient-to-b from-[#001326] via-[#001F33] to-[#012A46] text-white px-6 py-28 md:py-32">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(217,185,142,0.22),transparent_70%)]" />
+          <div className="absolute -left-48 top-24 h-[360px] w-[360px] rounded-full bg-[#D9B98E]/18 blur-[160px]" />
+          <div className="absolute -right-56 bottom-0 h-[420px] w-[420px] rounded-full bg-[#8C6B40]/18 blur-[190px]" />
 
-          {/* Comunicados Oficiais – Rede Segura Nacional */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            id="comunicados-oficiais"
-            className="py-24 bg-[#001F33] text-white mt-24 md:mt-32"
-          >
-            <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#D9B98E] mb-10 text-center">
-                Comunicados Oficiais – Rede Segura Nacional
-              </h2>
-              <p className="text-center text-white/80 max-w-2xl mx-auto mb-12 text-base md:text-lg">
-                Publicações técnicas emitidas pelo Instituto Nacional <span className="inline-flex items-baseline gap-[1px]"><span className="font-playfair text-inbsGold">Bebida Selada</span><span className="font-inter text-inbsGold text-[0.65em] ml-[1px] relative" style={{ top: "-0.35em" }}>®</span></span> (INBS) e órgãos vinculados à Rede Segura Nacional.
-              </p>
-
-              <div className="grid gap-8 md:grid-cols-3">
-                {/* COMUNICADO 1 */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  className="bg-[#002A46]/40 backdrop-blur-sm border border-[#D9B98E]/30 rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300"
-                >
-                  <span className="inline-flex items-center text-xs uppercase tracking-wide font-semibold text-[#D9B98E] mb-3">🛡️ Comunicado Oficial</span>
-                  <h3 className="text-lg font-semibold text-white mb-3 leading-snug">
-                    Ativação Nacional do Sistema de Certificação Digital
-                  </h3>
-                  <p className="text-sm text-white/90 leading-relaxed mb-4">
-                    A Rede Segura Nacional anuncia o início da integração de estabelecimentos e municípios no Protocolo Técnico INBS-001:2025, consolidando o Selo <span className="inline-flex items-baseline gap-[1px]"><span className="font-playfair text-inbsGold">Bebida Selada</span><span className="font-inter text-inbsGold text-[0.65em] ml-[1px] relative" style={{ top: "-0.35em" }}>®</span></span> como padrão nacional de autenticidade.
-                  </p>
-                  <p className="text-xs text-[#D9B98E]/80 font-medium mb-4">📅 Publicado em 28 de outubro de 2025</p>
-                  <Link href="/imprensa/comunicados/ativacao-nacional-certificacao-digital" className="text-[#D9B98E] hover:text-white text-sm font-semibold transition-all duration-200 underline">
-                    Ler Comunicado Completo →
-                  </Link>
-                </motion.div>
-
-                {/* COMUNICADO 2 */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                  className="bg-[#002A46]/40 backdrop-blur-sm border border-[#D9B98E]/30 rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300"
-                >
-                  <span className="inline-flex items-center text-xs uppercase tracking-wide font-semibold text-[#D9B98E] mb-3">🛡️ Comunicado Oficial</span>
-                  <h3 className="text-lg font-semibold text-white mb-3 leading-snug">
-                    Norma Técnica INBS-001:2025 – Versão Revisada
-                  </h3>
-                  <p className="text-sm text-white/90 leading-relaxed mb-4">
-                    O INBS divulga a versão revisada da Norma Técnica que define as diretrizes de certificação, auditoria e rastreabilidade de bebidas certificadas pela Rede Segura Nacional.
-                  </p>
-                  <p className="text-xs text-[#D9B98E]/80 font-medium mb-4">📅 Publicado em 30 de outubro de 2025</p>
-                  <Link href="/imprensa/comunicados/norma-tecnica-inbs-001-2025" className="text-[#D9B98E] hover:text-white text-sm font-semibold transition-all duration-200 underline">
-                    Ler Comunicado Completo →
-                  </Link>
-                </motion.div>
-
-                {/* COMUNICADO 3 */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                  className="bg-[#002A46]/40 backdrop-blur-sm border border-[#D9B98E]/30 rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300"
-                >
-                  <span className="inline-flex items-center text-xs uppercase tracking-wide font-semibold text-[#D9B98E] mb-3">🛡️ Comunicado Oficial</span>
-                  <h3 className="text-lg font-semibold text-white mb-3 leading-snug">
-                    Adesão Institucional de Municípios Certificados
-                  </h3>
-                  <p className="text-sm text-white/90 leading-relaxed mb-4">
-                    Prefeituras de 42 regiões já integram oficialmente o programa <span className="inline-flex items-baseline gap-[1px]"><span className="font-playfair text-inbsGold">Bebida Selada</span><span className="font-inter text-inbsGold text-[0.65em] ml-[1px] relative" style={{ top: "-0.35em" }}>®</span></span>, fortalecendo transparência e segurança sanitária em todo o país.
-                  </p>
-                  <p className="text-xs text-[#D9B98E]/80 font-medium mb-4">📅 Publicado em 31 de outubro de 2025</p>
-                  <Link href="/imprensa/comunicados/adesao-institucional-municipios" className="text-[#D9B98E] hover:text-white text-sm font-semibold transition-all duration-200 underline">
-                    Ler Comunicado Completo →
-                  </Link>
-                </motion.div>
+          <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center space-y-12 md:space-y-[4.5rem] text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="space-y-6"
+            >
+              <h1 className="text-[2.7rem] md:text-[3.6rem] font-playfair font-bold leading-snug md:leading-[1.18] text-[#FDF4E1] drop-shadow-[0_12px_32px_rgba(5,25,46,0.45)]">
+                <span className="inline-flex items-baseline gap-[1px]"><span className="font-playfair text-inbsGold">Bebida Selada</span><span className="font-inter text-inbsGold text-[0.65em] ml-[1px] relative" style={{ top: "-0.35em" }}>®</span></span> na mídia brasileira
+              </h1>
+              <div className="space-y-12 max-w-4xl mx-auto text-[#F8F9FB]/85 leading-[1.82]">
+                <p className="text-base md:text-lg md:text-[1.2rem]">
+                  Reconhecida pela inovação em rastreabilidade, autenticidade e governança, a Rede Segura Nacional conquista espaço em portais, veículos e órgãos de imprensa de todo o país.
+                </p>
+                <p className="text-sm md:text-base text-[#F8F9FB]/80 italic leading-[1.9]">
+                  A imprensa destaca o selo Bebida Selada® como referência nacional em transparência, tecnologia e consumo responsável.
+                </p>
               </div>
+            </motion.div>
+          </div>
+        </section>
 
-              <div className="h-px w-full bg-[#D9B98E]/20 my-16"></div>
-            </div>
-          </motion.section>
-
-          {/* Destaques de mídia */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-10 md:space-y-14 mt-24 md:mt-32"
-          >
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-center text-[#E5C48F] mb-10">
-              Destaques na mídia
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-14">
+        {/* Comunicados oficiais */}
+        <section id="comunicados" className="bg-[#FDF9F0] py-24 md:py-28">
+          <div className="mx-auto max-w-6xl px-6 sm:px-10 md:px-16 text-center space-y-12">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-[2.2rem] md:text-[2.6rem] font-playfair font-bold text-[#1F2A38]"
+            >
+              Comunicados oficiais — Rede Segura Nacional
+            </motion.h2>
+            <p className="text-base md:text-lg text-[#312922]/80 leading-[1.75] max-w-3xl mx-auto">
+              Publicações autenticadas pelo Instituto Nacional Bebida Selada (INBS-001) com orientações técnicas, notas institucionais e avanços da Rede Segura Nacional.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
-                  veiculo: "Valor Econômico",
-                  titulo:
-                    "Blockchain chega ao copo: tecnologia garante autenticidade das bebidas brasileiras.",
-                  slug: "valor-blockchain",
+                  title: "Ativação nacional do sistema de certificação digital",
+                  body: "A Rede Segura Nacional inicia a integração progressiva de estabelecimentos e municípios ao Protocolo Técnico INBS-001:2025, consolidando o selo Bebida Selada® como padrão nacional.",
+                  date: "28 de outubro de 2025",
+                  href: "/imprensa/comunicados/ativacao-nacional-certificacao-digital",
                 },
                 {
-                  veiculo: "Estadão",
-                  titulo:
-                    "Prefeituras adotam o selo <span className=\"inline-flex items-baseline gap-[1px]\"><span className=\"font-playfair text-inbsBlue\">Bebida Selada</span><span className=\"font-inter text-inbsBlue text-[0.65em] ml-[1px] relative\" style={{ top: \"-0.35em\" }}>®</span></span> para fortalecer combate à falsificação e arrecadação local.",
-                  slug: "estadao-selo-municipios",
+                  title: "Norma Técnica INBS-001:2025 – Versão revisada",
+                  body: "O INBS divulga a revisão da norma que define diretrizes de certificação, auditoria e rastreabilidade de bebidas certificadas pela Rede Segura Nacional.",
+                  date: "30 de outubro de 2025",
+                  href: "/imprensa/comunicados/norma-tecnica-inbs-001-2025",
                 },
                 {
-                  veiculo: "Exame",
-                  titulo:
-                    "<span className=\"inline-flex items-baseline gap-[1px]\"><span className=\"font-playfair text-inbsBlue\">Bebida Selada</span><span className=\"font-inter text-inbsBlue text-[0.65em] ml-[1px] relative\" style={{ top: \"-0.35em\" }}>®</span></span> cria ecossistema nacional de confiança e inovação no setor de bebidas.",
-                  slug: "exame-certificacao",
+                  title: "Adesão institucional de municípios certificados",
+                  body: "Prefeituras de diversas regiões integram oficialmente o programa Bebida Selada®, fortalecendo transparência, segurança sanitária e economia local.",
+                  date: "31 de outubro de 2025",
+                  href: "/imprensa/comunicados/adesao-institucional-municipios",
                 },
-              ].map((noticia, i) => (
+              ].map((card, idx) => (
                 <motion.div
-                  key={i}
+                  key={card.title}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  whileHover={{ scale: 1.02, y: -4 }}
-                  className="bg-[#001F33]/50 border border-[#E5C48F]/20 rounded-2xl p-10 md:p-12 flex flex-col justify-between hover:border-[#E5C48F]/40 transition-all duration-500 ease-in-out shadow-md"
+                  transition={{ duration: 0.6, delay: idx * 0.1 }}
+                  className="group flex h-full flex-col gap-5 rounded-[26px] border border-[#D9B98E]/45 bg-white px-8 py-10 text-left shadow-[0_18px_48px_-28px_rgba(217,185,142,0.4)]"
                 >
-                  <div>
-                    <h3 className="text-2xl font-serif font-semibold text-[#E5C48F] mb-4">
-                      {noticia.veiculo}
-                    </h3>
-                    <p className="text-lg md:text-xl text-white/90 leading-relaxed md:leading-loose">
-                      {noticia.titulo}
-                    </p>
-                  </div>
-                  <div className="mt-8">
-                    <Link href={`/noticias/${noticia.slug}`}>
-                      <Button
-                        variant="secondary"
-                        className="w-full text-base md:text-lg"
-                      >
-                        Ver matéria
-                      </Button>
-                    </Link>
-                  </div>
+                  <span className="inline-flex items-center text-xs uppercase tracking-[0.3em] font-semibold text-[#B88C4B]">
+                    🛡️ Comunicado oficial
+                  </span>
+                  <h3 className="text-lg md:text-xl font-semibold text-[#1F2A38] leading-snug">
+                    {card.title}
+                  </h3>
+                  <p className="text-sm md:text-base text-[#312922]/80 leading-relaxed">
+                    {card.body}
+                  </p>
+                  <p className="mt-2 text-xs uppercase tracking-[0.25em] text-[#B88C4B]/80">
+                    📅 Publicado em {card.date}
+                  </p>
+                  <Link href={card.href} className="mt-2 inline-flex items-center gap-2 text-[#B88C4B] font-semibold hover:text-[#8C6B40]">
+                    Ler comunicado completo →
+                  </Link>
                 </motion.div>
               ))}
             </div>
-          </motion.section>
-
-          {/* Releases */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-center space-y-10 md:space-y-14 mt-24 md:mt-32"
-          >
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#E5C48F] mb-8">
-              Releases e Comunicados Oficiais
-            </h2>
-            <p className="text-[#E5E9F0]/80 text-lg md:text-xl leading-relaxed md:leading-loose max-w-3xl mx-auto">
-              Acompanhe os comunicados e notas oficiais do{" "}
-              <strong className="text-[#E5C48F]">Instituto Nacional <span className="inline-flex items-baseline gap-[1px]"><span className="font-playfair text-inbsGold">Bebida Selada</span><span className="font-inter text-inbsGold text-[0.65em] ml-[1px] relative" style={{ top: "-0.35em" }}>®</span></span> (INBS:001)</strong>.
-            </p>
-            <div className="mt-10 md:mt-12">
-              <Link href="/atualizacao">
-                <Button variant="secondary" className="text-lg md:text-xl px-10 py-5">
-                  Ver comunicados oficiais
-                </Button>
-              </Link>
-            </div>
-          </motion.section>
-
-          {/* Contato com imprensa */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-center space-y-10 md:space-y-14 mt-24 md:mt-32"
-          >
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#E5C48F] mb-8">
-              Contato para imprensa
-            </h2>
-            <p className="text-lg md:text-xl text-[#E5E9F0]/90 leading-relaxed md:leading-loose">
-              <strong className="text-[#E5C48F]">E-mail:</strong> imprensa@bebidaselada.com.br
-              <br className="hidden md:block" />
-              <strong className="text-[#E5C48F]">Telefone:</strong> +55 (11) 99999-9999
-              <br className="hidden md:block" />
-              Assessoria: <strong className="text-[#E5C48F]">Instituto Nacional <span className="inline-flex items-baseline gap-[1px]"><span className="font-playfair text-inbsGold">Bebida Selada</span><span className="font-inter text-inbsGold text-[0.65em] ml-[1px] relative" style={{ top: "-0.35em" }}>®</span></span> (INBS)</strong>
-            </p>
-            <div className="mt-10 md:mt-12">
-              <a href="mailto:imprensa@bebidaselada.com.br">
-                <Button variant="secondary" className="text-lg md:text-xl px-10 py-5">
-                  Solicitar informações
-                </Button>
-              </a>
-            </div>
-          </motion.section>
-
-          {/* Fechamento */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-center space-y-6 mt-24 md:mt-32"
-          >
-            <p className="text-[#E5E9F0]/90 text-lg md:text-xl italic leading-relaxed md:leading-loose max-w-3xl mx-auto">
-              &quot;Transparência é notícia. A <span className="inline-flex items-baseline gap-[1px]"><span className="font-playfair text-inbsGold">Bebida Selada</span><span className="font-inter text-inbsGold text-[0.65em] ml-[1px] relative" style={{ top: "-0.35em" }}>®</span></span> reforça o compromisso com
-              a verdade, a rastreabilidade e a inovação brasileira.&quot;
-            </p>
-          </motion.section>
-
-          {/* Botão Voltar (padrão global) */}
-          <div className="text-center mt-20">
-            <button
-              onClick={() => window.history.back()}
-              className="px-8 py-4 text-lg font-semibold rounded-lg bg-[#D9B98E] text-[#001F33] hover:brightness-110 hover:scale-105 transition-all duration-400 ease-in-out shadow-md focus:outline-none focus:ring-2 focus:ring-[#E5C48F]/60 focus:ring-offset-2"
-            >
-              Voltar
-            </button>
           </div>
+        </section>
+
+        {/* Destaques de mídia */}
+        <section id="destaques" className="bg-white py-24 md:py-28">
+          <div className="mx-auto max-w-6xl px-6 sm:px-10 md:px-16 space-y-12">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center text-[2.2rem] md:text-[2.6rem] font-playfair font-bold text-[#1F2A38]"
+            >
+              Veja quem está falando sobre a Rede Segura Nacional
+            </motion.h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+              {[
+                {
+                  outlet: "Valor Econômico",
+                  excerpt: "Blockchain chega ao copo: tecnologia garante autenticidade das bebidas brasileiras.",
+                  href: "/noticias/valor-blockchain",
+                },
+                {
+                  outlet: "Estadão",
+                  excerpt: "Prefeituras adotam o selo Bebida Selada® para fortalecer combate à falsificação e arrecadação local.",
+                  href: "/noticias/estadao-selo-municipios",
+                },
+                {
+                  outlet: "Exame",
+                  excerpt: "Bebida Selada® cria ecossistema nacional de confiança e inovação no setor de bebidas.",
+                  href: "/noticias/exame-certificacao",
+                },
+              ].map((item, idx) => (
+                <motion.div
+                  key={item.outlet}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  whileHover={{ y: -6, scale: 1.02 }}
+                  className="group flex h-full flex-col justify-between rounded-[26px] border border-[#D9B98E]/45 bg-[#FDF9F0] px-8 py-10 shadow-[0_18px_48px_-28px_rgba(217,185,142,0.35)] transition-all duration-400"
+                >
+                  <div className="space-y-4">
+                    <p className="text-xs uppercase tracking-[0.3em] text-[#B88C4B] font-semibold">
+                      {item.outlet}
+                    </p>
+                    <p className="text-sm md:text-base text-[#312922]/80 leading-relaxed">
+                      {item.excerpt}
+                    </p>
+                  </div>
+                  <Link
+                    href={item.href}
+                    className="mt-6 inline-flex items-center gap-2 text-[#B88C4B] font-semibold hover:text-[#8C6B40]"
+                  >
+                    Ler matéria completa →
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Releases */}
+        <section className="bg-[#001F33] py-24 md:py-28 text-white">
+          <div className="mx-auto max-w-6xl px-6 sm:px-10 md:px-16 text-center space-y-10">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-[2.2rem] md:text-[2.6rem] font-playfair font-bold text-[#FDF4E1]"
+            >
+              Releases e documentos oficiais
+            </motion.h2>
+            <p className="text-base md:text-lg text-[#F8F9FB]/85 leading-[1.75] max-w-3xl mx-auto">
+              Acompanhe notas institucionais, decisões e comunicados técnicos publicados pelo Instituto Nacional Bebida Selada (INBS-001).
+            </p>
+          </div>
+        </section>
+
+        {/* Contato imprensa */}
+        <section className="bg-white py-24 md:py-28">
+          <div className="mx-auto max-w-5xl px-6 sm:px-10 md:px-16 text-center space-y-10">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-[2.2rem] md:text-[2.5rem] font-playfair font-bold text-[#1F2A38]"
+            >
+              Contato para imprensa
+            </motion.h2>
+            <p className="text-base md:text-lg text-[#312922]/80 leading-[1.75] max-w-3xl mx-auto">
+              <strong className="text-[#B88C4B]">E-mail:</strong> imprensa@bebidaselada.com.br<br className="hidden md:block" />
+              Assessoria oficial: <strong className="text-[#B88C4B]">Bebida Selada Tecnologia e Certificação Ltda.</strong>
+            </p>
+            {showPressForm ? (
+              <motion.form
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  window.alert("Mensagem enviada! Nossa equipe responderá em breve.");
+                  setShowPressForm(false);
+                }}
+                className="mx-auto w-full max-w-3xl space-y-4 rounded-[24px] border border-[#D9B98E]/45 bg-[#FDF9F0] px-6 py-8 text-left shadow-[0_18px_48px_-28px_rgba(217,185,142,0.35)]"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <input
+                    type="text"
+                    required
+                    placeholder="Nome completo"
+                    className="rounded-xl border border-[#D9B98E]/35 bg-white px-4 py-3 text-sm md:text-base text-[#1F2A38] placeholder-[#1F2A38]/45 focus:border-[#D9B98E] focus:outline-none focus:ring-2 focus:ring-[#D9B98E]/30"
+                  />
+                  <input
+                    type="email"
+                    required
+                    placeholder="E-mail profissional"
+                    className="rounded-xl border border-[#D9B98E]/35 bg-white px-4 py-3 text-sm md:text-base text-[#1F2A38] placeholder-[#1F2A38]/45 focus:border-[#D9B98E] focus:outline-none focus:ring-2 focus:ring-[#D9B98E]/30"
+                  />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Veículo / Organização"
+                  className="w-full rounded-xl border border-[#D9B98E]/35 bg-white px-4 py-3 text-sm md:text-base text-[#1F2A38] placeholder-[#1F2A38]/45 focus:border-[#D9B98E] focus:outline-none focus:ring-2 focus:ring-[#D9B98E]/30"
+                />
+                <textarea
+                  rows={4}
+                  placeholder="Mensagem ou pauta"
+                  className="w-full rounded-xl border border-[#D9B98E]/35 bg-white px-4 py-3 text-sm md:text-base text-[#1F2A38] placeholder-[#1F2A38]/45 focus:border-[#D9B98E] focus:outline-none focus:ring-2 focus:ring-[#D9B98E]/30 resize-none"
+                />
+                <div className="flex flex-wrap justify-center gap-4 pt-4">
+                  <button
+                    type="submit"
+                    className="inline-flex items-center gap-2 rounded-full bg-[#D9B98E] px-8 md:px-10 py-3 text-sm md:text-base font-semibold text-[#001F33] shadow-[0_18px_38px_-24px_rgba(217,185,142,0.75)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#E6CFA5]"
+                  >
+                    Enviar solicitação
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowPressForm(false)}
+                    className="inline-flex items-center gap-2 rounded-full border border-[#D9B98E]/70 bg-white px-8 md:px-10 py-3 text-sm md:text-base font-semibold text-[#001F33] shadow-[0_12px_28px_-24px_rgba(217,185,142,0.45)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#FDF3E4]"
+                  >
+                    Voltar
+                  </button>
+                </div>
+              </motion.form>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setShowPressForm(true)}
+                className="inline-flex items-center gap-2 rounded-full bg-[#D9B98E] px-8 md:px-10 py-3 text-sm md:text-base font-semibold text-[#001F33] shadow-[0_18px_38px_-24px_rgba(217,185,142,0.75)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#E6CFA5]"
+              >
+                Solicitar informações
+              </button>
+            )}
+          </div>
+        </section>
+
+        {/* Citação */}
+        <section className="relative overflow-hidden bg-gradient-to-b from-[#001F33] to-[#012A46] py-28 text-white">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(217,185,142,0.16),transparent_70%)]" />
+          <div className="relative z-10 mx-auto max-w-4xl px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="rounded-[28px] border border-[#D9B98E]/55 bg-white/10 px-10 py-12 text-center shadow-[0_24px_80px_-28px_rgba(217,185,142,0.45)] backdrop-blur-lg"
+            >
+              <div className="mx-auto mb-6 h-12 w-12 rounded-full border border-[#D9B98E]/60 bg-[#D9B98E]/15 flex items-center justify-center text-[#F4E3C6]">
+                ✦
+              </div>
+              <p className="text-lg md:text-[1.25rem] leading-[1.8] text-[#F8F9FB]/90 italic">
+                “Transparência gera notícia. A Bebida Selada® honra o compromisso com a verdade, a rastreabilidade e a inovação brasileira.”
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        <div className="py-16 text-center">
+          <BackButton className="rounded-2xl border border-[#D9B98E]/70 bg-white px-7 md:px-10 py-3 text-sm md:text-base font-semibold text-[#001F33] shadow-[0_12px_28px_-24px_rgba(217,185,142,0.45)] hover:-translate-y-1 hover:bg-[#FDF3E4]">
+            Voltar
+          </BackButton>
         </div>
       </div>
+
       <Footer />
     </main>
   );

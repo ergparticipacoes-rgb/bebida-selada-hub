@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import BackButton from "../../components/ui/BackButton";
 import ShieldWithLock from "../../components/ui/ShieldWithLock";
 import StaticWineglassHourglass from "../../components/ui/StaticWineglassHourglass";
 import LeadModal from "../../components/ui/LeadModal";
@@ -110,20 +111,9 @@ export default function ConsultaPublicaPage() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-center mt-12 pt-8 border-t border-[#D9B98E]/20"
           >
-            <button
-              onClick={() => {
-                if (typeof window !== "undefined") {
-                  const savedOffset = sessionStorage.getItem('backOffset') || '0';
-                  sessionStorage.setItem('backWithOffset', 'true');
-                  sessionStorage.setItem('backOffset', savedOffset);
-                  window.history.back();
-                }
-              }}
-              className="px-8 py-4 text-lg font-semibold rounded-lg bg-transparent border-2 border-[#D9B98E] text-[#D9B98E] hover:bg-[#D9B98E] hover:text-[#001F33] transition-all duration-400 ease-in-out shadow-md focus:outline-none focus:ring-2 focus:ring-[#E5C48F]/60 focus:ring-offset-2 focus:ring-offset-[#001F33]"
-              aria-label="Voltar para página anterior"
-            >
-              ← Voltar
-            </button>
+            <BackButton
+              className="rounded-2xl border border-[#D9B98E]/70 bg-white/90 px-7 md:px-10 py-3 text-sm md:text-base font-semibold text-[#001F33] shadow-[0_12px_28px_-24px_rgba(217,185,142,0.45)] hover:-translate-y-1 hover:bg-[#FDF3E4]"
+            />
           </motion.div>
         </div>
       </div>

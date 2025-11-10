@@ -1,6 +1,7 @@
 "use client";
 
 import { newsData } from "../../../data/newsData";
+import BackButton from "../../../components/ui/BackButton";
 
 export default function ExameNoticia() {
   const noticia = newsData.find(item => item.slug === "exame-certificacao");
@@ -71,13 +72,10 @@ export default function ExameNoticia() {
         </article>
 
         {/* Botão Voltar */}
-        <div className="mt-12 text-center">
-          <button
-            onClick={() => window.history.back()}
-            className="inline-block px-6 py-3 rounded-2xl border border-[#D9B98E]/30 bg-[#D9B98E] text-[#001F33] font-medium hover:brightness-110 hover:scale-105 transition-all duration-400 ease-in-out shadow-md"
-          >
-            ← Voltar
-          </button>
+        <div className="mt-10 text-center">
+          <BackButton
+            className="rounded-2xl border border-[#D9B98E]/70 bg-white px-7 md:px-10 py-3 text-sm md:text-base font-semibold text-[#001F33] shadow-[0_12px_28px_-24px_rgba(217,185,142,0.45)] hover:-translate-y-1 hover:bg-[#FDF3E4]"
+          />
         </div>
       </div>
     </main>
