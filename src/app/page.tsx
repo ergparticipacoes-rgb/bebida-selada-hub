@@ -24,17 +24,17 @@ const LazyRepresentanteDigital = dynamic(() => import("../components/Representan
   ),
 });
 
-const LazyUniversidadeSection = dynamic(
-  () => import("../components/sections/UniversidadeSection"),
-  {
-    ssr: false,
-    loading: () => (
-      <section className="py-20 text-center text-[#001F33]">
-        <p className="animate-pulse text-base md:text-lg">Carregando Universidade…</p>
-      </section>
-    ),
-  }
-);
+// const LazyUniversidadeSection = dynamic(
+//   () => import("../components/sections/UniversidadeSection"),
+//   {
+//     ssr: false,
+//     loading: () => (
+//       <section className="py-20 text-center text-[#001F33]">
+//         <p className="animate-pulse text-base md:text-lg">Carregando Universidade…</p>
+//       </section>
+//     ),
+//   }
+// );
 
 const LazyCTASection = dynamic(() => import("../components/CTASection"), {
   ssr: false,
@@ -416,7 +416,7 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="mx-auto max-w-4xl rounded-xl border border-[#D9B98E]/50 bg-white/6 px-4 py-5 text-xs text-[#F8F9FB]/90 italic leading-[1.5] shadow-[0_16px_50px_-24px_rgba(217,185,142,0.45)] backdrop-blur-md mt-4"
               >
-                "A Rede Segura Nacional cresce a cada dia — unindo quem fiscaliza, quem produz e quem consome, em um movimento de transparência e confiança que transforma o mercado de bebidas no Brasil."
+                &quot;A Rede Segura Nacional cresce a cada dia — unindo quem fiscaliza, quem produz e quem consome, em um movimento de transparência e confiança que transforma o mercado de bebidas no Brasil.&quot;
               </motion.blockquote>
             </div>
 
@@ -497,7 +497,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="mx-auto max-w-4xl rounded-[26px] border border-[#D9B98E]/50 bg-white/6 px-8 py-10 text-lg text-[#F8F9FB]/90 italic leading-[1.65] shadow-[0_24px_70px_-32px_rgba(217,185,142,0.45)] backdrop-blur-md hidden md:block"
             >
-              "A Rede Segura Nacional cresce a cada dia — unindo quem fiscaliza, quem produz e quem consome, em um movimento de transparência e confiança que transforma o mercado de bebidas no Brasil."
+              &quot;A Rede Segura Nacional cresce a cada dia — unindo quem fiscaliza, quem produz e quem consome, em um movimento de transparência e confiança que transforma o mercado de bebidas no Brasil.&quot;
             </motion.blockquote>
 
             {/* Desktop: Cards institucionais */}
