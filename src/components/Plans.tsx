@@ -69,32 +69,142 @@ export default function Plans() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#F5EFE2] via-[#FFF9EF] to-[#F5E6D2] py-24 md:py-28">
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#F5EFE2] via-[#FFF9EF] to-[#F5E6D2] py-10 md:py-28">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(217,185,142,0.25),transparent_65%)]" />
       <div className="absolute -left-40 top-16 h-[360px] w-[360px] rounded-full bg-[#E6CFA5]/30 blur-[160px]" />
       <div className="absolute -right-48 bottom-8 h-[420px] w-[420px] rounded-full bg-[#C9A97D]/25 blur-[180px]" />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-8 lg:px-12 text-center space-y-14 md:space-y-16">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-8 lg:px-12 text-center space-y-8 md:space-y-16">
+        {/* Mobile Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="space-y-5"
+          className="space-y-3 md:space-y-5 block md:hidden"
         >
-          <span className="inline-flex items-center justify-center rounded-full border border-[#C9A97D]/70 bg-[#D9B98E]/20 px-5 py-1 text-[0.8rem] uppercase tracking-[0.35em] text-[#6F5127]">
+          <span className="inline-flex items-center justify-center rounded-full border border-[#C9A97D]/70 bg-[#D9B98E]/20 px-4 py-1 text-[0.7rem] uppercase tracking-[0.3em] text-[#6F5127]">
             Planos e Benefícios
           </span>
-          <h2 className="text-[2.05rem] md:text-[2.7rem] font-playfair font-bold tracking-tight text-[#1F2A38] leading-tight md:leading-[1.28] text-balance">
+          <h2 className="text-[1.6rem] font-playfair font-bold tracking-tight text-[#1F2A38] leading-tight text-balance">
             Escolha o plano ideal para o seu estabelecimento
           </h2>
-          <p className="text-base md:text-lg text-[#342C1E]/80 max-w-3xl mx-auto leading-[1.7]">
+          <p className="text-sm text-[#342C1E]/80 max-w-3xl mx-auto leading-[1.5]">
             Valores promocionais de lançamento acompanhados de auditoria, visibilidade nacional e suporte exclusivo da
             Rede Segura Nacional — Bebida Selada®.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 lg:gap-9">
+        {/* Desktop Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="space-y-5 hidden md:block"
+        >
+          <span className="inline-flex items-center justify-center rounded-full border border-[#C9A97D]/70 bg-[#D9B98E]/20 px-5 py-1 text-[0.8rem] uppercase tracking-[0.35em] text-[#6F5127]">
+            Planos e Benefícios
+          </span>
+          <h2 className="text-[2.7rem] font-playfair font-bold tracking-tight text-[#1F2A38] leading-tight md:leading-[1.28] text-balance">
+            Escolha o plano ideal para o seu estabelecimento
+          </h2>
+          <p className="text-lg text-[#342C1E]/80 max-w-3xl mx-auto leading-[1.7]">
+            Valores promocionais de lançamento acompanhados de auditoria, visibilidade nacional e suporte exclusivo da
+            Rede Segura Nacional — Bebida Selada®.
+          </p>
+        </motion.div>
+
+        {/* Mobile: Cards condensados */}
+        <div className="grid grid-cols-1 gap-4 md:hidden">
+          {plans.map((plan, i) => (
+            <motion.div
+              key={`mobile-${plan.name}`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.08, ease: "easeOut" }}
+              className={`group relative flex flex-col overflow-hidden rounded-2xl border bg-white/85 px-5 py-6 text-left shadow-[0_20px_60px_-28px_rgba(31,42,56,0.25)] backdrop-blur-md transition-all duration-300 ${
+                plan.highlight
+                  ? "border-[#E6CFA5] shadow-[0_25px_70px_-24px_rgba(201,169,125,0.5)] ring-1 ring-[#E6CFA5]/35"
+                  : "border-[#E6CFA5]/60"
+              }`}
+            >
+              {/* Tarjas Mobile */}
+              {!plan.highlight && (
+                <span className="absolute top-0 right-0 rounded-bl-xl rounded-tr-2xl border border-[#1F2A38]/20 bg-[#1F2A38]/12 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-[#1F2A38]">
+                  {plan.isFree ? PRICING_CONFIG.messages.freeBadge : PRICING_CONFIG.messages.offerTag}
+                </span>
+              )}
+              {plan.highlight && (
+                <span className="absolute top-0 left-0 rounded-br-xl rounded-tl-2xl border border-[#D9B98E]/60 bg-gradient-to-r from-[#F7EDD4] via-[#E6CFA5] to-[#D9B98E] px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-[#1F2A38]">
+                  ⭐ Mais escolhido
+                </span>
+              )}
+
+              <div className="flex flex-1 flex-col pt-4">
+                <div>
+                  <h3 className="text-[1.3rem] font-playfair font-semibold tracking-tight text-[#1F2A38] leading-tight">
+                    {plan.name}
+                  </h3>
+                  <p className="mt-1.5 text-sm italic leading-[1.4] text-[#1F2A38]/85">{plan.description}</p>
+                </div>
+
+                <div
+                  className={`flex min-h-[90px] flex-col justify-center rounded-xl border border-[#E6CFA5]/60 bg-[#FDF8EE] px-4 py-4 text-left shadow-[inset_0_0_0_1px_rgba(255,255,255,0.18)] mt-4`}
+                >
+                  <p className="text-[0.8rem] font-medium text-[#1F2A38]/65 line-through decoration-[#B28A52]">
+                    De {formatPrice(plan.originalPrice)}
+                  </p>
+                  <p className="text-[1.15rem] font-playfair font-bold text-[#B88C4B] leading-[1.3]">
+                    Por{" "}
+                    {plan.promotionalPrice === 0
+                      ? formatPrice(plan.promotionalPrice)
+                      : `${formatPrice(plan.promotionalPrice)}/mês`}
+                  </p>
+                  {plan.isFree && (
+                    <p className="text-[0.7rem] uppercase tracking-[0.2em] text-[#1F2A38]/70 mt-1">Oferta de lançamento</p>
+                  )}
+                </div>
+
+                <ul className="mt-4 space-y-1.5 text-[0.85rem] text-[#1F2A38]">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2 leading-[1.4]">
+                      <span className="mt-0.5 h-4 w-4 flex items-center justify-center rounded-full bg-[#E6CFA5]/30 text-[#B88C4B] text-xs shrink-0">
+                        ✓
+                      </span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <p className="mt-4 text-[0.7rem] text-[#1F2A38]/65 italic leading-relaxed">
+                  {plan.isFree ? PRICING_CONFIG.messages.freeOfferCopy : PRICING_CONFIG.messages.offerValid}
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedPlan(plan);
+                  setFormSubmitted(false);
+                }}
+                className={`mt-5 inline-flex w-full items-center justify-center rounded-xl border px-4 py-2.5 text-xs font-semibold text-center transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D9B98E] ${
+                  plan.highlight
+                    ? "border-transparent bg-[#D9B98E] text-[#1F2A38] shadow-[0_14px_32px_-18px_rgba(217,185,142,0.6)] hover:-translate-y-0.5 hover:bg-[#E6CFA5]"
+                    : plan.isFree
+                    ? "border-[#D9B98E] bg-white/80 text-[#1F2A38] hover:-translate-y-0.5 hover:bg-[#F7EDD4]"
+                    : "border-[#D9B98E]/80 bg-transparent text-[#1F2A38] hover:-translate-y-0.5 hover:bg-[#F7EDD4]/60"
+                }`}
+              >
+                {plan.isFree ? "Ativar Plano Gratuito" : "Escolher plano"}
+              </button>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Desktop: Cards originais */}
+        <div className="hidden md:grid sm:grid-cols-2 lg:grid-cols-3 gap-7 lg:gap-9">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.name}
@@ -170,7 +280,7 @@ export default function Plans() {
                   setSelectedPlan(plan);
                   setFormSubmitted(false);
                 }}
-                className={`mt-8 inline-flex w-full items-center justify-center rounded-2xl border px-6 py-3 text-sm font-semibold tracking-wide transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D9B98E] ${
+                className={`mt-8 inline-flex w-full items-center justify-center rounded-2xl border px-6 py-3 text-sm font-semibold text-center transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D9B98E] ${
                   plan.highlight
                     ? "border-transparent bg-[#D9B98E] text-[#1F2A38] shadow-[0_18px_40px_-22px_rgba(217,185,142,0.6)] hover:-translate-y-0.5 hover:bg-[#E6CFA5]"
                     : plan.isFree

@@ -17,10 +17,19 @@ export default function BackButton({
   const router = useRouter();
 
   const handleClick = () => {
-    if (typeof window !== "undefined" && window.history.length > 1) {
-      router.back();
-    } else {
-      router.push(fallbackHref);
+    if (typeof window !== "undefined") {
+      // Scroll ao topo imediatamente
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      
+      // Pequeno delay para garantir que o scroll aconteça antes da navegação
+      setTimeout(() => {
+        // Verificar se há histórico para voltar
+        if (window.history.length > 1 && document.referrer) {
+          router.back();
+        } else {
+          router.push(fallbackHref);
+        }
+      }, 150);
     }
   };
 

@@ -24,6 +24,9 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+    -webkit-tap-highlight-color: transparent;
   }
 
       body {
@@ -34,6 +37,9 @@
         background-color: #F8F9FB; /* neutro quente, não branco puro */
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+        width: 100%;
+        touch-action: pan-y;
         @apply antialiased;
       }
 

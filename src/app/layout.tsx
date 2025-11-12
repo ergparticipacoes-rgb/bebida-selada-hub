@@ -3,6 +3,7 @@ import '../styles/globals.css';
 import PageTransition from '../components/PageTransition';
 import GlobalHead from '../components/GlobalHead';
 import ScrollToTop from '../components/ScrollToTop';
+import PWAInstallPrompt from '../components/PWAInstallPrompt';
 import Script from 'next/script';
 import { Inter, Playfair_Display } from "next/font/google";
 
@@ -64,8 +65,10 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  themeColor: "#D9B98E",
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: "#001F33",
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -73,6 +76,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="pt-BR" className={`${inter.variable} ${playfair.variable}`}>
       <head>
         <GlobalHead />
+        <meta name="application-name" content="Bebida Selada" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Bebida Selada" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <link rel="apple-touch-icon" href="/icon-192.png" />
       </head>
       <body className="bg-[#F8F9FB] text-[#222] antialiased">
         {/* JSON-LD Schema.org - Otimizado */}
@@ -126,6 +135,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </PageTransition>
         <ScrollToTop />
+        <PWAInstallPrompt />
         
         <script
           dangerouslySetInnerHTML={{

@@ -37,23 +37,23 @@ export default function ComoFunciona() {
   ];
 
   return (
-    <section className="relative overflow-hidden py-24 md:py-28 bg-gradient-to-b from-[#001F33] via-[#01273F] to-[#002A46] text-white">
+    <section className="relative overflow-hidden py-10 md:py-28 bg-gradient-to-b from-[#001F33] via-[#01273F] to-[#002A46] text-white">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(217,185,142,0.14),transparent_70%)]" />
       <div className="absolute -left-36 top-16 h-72 w-72 rounded-full bg-[#D9B98E]/12 blur-3xl" />
       <div className="absolute -right-40 bottom-24 h-80 w-80 rounded-full bg-[#8C6B40]/12 blur-[130px]" />
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-8 md:px-16 space-y-16">
+      <div className="relative z-10 container mx-auto px-4 sm:px-8 md:px-16 space-y-8 md:space-y-16">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center space-y-5"
+          className="text-center space-y-3 md:space-y-5"
         >
-          <span className="inline-flex items-center justify-center rounded-full border border-[#D9B98E]/60 bg-[#D9B98E]/15 px-6 py-2 text-[0.8rem] uppercase tracking-[0.36em] text-[#F4E3C6]">
+          <span className="inline-flex items-center justify-center rounded-full border border-[#D9B98E]/60 bg-[#D9B98E]/15 px-4 md:px-6 py-1.5 md:py-2 text-[0.7rem] md:text-[0.8rem] uppercase tracking-[0.3em] md:tracking-[0.36em] text-[#F4E3C6]">
             Como Funciona
           </span>
-          <p className="text-base md:text-lg font-inter text-[#F8F9FB]/88 max-w-4xl mx-auto leading-[1.75]">
+          <p className="text-sm md:text-lg font-inter text-[#F8F9FB]/88 max-w-4xl mx-auto leading-[1.5] md:leading-[1.75]">
             Uma jornada simples que protege quem consome, valoriza quem trabalha corretamente e fortalece a gestão pública.
           </p>
         </motion.div>
@@ -95,8 +95,8 @@ export default function ComoFunciona() {
           })}
         </div>
 
-        {/* Mobile: cards empilhados */}
-        <div className="md:hidden flex flex-col gap-6">
+        {/* Mobile: cards empilhados condensados */}
+        <div className="md:hidden flex flex-col gap-4">
           {blocos.map((bloco, i) => {
             const IconComponent = bloco.icon;
             return (
@@ -105,24 +105,24 @@ export default function ComoFunciona() {
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.08, ease: "easeOut" }}
-                className="group relative flex flex-col items-center justify-start rounded-3xl border border-[#D9B98E]/65 bg-white/8 px-6 py-9 text-center shadow-[0_24px_70px_-30px_rgba(217,185,142,0.55)] backdrop-blur-md transition-all duration-300 hover:border-[#F4E3C6] hover:bg-white/12 hover:shadow-[0_28px_80px_-32px_rgba(217,185,142,0.65)]"
+                transition={{ duration: 0.5, delay: i * 0.06, ease: "easeOut" }}
+                className="group relative flex flex-col items-center justify-start rounded-2xl border border-[#D9B98E]/65 bg-white/8 px-5 py-6 text-center shadow-[0_20px_60px_-28px_rgba(217,185,142,0.55)] backdrop-blur-md transition-all duration-300"
               >
-                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#F4E8D4] via-[#D9B98E] to-[#B88C4B] text-[#001F33] shadow-[0_16px_32px_-22px_rgba(217,185,142,0.55)]">
-                  <IconComponent className="h-7 w-7" />
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#F4E8D4] via-[#D9B98E] to-[#B88C4B] text-[#001F33] shadow-[0_12px_28px_-18px_rgba(217,185,142,0.55)]">
+                  <IconComponent className="h-6 w-6" />
                 </div>
-                <h3 className="text-[#FDFDFD] text-[1.5rem] font-playfair font-semibold tracking-tight leading-tight">
+                <h3 className="text-[#FDFDFD] text-[1.2rem] font-playfair font-semibold tracking-tight leading-tight">
                   {bloco.titulo}
                 </h3>
                 <p
-                  className="mt-3 text-base leading-[1.55] text-center text-[#F1F4FA]"
+                  className="mt-2 text-sm leading-[1.4] text-center text-[#F1F4FA]"
                   dangerouslySetInnerHTML={{ __html: bloco.descricao }}
                 />
-                <Link href={bloco.cta} className="mt-5 w-full">
+                <Link href={bloco.cta} className="mt-4 w-full">
                   <motion.button
-                    whileHover={{ scale: 1.03 }}
+                    whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full rounded-2xl border border-transparent bg-[#D9B98E] px-6 py-3 text-sm font-semibold text-[#001F33] shadow-[0_16px_36px_-24px_rgba(217,185,142,0.7)] transition-all duration-300 hover:-translate-y-1 hover:border-[#F4E3C6] hover:bg-[#E6CFA5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4E3C6]"
+                    className="w-full rounded-xl border border-transparent bg-[#D9B98E] px-5 py-2.5 text-xs font-semibold text-center text-[#001F33] shadow-[0_14px_32px_-20px_rgba(217,185,142,0.7)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#F4E3C6] hover:bg-[#E6CFA5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4E3C6]"
                   >
                     {bloco.ctaText}
                   </motion.button>

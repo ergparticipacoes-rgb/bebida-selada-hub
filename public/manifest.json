@@ -1,12 +1,46 @@
 {
   "name": "Bebida Selada® – Rede Segura Nacional",
   "short_name": "Bebida Selada",
+  "description": "O primeiro sistema brasileiro de certificação inteligente, rastreabilidade e confiança no setor de bebidas.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "any",
   "theme_color": "#001F33",
   "background_color": "#001F33",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "food"],
+  "prefer_related_applications": false,
   "icons": [
-    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Para Prefeituras",
+      "short_name": "Prefeituras",
+      "description": "Acesse informações para prefeituras",
+      "url": "/prefeituras",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Para Estabelecimentos",
+      "short_name": "Estabelecimentos",
+      "description": "Acesse informações para estabelecimentos",
+      "url": "/estabelecimentos",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
   ]
 }

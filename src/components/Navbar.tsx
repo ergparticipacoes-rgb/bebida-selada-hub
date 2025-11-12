@@ -161,8 +161,8 @@ export default function Navbar() {
             onClick={closeMenu}
             aria-hidden="true"
           />
-          <div className="fixed inset-0 z-50 flex flex-col bg-[#001626] bg-opacity-95 backdrop-blur-xl md:left-auto md:w-72 md:border-l md:border-[#D9B98E]/20 md:shadow-2xl">
-            <div className="flex items-center justify-between px-6 py-6 border-b border-white/10">
+          <div className="fixed inset-0 z-50 flex flex-col bg-[#001626] backdrop-blur-xl md:left-auto md:w-72 md:border-l md:border-[#D9B98E]/20 md:shadow-2xl">
+            <div className="flex items-center justify-between px-6 py-6 border-b border-white/10 bg-[#001626]">
               <span className="text-[#D9B98E] font-playfair text-lg">Menu</span>
               <button
                 type="button"
@@ -173,7 +173,7 @@ export default function Navbar() {
                 ×
               </button>
             </div>
-            <nav className="flex-1 px-6 py-8 flex flex-col gap-6 text-white font-inter text-lg">
+            <nav className="flex-1 px-6 py-8 flex flex-col gap-6 text-white font-inter text-lg bg-[#001626]">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={`mobile-${link.href}`}
@@ -185,9 +185,16 @@ export default function Navbar() {
                 </Link>
               ))}
               <Link
+                href="/universidade"
+                onClick={closeMenu}
+                className="hover:text-[#D9B98E] transition-colors duration-200"
+              >
+                Universidade
+              </Link>
+              <Link
                 href="/auth/login"
                 onClick={closeMenu}
-                className="mt-auto inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-base font-semibold text-[#0B1E3D] shadow-[0_16px_30px_rgba(255,255,255,0.25)] ring-1 ring-inset ring-white/70 transition-all duration-300 hover:bg-white/95 hover:shadow-[0_18px_34px_rgba(255,255,255,0.3)] hover:ring-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80"
+                className="mt-auto inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-base font-semibold text-[#0B1E3D] shadow-[0_16px_30px_rgba(255,255,255,0.25)] ring-1 ring-inset ring-white/70 transition-all duration-300 hover:bg-white/95 hover:shadow-[0_18px_34px_rgba(255,255,255,0.3)] hover:ring-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80"
               >
                 Login
               </Link>

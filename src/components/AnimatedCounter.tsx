@@ -17,24 +17,25 @@ export default function AnimatedCounter({
   className = "text-5xl font-bold text-[#D9B98E]",
 }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-64px" });
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   const [count, setCount] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
 
   useEffect(() => {
-    if (isInView) {
+    if (isInView && !hasStarted) {
       setHasStarted(true);
     }
-  }, [isInView]);
+  }, [isInView, hasStarted]);
 
   useEffect(() => {
     if (!hasStarted) return;
 
     let current = 0;
     const durationMs = Math.max(duration * 1000, 400);
-    const intervalStep = 16;
-    const increment = end / (durationMs / intervalStep);
+    const intervalStep = 16; // ~60fps
+    const totalSteps = durationMs / intervalStep;
+    const increment = end / totalSteps;
 
     let intervalId: ReturnType<typeof setInterval> | null = null;
     const timeoutId: ReturnType<typeof setTimeout> = setTimeout(() => {
@@ -42,11 +43,13 @@ export default function AnimatedCounter({
         current += increment;
         if (current >= end) {
           current = end;
+          setCount(end);
           if (intervalId) {
             clearInterval(intervalId);
           }
+        } else {
+          setCount(Math.floor(current));
         }
-        setCount(Math.floor(current));
       }, intervalStep);
     }, delay * 1000);
 
@@ -61,10 +64,10 @@ export default function AnimatedCounter({
   return (
     <motion.span
       ref={ref}
-      key={count}
-      initial={{ opacity: 0, y: 6 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
+      key={`counter-${end}`}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: hasStarted ? 1 : 0, scale: hasStarted ? 1 : 0.8 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
       className={className}
     >
       {count.toLocaleString("pt-BR")}

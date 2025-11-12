@@ -38,31 +38,70 @@ const FAQ_ITEMS = [
 export default function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
+  // Mobile: 5 primeiros itens
+  const mobileFAQItems = FAQ_ITEMS.slice(0, 5);
+  const desktopFAQItems = FAQ_ITEMS;
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#081B35] via-[#0B203F] to-[#001527] py-24 text-white border-t border-[#D9B98E]/25">
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#081B35] via-[#0B203F] to-[#001527] py-8 md:py-24 text-white border-t border-[#D9B98E]/25">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(217,185,142,0.14),transparent_70%)]" />
       <div className="absolute -left-32 top-20 h-72 w-72 rounded-full bg-[#D9B98E]/12 blur-3xl" />
       <div className="absolute -right-40 bottom-10 h-80 w-80 rounded-full bg-[#8C6B40]/12 blur-[140px]" />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 space-y-10">
-        <div className="text-center space-y-6">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 md:px-6 space-y-6 md:space-y-10">
+        {/* Mobile: Header condensado */}
+        <div className="text-center space-y-3 md:space-y-6 md:hidden">
+          <span className="inline-flex items-center justify-center rounded-full border border-[#D9B98E]/55 bg-[#D9B98E]/10 px-3 py-1 text-[0.7rem] uppercase tracking-[0.28em] text-[#F4E3C6]">
+            Dúvidas Frequentes
+          </span>
+        </div>
+
+        {/* Desktop: Header completo */}
+        <div className="text-center space-y-6 hidden md:block">
           <span className="inline-flex items-center justify-center rounded-full border border-[#D9B98E]/55 bg-[#D9B98E]/10 px-5 py-1 text-[0.8rem] uppercase tracking-[0.32em] text-[#F4E3C6]">
             Esclareça suas dúvidas
           </span>
-          <p className="text-base md:text-lg text-[#F8F9FB]/80 max-w-3xl mx-auto leading-[1.7]">
+          <p className="text-lg text-[#F8F9FB]/80 max-w-3xl mx-auto leading-[1.7]">
             Entenda como a Rede Segura Nacional — Bebida Selada® protege a autenticidade, fortalece parceiros e garante transparência em cada etapa.
           </p>
         </div>
 
-        <ul className="space-y-5">
-          {FAQ_ITEMS.map((item, index) => (
+        {/* Mobile: 5 primeiros itens */}
+        <ul className="space-y-3 md:space-y-5 md:hidden">
+          {mobileFAQItems.map((item, index) => (
+            <li
+              key={index}
+              className="group rounded-2xl md:rounded-3xl border border-white/10 bg-white/6 px-4 md:px-6 py-4 md:py-5 shadow-[0_20px_60px_-28px_rgba(217,185,142,0.45)] md:shadow-[0_24px_70px_-32px_rgba(217,185,142,0.45)] backdrop-blur-md transition-all duration-300 hover:border-[#D9B98E]/70 hover:bg-white/10"
+            >
+              <button
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                className="w-full text-left text-sm md:text-[1.35rem] font-semibold flex items-center justify-between gap-4 md:gap-6 text-[#FDFDFD] tracking-tight transition-colors duration-300 hover:text-[#D9B98E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D9B98E]"
+                aria-expanded={openIndex === index}
+              >
+                {item.question}
+                <span className="flex h-7 w-7 md:h-9 md:w-9 items-center justify-center rounded-full border border-[#D9B98E]/70 bg-[#D9B98E]/15 text-[#D9B98E] text-lg md:text-2xl leading-none transition-transform duration-300 group-hover:scale-105 shrink-0">
+                  {openIndex === index ? "−" : "+"}
+                </span>
+              </button>
+              {openIndex === index && (
+                <div className="mt-3 md:mt-4 border-t border-white/10 pt-3 md:pt-4 text-[#F8F9FB]/80 text-sm md:text-[1.05rem] leading-[1.4] md:leading-[1.55]">
+                  <p>{item.answer}</p>
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+
+        {/* Desktop: Todos os itens */}
+        <ul className="space-y-5 hidden md:block">
+          {desktopFAQItems.map((item, index) => (
             <li
               key={index}
               className="group rounded-3xl border border-white/10 bg-white/6 px-6 py-5 shadow-[0_24px_70px_-32px_rgba(217,185,142,0.45)] backdrop-blur-md transition-all duration-300 hover:border-[#D9B98E]/70 hover:bg-white/10 hover:shadow-[0_28px_80px_-30px_rgba(217,185,142,0.55)]"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full text-left text-[1.15rem] md:text-[1.35rem] font-semibold flex items-center justify-between gap-6 text-[#FDFDFD] tracking-tight transition-colors duration-300 hover:text-[#D9B98E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D9B98E]"
+                className="w-full text-left text-[1.35rem] font-semibold flex items-center justify-between gap-6 text-[#FDFDFD] tracking-tight transition-colors duration-300 hover:text-[#D9B98E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D9B98E]"
                 aria-expanded={openIndex === index}
               >
                 {item.question}
@@ -71,7 +110,7 @@ export default function Faq() {
                 </span>
               </button>
               {openIndex === index && (
-                <div className="mt-4 border-t border-white/10 pt-4 text-[#F8F9FB]/80 text-base md:text-[1.05rem] leading-[1.55]">
+                <div className="mt-4 border-t border-white/10 pt-4 text-[#F8F9FB]/80 text-[1.05rem] leading-[1.55]">
                   <p>{item.answer}</p>
                 </div>
               )}
