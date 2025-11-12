@@ -144,32 +144,32 @@ export default function Plans() {
 
               <div className="flex flex-1 flex-col pt-4">
                 <div>
-                  <h3 className="text-[1.3rem] font-playfair font-semibold tracking-tight text-[#1F2A38] leading-tight">
+                  <h3 className="text-[1.4rem] font-playfair font-semibold tracking-tight text-[#1F2A38] leading-tight">
                     {plan.name}
                   </h3>
-                  <p className="mt-1.5 text-sm italic leading-[1.4] text-[#1F2A38]/85">{plan.description}</p>
+                  <p className="mt-1.5 text-base italic leading-[1.5] text-[#1F2A38]/85">{plan.description}</p>
                 </div>
 
                 <div
                   className={`flex min-h-[90px] flex-col justify-center rounded-xl border border-[#E6CFA5]/60 bg-[#FDF8EE] px-4 py-4 text-left shadow-[inset_0_0_0_1px_rgba(255,255,255,0.18)] mt-4`}
                 >
-                  <p className="text-[0.8rem] font-medium text-[#1F2A38]/65 line-through decoration-[#B28A52]">
+                  <p className="text-sm font-medium text-[#1F2A38]/65 line-through decoration-[#B28A52]">
                     De {formatPrice(plan.originalPrice)}
                   </p>
-                  <p className="text-[1.15rem] font-playfair font-bold text-[#B88C4B] leading-[1.3]">
+                  <p className="text-[1.3rem] font-playfair font-bold text-[#B88C4B] leading-[1.3]">
                     Por{" "}
                     {plan.promotionalPrice === 0
                       ? formatPrice(plan.promotionalPrice)
                       : `${formatPrice(plan.promotionalPrice)}/mês`}
                   </p>
                   {plan.isFree && (
-                    <p className="text-[0.7rem] uppercase tracking-[0.2em] text-[#1F2A38]/70 mt-1">Oferta de lançamento</p>
+                    <p className="text-xs uppercase tracking-[0.2em] text-[#1F2A38]/70 mt-1">Oferta de lançamento</p>
                   )}
                 </div>
 
-                <ul className="mt-4 space-y-1.5 text-[0.85rem] text-[#1F2A38]">
+                <ul className="mt-4 space-y-1.5 text-sm text-[#1F2A38]">
                   {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2 leading-[1.4]">
+                    <li key={feature} className="flex items-start gap-2 leading-[1.5]">
                       <span className="mt-0.5 h-4 w-4 flex items-center justify-center rounded-full bg-[#E6CFA5]/30 text-[#B88C4B] text-xs shrink-0">
                         ✓
                       </span>
@@ -178,7 +178,7 @@ export default function Plans() {
                   ))}
                 </ul>
 
-                <p className="mt-4 text-[0.7rem] text-[#1F2A38]/65 italic leading-relaxed">
+                <p className="mt-4 text-xs text-[#1F2A38]/65 italic leading-relaxed">
                   {plan.isFree ? PRICING_CONFIG.messages.freeOfferCopy : PRICING_CONFIG.messages.offerValid}
                 </p>
               </div>
@@ -189,7 +189,7 @@ export default function Plans() {
                   setSelectedPlan(plan);
                   setFormSubmitted(false);
                 }}
-                className={`mt-5 inline-flex w-full items-center justify-center rounded-xl border px-4 py-2.5 text-xs font-semibold text-center transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D9B98E] ${
+                className={`mt-5 inline-flex w-full items-center justify-center rounded-xl border px-4 py-2.5 text-sm font-semibold text-center transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D9B98E] ${
                   plan.highlight
                     ? "border-transparent bg-[#D9B98E] text-[#1F2A38] shadow-[0_14px_32px_-18px_rgba(217,185,142,0.6)] hover:-translate-y-0.5 hover:bg-[#E6CFA5]"
                     : plan.isFree

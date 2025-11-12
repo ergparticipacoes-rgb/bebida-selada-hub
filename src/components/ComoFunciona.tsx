@@ -111,18 +111,18 @@ export default function ComoFunciona() {
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#F4E8D4] via-[#D9B98E] to-[#B88C4B] text-[#001F33] shadow-[0_12px_28px_-18px_rgba(217,185,142,0.55)]">
                   <IconComponent className="h-6 w-6" />
                 </div>
-                <h3 className="text-[#FDFDFD] text-[1.2rem] font-playfair font-semibold tracking-tight leading-tight">
+                <h3 className="text-[#FDFDFD] text-[1.35rem] font-playfair font-semibold tracking-tight leading-tight">
                   {bloco.titulo}
                 </h3>
                 <p
-                  className="mt-2 text-sm leading-[1.4] text-center text-[#F1F4FA]"
+                  className="mt-2 text-base leading-[1.5] text-center text-[#F1F4FA]"
                   dangerouslySetInnerHTML={{ __html: bloco.descricao }}
                 />
                 <Link href={bloco.cta} className="mt-4 w-full">
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full rounded-xl border border-transparent bg-[#D9B98E] px-5 py-2.5 text-xs font-semibold text-center text-[#001F33] shadow-[0_14px_32px_-20px_rgba(217,185,142,0.7)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#F4E3C6] hover:bg-[#E6CFA5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4E3C6]"
+                    className="w-full rounded-xl border border-transparent bg-[#D9B98E] px-5 py-2.5 text-sm font-semibold text-center text-[#001F33] shadow-[0_14px_32px_-20px_rgba(217,185,142,0.7)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#F4E3C6] hover:bg-[#E6CFA5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4E3C6]"
                   >
                     {bloco.ctaText}
                   </motion.button>

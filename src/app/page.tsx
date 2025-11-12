@@ -355,7 +355,7 @@ export default function Home() {
               <span className="inline-flex items-center justify-center rounded-full border border-[#D9B98E]/60 bg-[#D9B98E]/10 px-3 py-1 text-[0.65rem] uppercase tracking-[0.25em] text-[#F4E3C6]">
                 Rede Segura Nacional
               </span>
-              <p className="text-sm text-[#F8F9FB]/88 leading-[1.5]">
+              <p className="text-base text-[#F8F9FB]/88 leading-[1.6]">
                 A Rede Segura Nacional –{" "}
                 <span className="inline-flex items-baseline gap-[1px]">
                   <span className="font-playfair text-inbsGold">Bebida Selada</span>
@@ -403,7 +403,7 @@ export default function Home() {
                       duration={item.duration}
                       className="text-2xl font-playfair font-bold text-[#D9B98E]"
                     />
-                    <p className="mt-1 text-[0.6rem] text-[#F8F9FB]/85 leading-tight text-center px-1 break-words hyphens-auto">
+                    <p className="mt-1 text-[0.7rem] text-[#F8F9FB]/85 leading-tight text-center px-1 break-words hyphens-auto">
                       {item.label}
                     </p>
                   </motion.div>
@@ -414,7 +414,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="mx-auto max-w-4xl rounded-xl border border-[#D9B98E]/50 bg-white/6 px-4 py-5 text-xs text-[#F8F9FB]/90 italic leading-[1.5] shadow-[0_16px_50px_-24px_rgba(217,185,142,0.45)] backdrop-blur-md mt-4"
+                className="mx-auto max-w-4xl rounded-xl border border-[#D9B98E]/50 bg-white/6 px-4 py-5 text-sm text-[#F8F9FB]/90 italic leading-[1.6] shadow-[0_16px_50px_-24px_rgba(217,185,142,0.45)] backdrop-blur-md mt-4"
               >
                 &quot;A Rede Segura Nacional cresce a cada dia — unindo quem fiscaliza, quem produz e quem consome, em um movimento de transparência e confiança que transforma o mercado de bebidas no Brasil.&quot;
               </motion.blockquote>

@@ -75,7 +75,7 @@ export default function Faq() {
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full text-left text-sm md:text-[1.35rem] font-semibold flex items-center justify-between gap-4 md:gap-6 text-[#FDFDFD] tracking-tight transition-colors duration-300 hover:text-[#D9B98E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D9B98E]"
+                className="w-full text-left text-base md:text-[1.35rem] font-semibold flex items-center justify-between gap-4 md:gap-6 text-[#FDFDFD] tracking-tight transition-colors duration-300 hover:text-[#D9B98E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D9B98E]"
                 aria-expanded={openIndex === index}
               >
                 {item.question}
@@ -84,7 +84,7 @@ export default function Faq() {
                 </span>
               </button>
               {openIndex === index && (
-                <div className="mt-3 md:mt-4 border-t border-white/10 pt-3 md:pt-4 text-[#F8F9FB]/80 text-sm md:text-[1.05rem] leading-[1.4] md:leading-[1.55]">
+                <div className="mt-3 md:mt-4 border-t border-white/10 pt-3 md:pt-4 text-[#F8F9FB]/80 text-base md:text-[1.05rem] leading-[1.5] md:leading-[1.55]">
                   <p>{item.answer}</p>
                 </div>
               )}

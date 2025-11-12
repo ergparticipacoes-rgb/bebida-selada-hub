@@ -26,10 +26,10 @@ export default function CTASection() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="rounded-2xl border border-[#D9B98E]/60 bg-white/6 px-5 py-8 text-center shadow-[0_20px_60px_-28px_rgba(217,185,142,0.55)] backdrop-blur-md space-y-5 md:hidden"
         >
-          <h2 className="text-[1.4rem] font-playfair font-bold tracking-tight text-[#FDFDFD] leading-tight text-balance">
+          <h2 className="text-[1.7rem] font-playfair font-bold tracking-tight text-[#FDFDFD] leading-tight text-balance">
             Transforme o selo em lucro e prestígio
           </h2>
-          <p className="text-sm text-[#F8F9FB]/88 leading-[1.5]">
+          <p className="text-base text-[#F8F9FB]/88 leading-[1.6]">
             Bares, adegas, empórios, pubs, restaurantes, distribuidoras e casas especializadas já fazem parte da rede{" "}
             <span className="inline-flex items-baseline gap-[1px]">
               <span className="font-playfair text-inbsGold">Bebida Selada</span>
@@ -44,7 +44,7 @@ export default function CTASection() {
           </p>
           <Link
             href="/auth/register"
-            className="inline-flex items-center justify-center rounded-xl border border-transparent bg-[#D9B98E] px-8 py-3 text-sm font-semibold text-center text-[#001F33] shadow-[0_18px_38px_-22px_rgba(217,185,142,0.8)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#E6CFA5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4E3C6] w-full"
+            className="inline-flex items-center justify-center rounded-xl border border-transparent bg-[#D9B98E] px-8 py-3 text-base font-semibold text-center text-[#001F33] shadow-[0_18px_38px_-22px_rgba(217,185,142,0.8)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#E6CFA5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4E3C6] w-full"
           >
             Quero Fazer Parte
           </Link>
@@ -62,10 +62,10 @@ export default function CTASection() {
             <span className="inline-flex items-center justify-center rounded-full border border-[#D9B98E]/55 bg-[#D9B98E]/10 px-5 py-1 text-[0.8rem] uppercase tracking-[0.3em] text-[#F4E3C6]">
               Rede Segura Nacional
             </span>
-            <h2 className="text-[2.6rem] font-playfair font-bold tracking-tight text-[#FDFDFD] leading-[1.3] text-balance">
+            <h2 className="text-[2.8rem] font-playfair font-bold tracking-tight text-[#FDFDFD] leading-[1.3] text-balance">
               Transforme o selo em lucro e prestígio para o seu negócio.
             </h2>
-            <p className="text-lg text-[#F8F9FB]/88 max-w-3xl mx-auto leading-[1.75]">
+            <p className="text-xl text-[#F8F9FB]/88 max-w-3xl mx-auto leading-[1.75]">
               Bares, adegas, empórios, pubs, restaurantes, distribuidoras e casas especializadas já fazem parte da rede{" "}
               <span className="inline-flex items-baseline gap-[1px]">
                 <span className="font-playfair text-inbsGold">Bebida Selada</span>
