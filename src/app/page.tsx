@@ -96,11 +96,11 @@ export default function Home() {
                 Garantia de transparência, rastreabilidade e conformidade técnica em escala nacional.
               </p>
               <div className="rounded-xl md:rounded-2xl border border-[#D9B98E]/45 bg-white/8 px-4 md:px-6 py-4 md:py-5 text-[#F8F9FB]/90 shadow-[0_18px_50px_-32px_rgba(217,185,142,0.35)] backdrop-blur-md">
-                <p className="text-sm md:text-lg">
+                <p className="text-base md:text-lg">
                   Cada selo <span className="inline-flex items-baseline gap-[1px]"><span className="font-playfair text-inbsGold">Bebida Selada</span><span className="font-inter text-inbsGold text-[0.65em] ml-[1px] relative" style={{ top: "-0.35em" }}>®</span></span> representa confiança auditável — visível para o consumidor e fiscalizável por qualquer órgão público.
                 </p>
               </div>
-              <p className="text-sm md:text-lg italic text-[#F4E3C6]/85">
+              <p className="text-base md:text-lg italic text-[#F4E3C6]/85">
                 Compromisso com a integridade, a vida e o consumo responsável em todo o território nacional.
               </p>
             </motion.div>
@@ -114,13 +114,13 @@ export default function Home() {
             >
               <Link
                 href="/certificados"
-                className="inline-flex items-center justify-center rounded-xl md:rounded-2xl border border-transparent bg-[#D9B98E] px-5 md:px-7 py-2.5 md:py-3 text-xs md:text-base font-semibold text-center text-[#0B1E3D] shadow-[0_20px_45px_-28px_rgba(217,185,142,0.7)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#E6CFA5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4E3C6]"
+                className="inline-flex items-center justify-center rounded-xl md:rounded-2xl border border-transparent bg-[#D9B98E] px-5 md:px-7 py-2.5 md:py-3 text-sm md:text-base font-semibold text-center text-[#0B1E3D] shadow-[0_20px_45px_-28px_rgba(217,185,142,0.7)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#E6CFA5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4E3C6]"
               >
                 Consultar Estabelecimentos Certificados
               </Link>
               <Link
                 href="/noticias"
-                className="inline-flex items-center justify-center rounded-xl md:rounded-2xl border border-[#D9B98E]/70 bg-white/8 px-5 md:px-7 py-2.5 md:py-3 text-xs md:text-base font-semibold text-center text-[#FDFDFD] transition-all duration-300 hover:-translate-y-1 hover:bg-white/12 hover:border-[#F4E3C6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4E3C6]"
+                className="inline-flex items-center justify-center rounded-xl md:rounded-2xl border border-[#D9B98E]/70 bg-white/8 px-5 md:px-7 py-2.5 md:py-3 text-sm md:text-base font-semibold text-center text-[#FDFDFD] transition-all duration-300 hover:-translate-y-1 hover:bg-white/12 hover:border-[#F4E3C6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4E3C6]"
               >
                 Ver Notícias e Comunicados Oficiais
               </Link>
@@ -148,7 +148,7 @@ export default function Home() {
               Protocolo INBS-001:2025
             </h2>
             <div className="mx-auto h-[2px] w-12 bg-[#D9B98E] opacity-80 mb-4 rounded-full"></div>
-            <p className="text-sm text-[#001F33] max-w-3xl mx-auto leading-[1.5] font-medium">
+            <p className="text-base text-[#001F33] max-w-3xl mx-auto leading-[1.6] font-medium">
               A base técnica que garante confiança, transparência e segurança em cada bebida certificada.
             </p>
           </div>
@@ -166,13 +166,13 @@ export default function Home() {
 
           {/* Mobile: Subcopy condensada */}
           <div className="max-w-4xl mx-auto mb-8 md:mb-16 block md:hidden">
-            <p className="text-sm text-[#001F33CC] leading-[1.5] mb-3 text-center">
+            <p className="text-base text-[#001F33CC] leading-[1.6] mb-3 text-center">
               O Protocolo INBS-001:2025 é um conjunto de regras e verificações criado para dar <strong>credibilidade real</strong> ao que o consumidor bebe e ao que o comerciante vende.
             </p>
-            <p className="text-sm text-[#001F33CC] leading-[1.5] mb-3 text-center">
+            <p className="text-base text-[#001F33CC] leading-[1.6] mb-3 text-center">
               Ele une <strong>auditoria técnica independente</strong>, <strong>tecnologia blockchain</strong> e um <strong>selo digital ativo</strong> que pode ser consultado por qualquer pessoa, em qualquer lugar do Brasil.
             </p>
-            <p className="text-sm text-[#001F33CC] leading-[1.5] text-center">
+            <p className="text-base text-[#001F33CC] leading-[1.6] text-center">
               O resultado é uma <strong>rede segura, pública e transparente</strong> — onde cada garrafa, cada código e cada certificado podem ser verificados em segundos, com garantia de origem e autenticidade.
             </p>
           </div>
@@ -230,7 +230,7 @@ export default function Home() {
                   <h3 className="text-[#001F33] font-playfair font-semibold text-[1.2rem] tracking-tight text-center leading-tight">
                     {item.title}
                   </h3>
-                  <p className="text-[#0A1B2E] text-sm leading-[1.4] text-center px-2 flex-1">
+                  <p className="text-[#0A1B2E] text-base leading-[1.5] text-center px-2 flex-1">
                     {item.desc}
                   </p>
                 </motion.div>
@@ -322,7 +322,7 @@ export default function Home() {
 
           {/* Mobile: Microcopy condensada */}
           <div className="text-center pt-4 md:pt-8 block md:hidden">
-            <p className="text-xs text-[#001F33CC] leading-relaxed max-w-3xl mx-auto italic">
+            <p className="text-sm text-[#001F33CC] leading-relaxed max-w-3xl mx-auto italic">
               &quot;Transparência e rastreabilidade com padrão técnico nacional.&quot;
               <br />
               &quot;O INBS-001 é a garantia de que a bebida que chega ao seu copo passou por auditoria, controle e validação pública.&quot;
@@ -352,7 +352,7 @@ export default function Home() {
           <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 md:px-10 text-center space-y-6 md:space-y-16">
             {/* Mobile: Apenas contadores */}
             <div className="md:hidden space-y-4">
-              <span className="inline-flex items-center justify-center rounded-full border border-[#D9B98E]/60 bg-[#D9B98E]/10 px-3 py-1 text-[0.65rem] uppercase tracking-[0.25em] text-[#F4E3C6]">
+              <span className="inline-flex items-center justify-center rounded-full border border-[#D9B98E]/60 bg-[#D9B98E]/10 px-3 py-1 text-xs uppercase tracking-[0.25em] text-[#F4E3C6]">
                 Rede Segura Nacional
               </span>
               <p className="text-base text-[#F8F9FB]/88 leading-[1.6]">
@@ -403,7 +403,7 @@ export default function Home() {
                       duration={item.duration}
                       className="text-2xl font-playfair font-bold text-[#D9B98E]"
                     />
-                    <p className="mt-1 text-[0.7rem] text-[#F8F9FB]/85 leading-tight text-center px-1 break-words hyphens-auto">
+                    <p className="mt-1 text-xs text-[#F8F9FB]/85 leading-tight text-center px-1 break-words hyphens-auto">
                       {item.label}
                     </p>
                   </motion.div>
@@ -414,7 +414,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="mx-auto max-w-4xl rounded-xl border border-[#D9B98E]/50 bg-white/6 px-4 py-5 text-sm text-[#F8F9FB]/90 italic leading-[1.6] shadow-[0_16px_50px_-24px_rgba(217,185,142,0.45)] backdrop-blur-md mt-4"
+                className="mx-auto max-w-4xl rounded-xl border border-[#D9B98E]/50 bg-white/6 px-4 py-5 text-base text-[#F8F9FB]/90 italic leading-[1.6] shadow-[0_16px_50px_-24px_rgba(217,185,142,0.45)] backdrop-blur-md mt-4"
               >
                 &quot;A Rede Segura Nacional cresce a cada dia — unindo quem fiscaliza, quem produz e quem consome, em um movimento de transparência e confiança que transforma o mercado de bebidas no Brasil.&quot;
               </motion.blockquote>
@@ -581,10 +581,10 @@ export default function Home() {
               viewport={{ once: true }}
               className="relative mx-auto max-w-5xl overflow-hidden rounded-2xl md:rounded-[30px] border border-[#E6CFA5]/70 bg-white/90 px-5 md:px-10 py-8 md:py-12 shadow-[0_20px_60px_-28px_rgba(4,34,64,0.35)] md:shadow-[0_28px_80px_-30px_rgba(4,34,64,0.35)] backdrop-blur-md"
             >
-              <span className="text-[0.7rem] md:text-[0.8rem] uppercase tracking-[0.3em] md:tracking-[0.35em] text-[#8C6B40] font-semibold">
+              <span className="text-xs md:text-[0.8rem] uppercase tracking-[0.3em] md:tracking-[0.35em] text-[#8C6B40] font-semibold">
                 Crescimento verificado
               </span>
-              <p className="mt-3 md:mt-4 text-base md:text-[1.3rem] font-playfair text-[#001F33] leading-[1.4] md:leading-[1.55]">
+              <p className="mt-3 md:mt-4 text-lg md:text-[1.3rem] font-playfair text-[#001F33] leading-[1.5] md:leading-[1.55]">
                 Hoje, a Rede Segura Nacional — <span className="inline-flex items-baseline gap-[1px] font-semibold"><span className="font-playfair text-inbsBlue">Bebida Selada</span><span className="font-inter text-inbsBlue text-[0.65em] ml-[1px] relative" style={{ top: "-0.35em" }}>®</span></span> — avança de forma constante, consolidando um novo padrão de confiança para o setor de bebidas brasileiro.
               </p>
               <div className="mt-6 md:mt-8 grid grid-cols-1 gap-3 md:gap-4 md:grid-cols-3">
@@ -595,13 +595,13 @@ export default function Home() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-xl md:rounded-2xl border border-[#E6CFA5]/80 bg-gradient-to-br from-[#FDF9F1] via-white to-[#F3E2C7] px-4 md:px-5 py-3 md:py-4 text-[0.7rem] md:text-[0.8rem] font-medium text-[#2D3A46] shadow-[0_12px_26px_-20px_rgba(197,155,88,0.65)] md:shadow-[0_16px_30px_-22px_rgba(197,155,88,0.65)]"
+                    className="rounded-xl md:rounded-2xl border border-[#E6CFA5]/80 bg-gradient-to-br from-[#FDF9F1] via-white to-[#F3E2C7] px-4 md:px-5 py-3 md:py-4 text-xs md:text-[0.8rem] font-medium text-[#2D3A46] shadow-[0_12px_26px_-20px_rgba(197,155,88,0.65)] md:shadow-[0_16px_30px_-22px_rgba(197,155,88,0.65)]"
                   >
                     {item}
                   </div>
                 ))}
               </div>
-              <p className="mt-5 md:mt-7 text-sm md:text-base text-[#001F33CC] leading-[1.5] md:leading-[1.65]">
+              <p className="mt-5 md:mt-7 text-base md:text-base text-[#001F33CC] leading-[1.6] md:leading-[1.65]">
                 Um crescimento sólido, transparente e auditável em toda a cadeia — do produtor ao consumidor.
               </p>
             </motion.div>

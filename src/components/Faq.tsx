@@ -51,7 +51,7 @@ export default function Faq() {
       <div className="relative z-10 max-w-5xl mx-auto px-4 md:px-6 space-y-6 md:space-y-10">
         {/* Mobile: Header condensado */}
         <div className="text-center space-y-3 md:space-y-6 md:hidden">
-          <span className="inline-flex items-center justify-center rounded-full border border-[#D9B98E]/55 bg-[#D9B98E]/10 px-3 py-1 text-[0.7rem] uppercase tracking-[0.28em] text-[#F4E3C6]">
+          <span className="inline-flex items-center justify-center rounded-full border border-[#D9B98E]/55 bg-[#D9B98E]/10 px-3 py-1 text-xs uppercase tracking-[0.28em] text-[#F4E3C6]">
             Dúvidas Frequentes
           </span>
         </div>

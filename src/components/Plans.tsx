@@ -83,13 +83,13 @@ export default function Plans() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="space-y-3 md:space-y-5 block md:hidden"
         >
-          <span className="inline-flex items-center justify-center rounded-full border border-[#C9A97D]/70 bg-[#D9B98E]/20 px-4 py-1 text-[0.7rem] uppercase tracking-[0.3em] text-[#6F5127]">
+          <span className="inline-flex items-center justify-center rounded-full border border-[#C9A97D]/70 bg-[#D9B98E]/20 px-4 py-1 text-xs uppercase tracking-[0.3em] text-[#6F5127]">
             Planos e Benefícios
           </span>
-          <h2 className="text-[1.6rem] font-playfair font-bold tracking-tight text-[#1F2A38] leading-tight text-balance">
+          <h2 className="text-[1.8rem] font-playfair font-bold tracking-tight text-[#1F2A38] leading-tight text-balance">
             Escolha o plano ideal para o seu estabelecimento
           </h2>
-          <p className="text-sm text-[#342C1E]/80 max-w-3xl mx-auto leading-[1.5]">
+          <p className="text-base text-[#342C1E]/80 max-w-3xl mx-auto leading-[1.6]">
             Valores promocionais de lançamento acompanhados de auditoria, visibilidade nacional e suporte exclusivo da
             Rede Segura Nacional — Bebida Selada®.
           </p>
@@ -132,12 +132,12 @@ export default function Plans() {
             >
               {/* Tarjas Mobile */}
               {!plan.highlight && (
-                <span className="absolute top-0 right-0 rounded-bl-xl rounded-tr-2xl border border-[#1F2A38]/20 bg-[#1F2A38]/12 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-[#1F2A38]">
+                <span className="absolute top-0 right-0 rounded-bl-xl rounded-tr-2xl border border-[#1F2A38]/20 bg-[#1F2A38]/12 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[#1F2A38]">
                   {plan.isFree ? PRICING_CONFIG.messages.freeBadge : PRICING_CONFIG.messages.offerTag}
                 </span>
               )}
               {plan.highlight && (
-                <span className="absolute top-0 left-0 rounded-br-xl rounded-tl-2xl border border-[#D9B98E]/60 bg-gradient-to-r from-[#F7EDD4] via-[#E6CFA5] to-[#D9B98E] px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-[#1F2A38]">
+                <span className="absolute top-0 left-0 rounded-br-xl rounded-tl-2xl border border-[#D9B98E]/60 bg-gradient-to-r from-[#F7EDD4] via-[#E6CFA5] to-[#D9B98E] px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[#1F2A38]">
                   ⭐ Mais escolhido
                 </span>
               )}
@@ -178,7 +178,7 @@ export default function Plans() {
                   ))}
                 </ul>
 
-                <p className="mt-4 text-xs text-[#1F2A38]/65 italic leading-relaxed">
+                <p className="mt-4 text-sm text-[#1F2A38]/65 italic leading-relaxed">
                   {plan.isFree ? PRICING_CONFIG.messages.freeOfferCopy : PRICING_CONFIG.messages.offerValid}
                 </p>
               </div>
@@ -189,7 +189,7 @@ export default function Plans() {
                   setSelectedPlan(plan);
                   setFormSubmitted(false);
                 }}
-                className={`mt-5 inline-flex w-full items-center justify-center rounded-xl border px-4 py-2.5 text-sm font-semibold text-center transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D9B98E] ${
+                className={`mt-5 inline-flex w-full items-center justify-center rounded-xl border px-4 py-2.5 text-base font-semibold text-center transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D9B98E] ${
                   plan.highlight
                     ? "border-transparent bg-[#D9B98E] text-[#1F2A38] shadow-[0_14px_32px_-18px_rgba(217,185,142,0.6)] hover:-translate-y-0.5 hover:bg-[#E6CFA5]"
                     : plan.isFree

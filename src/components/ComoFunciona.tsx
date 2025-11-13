@@ -50,10 +50,10 @@ export default function ComoFunciona() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center space-y-3 md:space-y-5"
         >
-          <span className="inline-flex items-center justify-center rounded-full border border-[#D9B98E]/60 bg-[#D9B98E]/15 px-4 md:px-6 py-1.5 md:py-2 text-[0.7rem] md:text-[0.8rem] uppercase tracking-[0.3em] md:tracking-[0.36em] text-[#F4E3C6]">
+          <span className="inline-flex items-center justify-center rounded-full border border-[#D9B98E]/60 bg-[#D9B98E]/15 px-4 md:px-6 py-1.5 md:py-2 text-xs md:text-[0.8rem] uppercase tracking-[0.3em] md:tracking-[0.36em] text-[#F4E3C6]">
             Como Funciona
           </span>
-          <p className="text-sm md:text-lg font-inter text-[#F8F9FB]/88 max-w-4xl mx-auto leading-[1.5] md:leading-[1.75]">
+          <p className="text-base md:text-lg font-inter text-[#F8F9FB]/88 max-w-4xl mx-auto leading-[1.6] md:leading-[1.75]">
             Uma jornada simples que protege quem consome, valoriza quem trabalha corretamente e fortalece a gestão pública.
           </p>
         </motion.div>
